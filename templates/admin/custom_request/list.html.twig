@@ -19,11 +19,11 @@
                                 <th>Titre</th>
                                 <th>Description</th>
                                 <th>Catégorie</th>
-                                <th>Language</th>
-                                <th>Category</th>
-                                <th>Synopsis</th>
-                                <th>Duration</th>
-                                <th>Poster</th>
+                                <th>Date demande</th>
+                                <th>Demandeur</th>
+                                <th>Status</th>
+                                <th>Artisan</th>
+                                <th>Photo</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -33,12 +33,13 @@
                                     <td>{{ r.title }}</td>
                                     <td>{{ r.description }}</td>
                                     <td>{{ r.category }}</td>
-                                    <td>{{ r.language }}</td>
-                                    <td>{{  r.category|join(', ')  }}</td>
-                                    <td>{{ r.synopsis }}</td>
-                                    <td>{{ r.duration }}</td>
-                                    <td><img src="{{ r.photoPath }}" alt="" class="img-responsive"></td>
-                                    <td><a href="{{ path('admin_edit_movie', {id: movie.id}) }}">Modifier</a></td>
+                                    <td>{{ r.creationDate }}</td>
+                                    <td>{{  r.user  }}</td>
+                                    {#to do : lien vers le profil du demandeur#}
+                                    <td>{{ r.status }}</td>
+                                    <td>{{ r.userAssignedTo }}</td>
+                                    <td><img src="{{ r.photoPath }}" alt="photo de l'objet à customiser" class="img-responsive"></td>
+                                    <td><a href="{{ path('admin_validate_request', {id: r.id}) }}">Valider</a></td>
                                 </tr>
                             {%  endfor %}
                             </tbody>

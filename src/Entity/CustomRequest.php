@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\RequestRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\CustomRequestRepository")
  */
-class Request
+class CustomRequest
 {
     /**
      * @ORM\Id()
@@ -27,7 +28,7 @@ class Request
     private $description;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="string")
      */
     private $category;
 
@@ -48,10 +49,14 @@ class Request
     private $user;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="string", length=15)
+
+     * @Assert\Choice(
+     *     choices = { "A_VALIDER", "EN_ATTENTE", "ASSIGNE", "EN_COURS", "TERMINE" },
+     *     message = "Veuillez sélectionner un statut valide"
+     * )
      */
-    private $status
-    ;
+    private $status;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -87,17 +92,7 @@ class Request
         return $this;
     }
 
-    public function getCategory(): ?array
-    {
-        return $this->category;
-    }
 
-    public function setCategory(array $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
 
     public function getPhotoPath(): ?string
     {
@@ -135,18 +130,6 @@ class Request
         return $this;
     }
 
-    public function getStatus(): ?array
-    {
-        return $this->status;
-    }
-
-    public function setStatus(array $status): self
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
     public function getUserAssignedTo(): ?string
     {
         return $this->userAssignedTo;
@@ -158,4 +141,24 @@ class Request
 
         return $this;
     }
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    public function setCategory($category): void
+    {
+        $this->category = $category;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status): void
+    {
+        $this->status = $status;
+    }
+
 }

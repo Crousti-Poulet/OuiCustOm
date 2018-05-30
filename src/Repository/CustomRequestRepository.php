@@ -2,21 +2,21 @@
 
 namespace App\Repository;
 
-use App\Entity\Request;
+use App\Entity\CustomRequest;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Request|null find($id, $lockMode = null, $lockVersion = null)
- * @method Request|null findOneBy(array $criteria, array $orderBy = null)
- * @method Request[]    findAll()
- * @method Request[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method CustomRequest|null find($id, $lockMode = null, $lockVersion = null)
+ * @method CustomRequest|null findOneBy(array $criteria, array $orderBy = null)
+ * @method CustomRequest[]    findAll()
+ * @method CustomRequest[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class RequestRepository extends ServiceEntityRepository
+class CustomRequestRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Request::class);
+        parent::__construct($registry, CustomRequest::class);
     }
 
 //    /**
