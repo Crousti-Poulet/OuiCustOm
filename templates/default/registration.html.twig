@@ -1,0 +1,28 @@
+{% extends 'base_front.html.twig' %}
+
+
+
+
+{% block body %}
+
+<h1> Inscription</h1>
+
+<div class=" text-center d-flex justify-content-center formRegister">
+    <div class="form col-8 col-md-6 col-lg-3">
+        <fieldset class="border m-3 p-3 bg-light"  >
+        {{form_start(formUser)}}
+
+        {{ form_row(formUser.username,   {'attr' : { 'placeholder' : "pseudo utilisateur"}}) }}
+        {{ form_row(formUser.email, {'attr' : { 'placeholder' : "monadress@mail.com"}}) }}
+        {{ form_row(formUser.password,   {'attr' : { 'placeholder' : " password"}}) }}
+        {{ form_row(formUser.location,   {'attr' : { 'placeholder' : "location"}}) }}
+        {{ form_row(formUser.role )}}
+
+
+        <button type="submit" class="btn btn-success "> s'enregistrer </button>
+        {{form_end(formUser)}}
+        </fieldset>
+    </div>
+</div>
+
+{% endblock %}

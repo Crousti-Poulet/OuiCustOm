@@ -15,6 +15,12 @@ body, html
   box-sizing: border-box;
 }
 
+.formRegister{
+  background: url("../../public/img/brushes.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
 .banner{
   background: url("../img/backgroun1.jpg");
   background-repeat: no-repeat;
@@ -71,10 +77,6 @@ body, html
   max-width: 100%;
 }
 
-.bloc_page
-{
-   height: calc(100vh - 215px);
-}
 
 #header_front img
 {
@@ -90,11 +92,6 @@ body, html
   width: 80px;  
 }
 
-#footer_front
-{
-  height: 155px;
-}
-
 #footer_front ul
 {
   list-style-type: none;
@@ -105,22 +102,10 @@ body, html
   font-size: 1.2em;
 }
 
-#site_mapping
-{
-  width: 180px;
-  float: left;
-}
-
 #copyright
 {
  margin: auto;
  padding-top: 40px; 
-}
-
-.social
-{
-  float: right;
-  margin-top: -40px;
 }
 
 .social i
@@ -132,4 +117,10 @@ body, html
 .social i:hover
 {
   color: black!important;
+}
+
+footer .col-4{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
