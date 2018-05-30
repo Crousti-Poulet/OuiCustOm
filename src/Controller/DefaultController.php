@@ -58,9 +58,8 @@ class DefaultController extends Controller
                      ])     
                      
                      ->getForm() ;       // on le RECUPERE   
-
-             
-                 
+            
+              
 
         $form->handleRequest($request);  // ANALYSE de la requete et ducou symfony lié title content avec $article
              
