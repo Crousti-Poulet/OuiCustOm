@@ -1,1 +1,16 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+
+body, html
+{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: #f7f8f9;
+}
+
+*
+{
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
