@@ -13,7 +13,7 @@
 (function( factory ){
 	if ( typeof define === 'function' && define.amd ) {
 		// AMD
-		define( ['jquery', 'datatables.net'], function ( $ ) {
+		define( ['jquery', 'datatables.net'], function ($ ) {
 			return factory( $, window, document );
 		} );
 	}
@@ -46,32 +46,25 @@ var DataTable = $.fn.dataTable;
 /* Set the defaults for DataTables initialisation */
 $.extend( true, DataTable.defaults, {
 	dom:
-		"<'mdl-grid'"+
-			"<'mdl-cell mdl-cell--6-col'l>"+
-			"<'mdl-cell mdl-cell--6-col'f>"+
-		">"+
-		"<'mdl-grid dt-table'"+
-			"<'mdl-cell mdl-cell--12-col'tr>"+
-		">"+
-		"<'mdl-grid'"+
-			"<'mdl-cell mdl-cell--4-col'i>"+
-			"<'mdl-cell mdl-cell--8-col'p>"+
-		">",
-	renderer: 'material'
+		"<'row'<'col-md-6'l><'col-md-6'f>>" +
+		"<'row'<'col-md-12'tr>>" +
+		"<'row'<'col-md-5'i><'col-md-7'p>>",
+	renderer: 'bootstrap'
 } );
 
 
 /* Default class modification */
 $.extend( DataTable.ext.classes, {
-	sWrapper:      "dataTables_wrapper form-inline dt-material",
+	sWrapper:      "dataTables_wrapper form-inline dt-bootstrap4",
 	sFilterInput:  "form-control input-sm",
 	sLengthSelect: "form-control input-sm",
-	sProcessing:   "dataTables_processing panel panel-default"
+	sProcessing:   "dataTables_processing panel panel-default",
+	sPageButton:   "paginate_button page-item"
 } );
 
 
 /* Bootstrap paging button renderer */
-DataTable.ext.renderer.pageButton.material = function ( settings, host, idx, buttons, page, pages ) {
+DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, buttons, page, pages ) {
 	var api     = new DataTable.Api( settings );
 	var classes = settings.oClasses;
 	var lang    = settings.oLanguage.oPaginate;
@@ -79,7 +72,7 @@ DataTable.ext.renderer.pageButton.material = function ( settings, host, idx, but
 	var btnDisplay, btnClass, counter=0;
 
 	var attach = function( container, buttons ) {
-		var i, ien, node, button, disabled, active;
+		var i, ien, node, button;
 		var clickHandler = function ( e ) {
 			e.preventDefault();
 			if ( !$(e.currentTarget).hasClass('disabled') && api.page() != e.data.action ) {
@@ -95,7 +88,7 @@ DataTable.ext.renderer.pageButton.material = function ( settings, host, idx, but
 			}
 			else {
 				btnDisplay = '';
-				active = false;
+				btnClass = '';
 
 				switch ( button ) {
 					case 'ellipsis':
@@ -129,28 +122,28 @@ DataTable.ext.renderer.pageButton.material = function ( settings, host, idx, but
 
 					default:
 						btnDisplay = button + 1;
-						btnClass = '';
-						active = page === button;
+						btnClass = page === button ?
+							'active' : '';
 						break;
 				}
 
-				if ( active ) {
-					btnClass += ' mdl-button--raised mdl-button--colored';
-				}
-
 				if ( btnDisplay ) {
-					node = $('<button>', {
-							'class': 'mdl-button '+btnClass,
+					node = $('<li>', {
+							'class': classes.sPageButton+' '+btnClass,
 							'id': idx === 0 && typeof button === 'string' ?
 								settings.sTableId +'_'+ button :
-								null,
-							'aria-controls': settings.sTableId,
-							'aria-label': aria[ button ],
-							'data-dt-idx': counter,
-							'tabindex': settings.iTabIndex,
-							'disabled': btnClass.indexOf('disabled') !== -1
+								null
 						} )
-						.html( btnDisplay )
+						.append( $('<a>', {
+								'href': '#',
+								'aria-controls': settings.sTableId,
+								'aria-label': aria[ button ],
+								'data-dt-idx': counter,
+								'tabindex': settings.iTabIndex,
+								'class': 'page-link'
+							} )
+							.html( btnDisplay )
+						)
 						.appendTo( container );
 
 					settings.oApi._fnBindAction(
@@ -177,7 +170,7 @@ DataTable.ext.renderer.pageButton.material = function ( settings, host, idx, but
 	catch (e) {}
 
 	attach(
-		$(host).empty().html('<div class="pagination"/>').children(),
+		$(host).empty().html('<ul class="pagination"/>').children('ul'),
 		buttons
 	);
 
