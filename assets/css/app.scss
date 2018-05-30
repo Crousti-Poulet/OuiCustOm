@@ -14,3 +14,66 @@ body, html
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+.bloc_page
+{
+   height: calc(100vh - 215px);
+}
+
+#header_front img
+{
+  height: 120px;
+  width: 120px;
+  overflow: hidden;
+  margin-top: -25px;
+}
+
+#bloc_logo
+{
+  height: 70px;
+  width: 80px;  
+}
+
+#footer_front
+{
+  height: 155px;
+}
+
+#footer_front ul
+{
+  list-style-type: none;
+}
+
+#footer_front h3
+{
+  font-size: 1.2em;
+}
+
+#site_mapping
+{
+  width: 180px;
+  float: left;
+}
+
+#copyright
+{
+ margin: auto;
+ padding-top: 40px; 
+}
+
+.social
+{
+  float: right;
+  margin-top: -40px;
+}
+
+.social i
+{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.social i:hover
+{
+  color: black!important;
+}

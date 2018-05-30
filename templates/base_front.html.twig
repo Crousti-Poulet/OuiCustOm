@@ -6,6 +6,8 @@
 
         {% block stylesheets %}
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+            <!-- Add icon library -->
+
             <!-- Bootstrap core CSS -->
             <link href="{{ asset('build/css/app.css') }}" rel="stylesheet">
             
@@ -20,9 +22,11 @@
             <header class="container-fluid p-0" id="header_front">
 
                 <!-- navbar -->
-                <nav class="navbar navbar-expand-lg bg-primary">
+                <nav class="navbar navbar-expand-lg bg-primary p-0">
                     <!-- logo -->
-                    <a class="navbar-brand text-white" href="#"><img src="{{ asset('img/logo.png') }}"></a>
+                    <div id="bloc_logo">
+                        <a class="navbar-brand text-white p-0" href="#"><img src="{{ asset('img/logo.png') }}"></a>
+                    </div>
                     <!-- Burger-menu -->
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"><i class="fas fa-bars white" style="font-size:1.4em; color:White"></i></span>
@@ -59,8 +63,28 @@
             </main>
 
             <!--FOOTER FRONT-->
-            <footer class="card-footer text-muted bg-secondary" id="footer_front">
-                <p class=" text-white text-center">Webforce3 © <?php echo date('Y')?> </p>
+            <footer class="container-fluid card-footer text-muted bg-secondary" id="footer_front">
+                <!--Mapping du site-->
+                <div class="text-white row col-4" id="site_mapping">
+                    <ul>
+                        <h3 class="text-center">OuiCustOm.com</h3>
+                        <li>Accueil</li>
+                        <li>Connexion</li>
+                        <li>Contact</li>
+                        <li>Aide</li>
+                    </ul>
+                </div>
+
+                <div class="row col-4" id="copyright">
+                    <p class="text-white">OuiCustOm © 2018</p>
+                </div>
+
+                <div class="social row col-2">
+                    <span><a href="#"><i class="fab fa-facebook-f white" style="font-size:1.8em; color:White"></a></i></span>
+                    <span><a href="#"><i class="fab fa-twitter white" style="font-size:1.8em; color:White"></i></a></span>
+                    <span><a href="#"><i class="fab fa-pinterest-p white" style="font-size:1.8em; color:White"></a></i></span>
+                    <span><a href="#"><i class="fab fa-instagram white" style="font-size:1.8em; color:White"></a></i></span>
+                </div>                    
             </footer>
 
         {% block javascripts %}
