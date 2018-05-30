@@ -3257,6 +3257,12 @@ methods@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/methods/-/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
 
+metismenu@^2.7.7:
+  version "2.7.7"
+  resolved "https://registry.yarnpkg.com/metismenu/-/metismenu-2.7.7.tgz#a4b3707dd66f6f52410b182d3ac16b0402493bfa"
+  dependencies:
+    jquery "^3.3.1"
+
 micromatch@^2.3.11:
   version "2.3.11"
   resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-2.3.11.tgz#86677c97d1720b363431d04d0d15293bd38c1565"
