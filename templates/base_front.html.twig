@@ -15,9 +15,7 @@
     </head>
     <body>
         {% block body %}
-            <main class="bloc_page">
-
-            </main>
+            
         {% endblock %}
             <!-- HEADER FRONT -->
             <header class="container-fluid p-0" id="header_front">
@@ -56,9 +54,14 @@
                 </nav>
             </header>
 
+            <!--MAIN-->
+            <main class="bloc_page">
+
+            </main>
+
             <!--FOOTER FRONT-->
             <footer class="card-footer text-muted bg-secondary" id="footer_front">
-                <p class=" text-white">Webforce3 © <?php echo date('Y')?> </p>
+                <p class=" text-white text-center">Webforce3 © <?php echo date('Y')?> </p>
             </footer>
 
         {% block javascripts %}
