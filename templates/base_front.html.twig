@@ -8,14 +8,19 @@
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
             <!-- Bootstrap core CSS -->
             <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('css/style.css') }}" rel="stylesheet">
             
         {% endblock %}
 
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            <main class="bloc_page">
+
+            </main>
+        {% endblock %}
             <!-- HEADER FRONT -->
-            <header class="container-fluid p-0">
+            <header class="container-fluid p-0" id="header_front">
 
                 <!-- navbar -->
                 <nav class="navbar navbar-expand-lg bg-primary">
@@ -50,6 +55,11 @@
                     </div>
                 </nav>
             </header>
+
+            <!--FOOTER FRONT-->
+            <footer class="card-footer text-muted bg-secondary" id="footer_front">
+                <p class=" text-white">Webforce3 © <?php echo date('Y')?> </p>
+            </footer>
 
         {% block javascripts %}
 
