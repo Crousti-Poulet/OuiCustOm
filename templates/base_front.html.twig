@@ -15,11 +15,6 @@
 
     </head>
     <body>
-<<<<<<< HEAD
-        
-=======
-
->>>>>>> 3ef799d5dc704b69282e5578659ee53b176b5b78
             <!-- HEADER FRONT -->
             <header class="container-fluid p-0" id="header_front">
 
@@ -61,47 +56,36 @@
 
             <!--MAIN-->
             <main class="bloc_page">
-<<<<<<< HEAD
+
                 {% block body %}
             
                 {% endblock %}
-=======
 
-                {% block body %}
-
-                {% endblock %}
-
->>>>>>> 3ef799d5dc704b69282e5578659ee53b176b5b78
             </main>
 
             <!--FOOTER FRONT-->
-            <footer class="container-fluid card-footer text-muted bg-primary" id="footer_front">
+            <footer class="container-fluid card-footer text-muted bg-secondary" id="footer_front">
                 <!--Mapping du site-->
-                <div class="text-white row" id="site_mapping">
-
-                    <div class="col-4">
-                        <ul>
-                            <h3 class="text-center">OuiCustOm.com</h3>
-                            <li>Accueil</li>
-                            <li>Connexion</li>
-                            <li>Contact</li>
-                            <li>Aide</li>
-                        </ul>
-                    </div>
-
-                <!--Copyright-->
-                    <div class="col-4" id="copyright">
-                        <p class="text-white">OuiCustOm © 2018</p>
-                    </div>
-                    <!--Logo des réseaux sociaux-->
-
-                    <div class="social col-4">
-                        <span><a href="#"><i class="fab fa-facebook-f white" style="font-size:1.8em; color:White"></a></i></span>
-                        <span><a href="#"><i class="fab fa-twitter white" style="font-size:1.8em; color:White"></i></a></span>
-                        <span><a href="#"><i class="fab fa-pinterest-p white" style="font-size:1.8em; color:White"></a></i></span>
-                        <span><a href="#"><i class="fab fa-instagram white" style="font-size:1.8em; color:White"></a></i></span>
-                    </div>
+                <div class="text-white row col-4" id="site_mapping">
+                    <ul>
+                        <h3 class="text-center">OuiCustOm.com</h3>
+                        <li>Accueil</li>
+                        <li>Connexion</li>
+                        <li>Contact</li>
+                        <li>Aide</li>
+                    </ul>
                 </div>
+                <!--Copyright-->
+                <div class="row col-4" id="copyright">
+                    <p class="text-white">OuiCustOm © 2018</p>
+                </div>
+                <!--Logo des réseaux sociaux-->
+                <div class="social row col-2">
+                    <span><a href="#"><i class="fab fa-facebook-f white" style="font-size:1.8em; color:White"></a></i></span>
+                    <span><a href="#"><i class="fab fa-twitter white" style="font-size:1.8em; color:White"></i></a></span>
+                    <span><a href="#"><i class="fab fa-pinterest-p white" style="font-size:1.8em; color:White"></a></i></span>
+                    <span><a href="#"><i class="fab fa-instagram white" style="font-size:1.8em; color:White"></a></i></span>
+                </div>                    
             </footer>
 
         {% block javascripts %}
