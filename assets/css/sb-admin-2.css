@@ -12,7 +12,7 @@ body {
   width: 100%;
 }
 #page-wrapper {
-  padding: 0 15px;
+  padding: 2px 15px 0;
   min-height: 568px;
   background-color: white;
 }
@@ -20,7 +20,7 @@ body {
   #page-wrapper {
     position: inherit;
     margin: 0 0 0 250px;
-    padding: 0 30px;
+    padding: 10px 30px 0;
     border-left: 1px solid #e7e7e7;
   }
 }
