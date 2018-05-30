@@ -18,7 +18,8 @@
              <!-- Morris Charts CSS -->
             {#<link rel="stylesheet" href="{{ asset('admin/vendor/morrisjs/morris.css') }}"/>#}
             <!-- Custom Fonts -->
-            <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendor/font-awesome/css/font-awesome.min.css') }}"/>
+            <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/font-awesome/css/font-awesome.min.css') }}"/>
+            <link rel="stylesheet" href="{{ asset('build/css/bootstrap3.css') }}"/>
             <link rel="stylesheet" href="{{ asset('build/css/admin.css') }}"/>
         {% endblock stylesheets %}
         {% block javascripts_head %}
@@ -402,6 +403,7 @@
             {#<script src="{{ asset('admin/vendor/raphael/raphael.min.js') }}"></script>#}
 
             <!-- Custom Theme JavaScript -->
+            <script src="{{ asset('build/js/bootstrap3.js') }}"></script>
             <script src="{{ asset('build/js/admin.js') }}"></script>
         {% endblock javascripts %}
 
