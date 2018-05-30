@@ -19,4 +19,16 @@ class DefaultController extends Controller
 
         return $this->render('default/home.html.twig');
     }
+
+    /**
+     * @Route("/registration", name="registrationPage")
+     */
+
+    public function registration()
+    {
+   
+
+
+        return $this->render('default/registration.html.twig');
+    }
 }
