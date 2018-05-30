@@ -13,9 +13,7 @@
 
     </head>
     <body>
-        {% block body %}
-            
-        {% endblock %}
+        
             <!-- HEADER FRONT -->
             <header class="container-fluid p-0" id="header_front">
 
@@ -55,7 +53,9 @@
 
             <!--MAIN-->
             <main class="bloc_page">
-
+                {% block body %}
+            
+                {% endblock %}
             </main>
 
             <!--FOOTER FRONT-->
