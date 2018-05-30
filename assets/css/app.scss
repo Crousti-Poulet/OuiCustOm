@@ -15,6 +15,62 @@ body, html
   box-sizing: border-box;
 }
 
+.banner{
+  background: url("../img/backgroun1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #FF8914;
+  text-shadow: 2px 2px 4px #000000;
+  button{
+    background: #FF8914 ;
+  }
+}
+
+.OCO{
+  color: #FF8914;
+}
+
+.icones{
+  color: #FF8914;
+  p{
+    color: black;
+    font-size: 2em;
+  }
+}
+
+.left{
+  text-align: left;
+}
+/*--- masonery ---*/
+/* ---- grid ---- */
+
+.grid {
+  background: #DDD;
+}
+
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-sizer,
+.grid-item {
+  width: 33.333%;
+}
+
+.grid-item {
+  float: left;
+}
+
+.grid-item img {
+  display: block;
+  max-width: 100%;
+}
+
 .bloc_page
 {
    height: calc(100vh - 215px);
