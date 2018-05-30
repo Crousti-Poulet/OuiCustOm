@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 
 body, html {
+=======
+body, html 
+  {
+>>>>>>> 99021a9c4ecc823a5a9cb1ff69f19b1ac47e1214
     width: 100%;
     margin: 0;
     padding: 0;
     text-align: center;
-    background-color: #f7f8f9; }
+    background-color: #f7f8f9; 
+  }
   
-  * {
+* 
+  {
     -webkit-box-sizing: border-box;
-    box-sizing: border-box; }
+    box-sizing: border-box; 
+  }
