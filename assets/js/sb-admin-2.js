@@ -4,8 +4,6 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
-
-require('bootstrap/dist/js/bootstrap.js');
 require('metismenu/dist/metisMenu.js');
 
 $(function() {
