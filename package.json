@@ -1,6 +1,8 @@
 {
     "devDependencies": {
-        "@symfony/webpack-encore": "^0.19.0"
+        "@symfony/webpack-encore": "^0.19.0",
+        "node-sass": "^4.9.0",
+        "sass-loader": "^7.0.1"
     },
     "license": "UNLICENSED",
     "private": true,
@@ -11,6 +13,8 @@
         "build": "encore production"
     },
     "dependencies": {
-        "bootstrap": "^4.1.1"
+        "bootstrap": "^4.1.1",
+        "jquery": "^3.3.1",
+        "popper.js": "^1.14.3"
     }
 }

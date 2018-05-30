@@ -159,7 +159,7 @@ API.txt for details.
 		}
 	}
 	
-	// map of app. size of time units in milliseconds
+	// map of app.scss. size of time units in milliseconds
 
 	var timeUnitSize = {
 		"second": 1000,
