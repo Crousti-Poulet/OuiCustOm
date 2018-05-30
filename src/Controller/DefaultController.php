@@ -13,6 +13,10 @@ class DefaultController extends Controller
      */
     public function homeAction(Request $request)
     {
+        // Todo: 
+
+
+
         return $this->render('default/home.html.twig');
     }
 }
