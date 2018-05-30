@@ -14,11 +14,11 @@ class RequestController extends Controller
      */
     public function listRequests(Request $request)
     {
-        $requests = $this->getDoctrine()->getManager()->getRepository(CustomRequest::class)->findAll();
+        $custom_requests = $this->getDoctrine()->getManager()->getRepository(CustomRequest::class)->findAll();
         // todo : recherche des requests avec le status "A_VALIDER"
 
-        return $this->render('/admin/requests', [
-            'requests' => $requests
+        return $this->render('/admin/custom_request/list.html.twig', [
+            'custom_requests' => $custom_requests
         ]);
     }
 }

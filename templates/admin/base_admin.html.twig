@@ -7,16 +7,9 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}OuiCustOm Admin{% endblock %}</title>
 
         {% block stylesheets %}
-
-            <!-- Bootstrap Core CSS -->
-            {#<link rel="stylesheet" href="{{ asset('admin/vendor/bootstrap/css/bootstrap.min.css') }}"/>#}
-            <!-- MetisMenu CSS -->
-            {#<link rel="stylesheet" href="{{ asset('admin/vendor/metisMenu/metisMenu.min.css') }}"/>#}
-             <!-- Morris Charts CSS -->
-            {#<link rel="stylesheet" href="{{ asset('admin/vendor/morrisjs/morris.css') }}"/>#}
             <!-- Custom Fonts -->
             <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/font-awesome/css/font-awesome.min.css') }}"/>
             <link rel="stylesheet" href="{{ asset('build/css/bootstrap3.css') }}"/>
@@ -46,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                    <a class="navbar-brand" href="index.html">OuiCustOm Admin</a>
                 </div>
                 <!-- /.navbar-header -->
 
@@ -290,10 +283,10 @@
                                 <!-- /.nav-second-level -->
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Films<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Demandes<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        {#<a href="{{ path('admin_list_movie') }}">Liste</a>#}
+                                        <a href="{{ path('admin_list_requests') }}">A valider</a>
                                     </li>
                                     <li>
                                         {#<a href="{{ path('admin_add_movie') }}">Ajouter</a>#}

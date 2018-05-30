@@ -3,11 +3,11 @@
 {% block title %}Demandes à valider{% endblock %}
 
 {% block body %}
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-md-8 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Striped Rows
+                    Demandes à valider
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -27,19 +27,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for r in requests %}
+                            {% for r in custom_requests %}
                                 <tr>
                                     <td>{{ r.id }}</td>
                                     <td>{{ r.title }}</td>
                                     <td>{{ r.description }}</td>
                                     <td>{{ r.category }}</td>
-                                    <td>{{ r.creationDate }}</td>
+                                    <td>{{ r.creationDate|date("d/m/Y H:i") }}</td>
                                     <td>{{  r.user  }}</td>
                                     {#to do : lien vers le profil du demandeur#}
                                     <td>{{ r.status }}</td>
                                     <td>{{ r.userAssignedTo }}</td>
                                     <td><img src="{{ r.photoPath }}" alt="photo de l'objet à customiser" class="img-responsive"></td>
-                                    <td><a href="{{ path('admin_validate_request', {id: r.id}) }}">Valider</a></td>
+                                    {#<td><a href="{{ path('admin_validate_request', {id: r.id}) }}">Valider</a></td>#}
+                                    {# TODO lien pour valider la demande => modifier le statut de la demande à EN_ATTENTE #}
                                 </tr>
                             {%  endfor %}
                             </tbody>

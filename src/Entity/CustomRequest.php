@@ -41,6 +41,7 @@ class CustomRequest
      * @ORM\Column(type="datetime")
      */
     private $creationDate;
+// to do default dans DB : now()
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -96,7 +97,7 @@ class CustomRequest
 
     public function getPhotoPath(): ?string
     {
-        return $this->$photoPath;
+        return $this->photoPath;
     }
 
     public function setPhotoPath(?string $photoPath): self
