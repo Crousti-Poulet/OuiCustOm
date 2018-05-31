@@ -13,8 +13,12 @@
         <div class="row">
             <div class="col-md-12 offset-md-0 mb-5 bg-white rounded border">
                 <div class="artisteprofile">
-                    <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aut culpa, dicta illum quas quibusdam quis ratione voluptatibus. Ad assumenda, at deleniti ducimus et eveniet molestias soluta velit vitae voluptas.</p>
-                    <button type="submit" class="btn btn-primary mb-3"> modifier profile</button>
+                    <h6>Votre profil</h6>
+                    {{ dump(app.user) }}
+                    {#{% for r in artist_profile %}#}
+
+                    {#{%  endfor %}#}
+                    <button type="submit" class="btn btn-primary mb-3"> modifier profil</button>
                 </div>
             </div>
         </div>

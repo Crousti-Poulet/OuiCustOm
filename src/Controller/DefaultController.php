@@ -34,6 +34,14 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/default/profildetail", name="profildetail")
+     */
+    public function profildetailAction (Request $request)
+    {
+        return $this->render('default/profildetail.html.twig');
+    }
+
+    /**
      * @Route("/registration", name="registrationPage")
      * 
      */

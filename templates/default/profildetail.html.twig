@@ -1,0 +1,43 @@
+{% extends 'base_front.html.twig' %}
+
+
+{% block title %}Profile de 'inserer nom ici'{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid artistbanner mb-5 d-flex align-items-center d-flex justify-content-center">
+    <h1>votre espace personnel</h1>
+</div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-8">
+
+                <p class="col-12 offset-md-3 col-md-6 bg-white rounded border p-2">nom</p>
+                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">catégorie/spécialité</p>
+                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">Ville</p>
+                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">date d'inscription</p>
+                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">suivit par  x personnes</p>
+                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left"><a href="#">voir la galerie</a></p>
+                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">système de note</p>
+
+            </div>
+
+            <div class="col-12 col-md-4 mb-4">
+                <img src="http://via.placeholder.com/300x400" alt="photo d'utilisateur">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 bg-white rounded border p-2 mb-4">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci alias animi beatae blanditiis cumque debitis dignissimos ea esse ipsum laboriosam mollitia, nostrum omnis porro quo recusandae tempore! Reiciendis, sunt!
+                </p>
+            </div>
+
+            <button class="btn col-12 col-sm-6 col-md-2 mb-2">Ajouter aux favoris</button>
+            <button class=" btn col-12 col-sm-6 col-md-2 offset-md-8 mb-2">Rerour à la liste</button>
+        </div>
+    </div>
+
+{% endblock %}
+
