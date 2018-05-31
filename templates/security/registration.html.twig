@@ -13,9 +13,11 @@
         {{form_start(formUser)}}
 
         {{ form_row(formUser.username,   {'attr' : { 'placeholder' : "pseudo utilisateur"}}) }}
-        {{ form_row(formUser.email, {'attr' : { 'placeholder' : "monadress@mail.com"}}) }}
-        {{ form_row(formUser.password,   {'attr' : { 'placeholder' : " password"}}) }}
         {{ form_row(formUser.location,   {'attr' : { 'placeholder' : "location"}}) }}
+        {{ form_row(formUser.email, {'attr' : { 'placeholder' : "monadress@mail.com"}}) }}
+      {# }  {{ form_row(formUser.password,   {'attr' : { 'placeholder' : " password"}}) }} #}
+        {{ form_row(formUser.plainPassword.first) }}
+        {{ form_row(formUser.plainPassword.second) }}
         {{ form_row(formUser.role )}}
 
 
