@@ -47,7 +47,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-white text-center" id="nav-link-help" href="{{ path('helpPage') }}">Aide</a>
+                                <a class="nav-link text-white text-center mr-3" id="nav-link-help" href="{{ path('helpPage') }}">Aide</a>
                             </li>
                         </ul>
                     </div>
@@ -69,10 +69,10 @@
                     <div class="col-4">
                         <ul>
                             <h3 class="text-center">OuiCustOm.com</h3>
-                            <li>Accueil</li>
-                            <li>Connexion</li>
-                            <li>Contact</li>
-                            <li>Aide</li>
+                            <li><a class="text-white" href="{{ path('homePage') }}">Accueil</a></li>
+                            <li><a class="text-white" href="#">Connexion</a></li>
+                            <li><a class="text-white" href="#">Contact</a></li>
+                            <li><a class="text-white" href="{{ path('helpPage') }}">Aide</a></li>
                         </ul>
                     </div>
 
