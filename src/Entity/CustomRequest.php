@@ -7,6 +7,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class CustomRequest
 {
+    // constantes pour le status de la demande (on peut aussi définir les valeurs à 0, 1, 2...)
+    const STATUS_A_VALIDER = 'A valider';
+    const STATUS_EN_ATTENTE = 'Créée';
+    const STATUS_ASSIGNE = 'Assignée';
+    const STATUS_EN_COURS = 'En cours';
+    const STATUS_TERMINE = 'Terminée';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -42,7 +49,7 @@ class CustomRequest
     /**
      * @ORM\Column(type="string", length=15)
      * @Assert\Choice(
-     *     choices = { "A_VALIDER", "EN_ATTENTE", "ASSIGNE", "EN_COURS", "TERMINE" },
+     *     choices = { CustomRequest::STATUS_A_VALIDER, CustomRequest::STATUS_EN_ATTENTE, CustomRequest::STATUS_ASSIGNE, CustomRequest::STATUS_EN_COURS, CustomRequest::STATUS_TERMINE },
      *     message = "Veuillez sélectionner un statut valide"
      * )
      */

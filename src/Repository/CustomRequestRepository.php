@@ -19,6 +19,17 @@ class CustomRequestRepository extends ServiceEntityRepository
         parent::__construct($registry, CustomRequest::class);
     }
 
+    public function findAllByStatus($status)
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.status = :status')
+            ->setParameter('status', $status)
+            ->orderBy('r.creationDate', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 //    /**
 //     * @return CustomRequest[] Returns an array of CustomRequest objects
 //     */

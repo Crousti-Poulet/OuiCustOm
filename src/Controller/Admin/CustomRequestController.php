@@ -11,10 +11,19 @@ class CustomRequestController extends Controller
      */
     public function listCustomRequests(Request $request)
     {
-        $custom_requests = $this->getDoctrine()->getManager()->getRepository(CustomRequest::class)->findAll();
-        // todo : recherche des requests avec le status "A_VALIDER"
+        $custom_requests = $this->getDoctrine()->getManager()->getRepository(CustomRequest::class)->findAllByStatus(CustomRequest::STATUS_A_VALIDER);
         return $this->render('/admin/custom_request/list.html.twig', [
             'custom_requests' => $custom_requests
         ]);
+    }
+
+    public function validateCustomRequest(CustomRequest $customRequest)
+    {
+        $customRequest->setStatus(CustomRequest::STATUS_EN_ATTENTE);
+
+        // TODO : bouton qui appelle cette fonction
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($customRequest);
+        $em->flush();
     }
 }
