@@ -99,5 +99,4 @@ class DefaultController extends Controller
             'formUser' => $form->createView(), //on envoi a twig le RESULTAT de la fonction createView () == cree un petit objet plutot type affichage.
         ]);
     }
-
 }
