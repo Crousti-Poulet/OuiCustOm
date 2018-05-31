@@ -141,3 +141,134 @@ footer .col-4{
   margin: 10px;
 
  }
+////////////Menu accordéon FAQ//////////////////////////////////////////
+
+#main_bloc_help
+{
+  height: auto;
+  min-height: 680px;
+}
+
+.menu .accordion-heading 
+{  
+  position: relative; 
+}
+
+.menu .accordion-heading .edit 
+{
+    position: absolute;
+    top: 8px;
+    right: 30px; 
+}
+
+.menu .area 
+{ 
+  border-left: 4px solid #f38787; 
+}
+
+.area
+{
+  text-decoration: none;
+  font-weight: bold;
+  transition: 1.2s;
+
+  :hover
+  {
+    text-decoration: none;
+    background-color: #f38787;
+    border-radius: 20px 0px 20px 0px;
+    color:black;
+    transition: 1.2s;
+    
+  }
+
+  :focus
+  {
+    color: black;
+    background-color: #f38787;
+    transition: 1.2s;
+    border-radius: 20px 0px 20px 0px;
+  }
+}
+
+.menu .rubric 
+{ 
+  border-left: 4px solid #65c465;
+}
+
+.rubric
+{
+  text-decoration: none;
+  transition: 1.2s;
+
+  :hover
+  {
+    text-decoration: none;
+    color: black;
+    background-color: #65c465;
+    border-radius: 20px 0px 20px 0px;
+    transition: 1.2s;
+  }
+
+  :focus
+  {
+    transition: 1.2s;
+    background-color: #65c465;
+    color: black;
+    border-radius: 20px 0px 20px 0px;
+  }
+}
+
+.menu .rubric_text 
+{ 
+  border-left: 4px solid #98b3fa; 
+}
+
+.menu .collapse.in 
+{ 
+  overflow: visible; 
+}
+
+.accordion
+{
+  margin-bottom:20px;
+}
+
+.accordion-group
+{
+  margin-bottom:2px;border:1px solid #e5e5e5;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;
+}
+
+.accordion-heading
+{
+  border-bottom:0;
+  padding: 15px;
+}
+
+.accordion-heading .accordion-toggle
+{
+  display:block;padding:8px 15px;
+}
+
+.accordion-toggle
+{
+  cursor:pointer;
+}
+
+.accordion-inner
+{
+  padding:9px 15px;border-top:1px solid #e5e5e5;
+}
+
+.accordion-inner ul
+{
+  text-align: left;
+  list-style: none;
+}
+
+.accordion-inner p
+{
+  text-align: justify;
+}
+
+////////////Fin du menu accordéon//////////////////////////////////////////

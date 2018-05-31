@@ -14,14 +14,10 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/home", name="homepage")
+     * @Route("/home", name="homePage")
      */
     public function homeAction(Request $request)
     {
-        // Todo: 
-
-
-
         return $this->render('default/home.html.twig');
     }
 
@@ -40,21 +36,24 @@ class DefaultController extends Controller
     {
         return $this->render('default/profildetail.html.twig');
     }
+    
+    /**
+     * @Route("/help", name="helpPage")
+     */
+    public function helpAction(Request $request)
+    {
+        return $this->render('default/help.html.twig');
+    }
 
     /**
      * @Route("/registration", name="registrationPage")
      * 
      */
-
     public function registration(Request $request, ObjectManager $manager)
     {
        
-
          $user = new User (); // on crée l'utilisateur       
         
-
-
-
         $form = $this->createFormBuilder($user) // on CREE et CONFIGURE le form grace a createFormBuilder qui sera lié a $user 
                      ->add('username')     
                      ->add('email')   
