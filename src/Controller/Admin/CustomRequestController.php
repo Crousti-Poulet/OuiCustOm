@@ -9,7 +9,7 @@ class CustomRequestController extends Controller
     /**
      * @Route("/admin/requests", name="admin_list_requests")
      */
-    public function listRequests(Request $request)
+    public function listCustomRequests(Request $request)
     {
         $custom_requests = $this->getDoctrine()->getManager()->getRepository(CustomRequest::class)->findAll();
         // todo : recherche des requests avec le status "A_VALIDER"
