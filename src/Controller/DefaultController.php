@@ -25,6 +25,14 @@ class DefaultController extends Controller
         return $this->render('default/home.html.twig');
     }
 
+    /**
+     * @Route("/default/artistview", name="artistview")
+     */
+    public function artistviewAction (Request $request)
+    {
+        return $this->render('default/artistview.html.twig');
+    }
+
 
 
 
@@ -52,7 +60,7 @@ class DefaultController extends Controller
                           'expanded' => true,
                           'multiple' => true,
                           'label'     =>false,
-                          'choices' => [
+                          'choices' => [ 
                               'S\'inscrire en tant qu\'Artiste'     => "ROLE_ARTISTE"
                             ]
                      ])     
