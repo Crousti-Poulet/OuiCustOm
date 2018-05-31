@@ -24,6 +24,7 @@
                                 <th>Status</th>
                                 <th>Artisan</th>
                                 <th>Photo</th>
+                                <th>Valider</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -39,7 +40,7 @@
                                     <td>{{ r.status }}</td>
                                     <td>{{ r.userAssignedTo }}</td>
                                     <td><img src="{{ r.photoPath }}" alt="photo de l'objet à customiser" class="img-responsive"></td>
-                                    {#<td><a href="{{ path('admin_validate_request', {id: r.id}) }}">Valider</a></td>#}
+                                    <td><a href="{{ path('admin_custom_request_validate', {id: r.id}) }}">Valider</a></td>
                                     {# TODO lien pour valider la demande => modifier le statut de la demande à EN_ATTENTE #}
                                 </tr>
                             {%  endfor %}

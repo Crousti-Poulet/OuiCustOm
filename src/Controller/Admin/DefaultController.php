@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/admin/", name="default_admin")
+     * @Route("/admin", name="default_admin")
      *
      */
     public function defaultAdmin(Request $request)

@@ -286,7 +286,7 @@
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Demandes<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{ path('admin_list_requests') }}">A valider</a>
+                                <a href="{{ path('admin_list_custom_requests_status', {status: constant('App\\Entity\\CustomRequest::STATUS_A_VALIDER')}) }}">A valider</a>
                             </li>
                             <li>
                                 {#<a href="{{ path('admin_add_movie') }}">Ajouter</a>#}
