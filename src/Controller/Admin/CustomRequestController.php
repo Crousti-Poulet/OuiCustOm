@@ -13,7 +13,7 @@ class CustomRequestController extends Controller
     public function listCustomRequests(Request $request)
     {
         $custom_requests = $this->getDoctrine()->getManager()->getRepository(CustomRequest::class)->findAll();
-        return $this->render('/admin/custom_request/list.html.twig', [
+        return $this->render('/admin/custom_request/listTable.html.twig', [
             'custom_requests' => $custom_requests
         ]);
     }
@@ -24,7 +24,7 @@ class CustomRequestController extends Controller
     public function listCustomRequestsByStatus(Request $request, string $status)
     {
         $custom_requests = $this->getDoctrine()->getManager()->getRepository(CustomRequest::class)->findAllByStatus($status);
-        return $this->render('/admin/custom_request/list.html.twig', [
+        return $this->render('/admin/custom_request/listTable.html.twig', [
             'custom_requests' => $custom_requests
         ]);
     }

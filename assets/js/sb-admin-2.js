@@ -4,10 +4,15 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
-require('metismenu/dist/metisMenu.js');
+require('metismenu/dist/metisMenu');
+require( 'datatables.net-bs' );
+require( 'datatables.net-responsive-bs' );
 
 $(function() {
     $('#side-menu').metisMenu();
+    $('#dataTables-customRequests').DataTable({
+        responsive: true
+    });
 });
 
 //Loads the correct sidebar on window load,
@@ -48,3 +53,6 @@ $(function() {
         }
     }
 });
+
+///////////////////////// AJOUTS ///////////////////////////////////
+
