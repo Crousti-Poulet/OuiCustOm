@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\LoginForm;
 use Webmozart\Assert\Assert;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -17,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SecurityController extends Controller
@@ -24,7 +26,7 @@ class SecurityController extends Controller
 
 
 
-//INSCRIPTION
+////////INSCRIPTION////////
 
     /**
      * @Route("/registration", name="registrationPage")
@@ -91,7 +93,7 @@ class SecurityController extends Controller
                             new Length( [
                                 'min' => 8,
                                 'max' => 50,
-                                'minMessage' => "Minimum 3 caractères",
+                                'minMessage' => "Minimum 8 caractères",
                                 'maxMessage' => "Maximum 50 caractères"
                             ]),
                             new NotBlank( [
@@ -120,15 +122,47 @@ class SecurityController extends Controller
             $manager->persist($user); //on demande au manager de se preparer a faire persister l'article
             $manager->flush();           //on demande au manager de lancer la requete
 
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('homePage');
         }
 
        
         return $this->render('security/registration.html.twig',[
             'formUser' => $form->createView(), //on envoi a twig le RESULTAT de la fonction createView () == cree un petit objet plutot type affichage.
         ]);
+
+
+
+
+
+
     }
 
 
-    //////////////////////////////
+    //////// LOGIN ///////////
+
+   /**
+     * @Route("/login", name="security_login")
+     */
+    public function loginAction(AuthenticationUtils $authUtils)
+    {
+        $error = $authUtils->getLastAuthenticationError();
+        $lastUsername = $authUtils->getLastUsername();
+
+        $form = $this->createForm(LoginForm::class, [
+            '_username' => $lastUsername
+        ]);
+
+        return $this->render('security/loginForm.html.twig', [
+            'monForm'      => $form->createView(),
+            'error'     => $error,
+        ]);
+    }
+
+    /**
+     * @Route("/logout", name="security_logout")
+     */
+    public function logoutAction()
+    {
+        throw new \Exception('this should not be reached!');
+    }
 }
