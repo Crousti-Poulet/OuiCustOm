@@ -16,10 +16,15 @@ Encore
     .addEntry('js/app', './assets/js/app.js')
     .addEntry('js/admin', './assets/js/sb-admin-2.js')
     .addEntry('js/bootstrap3', './assets/vendor/bootstrap/js/bootstrap.js')
+    // .addEntry('js/jquery.dataTables.min', './assets/vendor/datatables/js/jquery.dataTables.min.js')
+    // .addEntry('js/dataTables.bootstrap.min', './assets/vendor/datatables-plugins/dataTables.bootstrap.min.js')
+    // .addEntry('js/dataTables.responsive', './assets/vendor/datatables-responsive/dataTables.responsive.js')
 
     .addStyleEntry('css/app', './assets/css/app.scss')
     .addStyleEntry('css/admin', './assets/css/sb-admin-2.css')
     .addStyleEntry('css/bootstrap3', './assets/vendor/bootstrap/css/bootstrap.css')
+    // .addStyleEntry('css/dataTables.bootstrap', './assets/vendor/datatables-plugins/dataTables.bootstrap.css')
+    // .addStyleEntry('css/dataTables.responsive', './assets/vendor/datatables-responsive/dataTables.responsive.css')
     // .createSharedEntry('common', {
     //     'public/vendor/bootstrap/bootstrap.css',
     // })

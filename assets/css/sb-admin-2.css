@@ -4,6 +4,9 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 @import "~metismenu/dist/metisMenu.css";
+@import "~datatables.net-bs/css/dataTables.bootstrap.css";
+@import "~datatables.net-responsive-bs/css/responsive.bootstrap.css";
+
 
 body {
   background-color: #f8f8f8;

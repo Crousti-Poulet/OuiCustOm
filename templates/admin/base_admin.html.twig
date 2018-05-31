@@ -10,6 +10,10 @@
     <title>{% block title %}OuiCustOm Admin{% endblock %}</title>
 
     {% block stylesheets %}
+        {#<!-- DataTables CSS -->#}
+        {#<link rel="stylesheet" href="{{ asset('build/css/dataTables.bootstrap.css') }}" >#}
+        {#<!-- DataTables Responsive CSS -->#}
+        {#<link rel="stylesheet" href="{{ asset('build/css/dataTables.responsive.css') }}" >#}
         <!-- Custom Fonts -->
         <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/font-awesome/css/font-awesome.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('build/css/bootstrap3.css') }}"/>
@@ -394,6 +398,13 @@
 
     <!-- Morris Charts JavaScript -->
     {#<script src="{{ asset('admin/vendor/raphael/raphael.min.js') }}"></script>#}
+
+    <!-- DataTables JavaScript -->
+    {#<script src="{{ asset('build/js/jquery.dataTables.min.js') }}"></script>#}
+    {#<script src="{{ asset('build/js/dataTables.bootstrap.min.js') }}"></script>#}
+    {#<script src="{{ asset('build/js/dataTables.responsive.js') }}"></script>#}
+
+
 
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('build/js/bootstrap3.js') }}"></script>
