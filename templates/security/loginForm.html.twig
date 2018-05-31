@@ -1,22 +1,30 @@
 {% extends 'base_front.html.twig' %}
 
-{% block title %}Hello!{% endblock %}
+{% block title %}Connexion{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData) }}</div>
-    {% endif %}
-        {{ dump(app.user) }}
-    {{ form_start(monForm) }}
-        {{ form_row(monForm._email) }}
-        {{ form_row(monForm._password) }}
-        
-    {{ form_end(monForm) }}
-</div>
+<div class=" text-center d-flex justify-content-center formRegister pt-5 pb-5">
+        <div>
+            
+        </div>
+        <div class="form col-8 col-md-6 col-lg-3">
+            <h1 class="text-white"> Connexion</h1>
+            <fieldset class="border m-3 p-3 bg-light"  >
+                {% if error %}
+                    <div>{{ error.messageKey|trans(error.messageData) }}</div>
+                {% endif %}
+                   
+                {{ form_start(monForm) }}
+                    {{ form_row(monForm._email) }}
+                    {{ form_row(monForm._password) }}
+                    
+                {{ form_end(monForm) }}
+    
+    
+            <button type="submit" class="btn btn-outline-success "> Se Connecter </button>
+            {{form_end(monForm)}}
+            </fieldset>
+        </div>
+    </div>
 {% endblock %}
+
