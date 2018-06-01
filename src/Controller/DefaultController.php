@@ -4,13 +4,17 @@ namespace App\Controller;
 
 use App\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use App\Entity\AdminContact;
 use Webmozart\Assert\Assert;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class DefaultController extends Controller
 {
@@ -38,7 +42,64 @@ class DefaultController extends Controller
     {
         return $this->render('default/profildetail.html.twig');
     }
-    
+
+    /**
+     * @Route("/contact", name="contactPage")
+     */
+    public function contactAction(Request $request, \Swift_Mailer $mailer)
+    {
+        //Création du message
+        $message = new AdminContact ();       
+        
+        // Création et configuration du formulaire en se utilisant sur createFormBuilder 
+        $form = $this->createFormBuilder($message) 
+                     ->add('_author', TextType::class, ['label' => 'Nom'])     
+                     ->add('_email', EmailType::class, ['label' => 'E-mail'])   
+                     ->add('_object', TextType::class, ['label' => 'Objet'])
+                     ->add('_message', TextareaType::class, ['label' => 'Votre message'])
+                     ->add('Envoyer', SubmitType::class)
+                     // Récupération
+                     ->getForm() 
+                     ;
+
+        //Analyse de la requête
+        $form->handleRequest($request);
+             
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $messageForAdmin = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($messageForAdmin);
+            $em->flush();
+
+            $message = (new \Swift_Message('Hello Email'))
+            ->setFrom('send@example.com')
+            ->setTo('el-ouni-mehdi@hotmail.fr')
+            ->setBody('Coucou !'
+        );
+       
+            $mailer->send($message);
+            return $this->redirect($this->generateUrl('contactPage'));
+
+        }
+
+        //Envoi au twig du resultat de la fonction createView ()
+        return $this->render('default/contact.html.twig',[
+            'formMessage' => $form->createView()
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * @Route("/help", name="helpPage")
      */
@@ -49,7 +110,6 @@ class DefaultController extends Controller
 
     /**
      * @Route("/registration", name="registrationPage")
-     * 
      */
     public function registration(Request $request, ObjectManager $manager)
     {
