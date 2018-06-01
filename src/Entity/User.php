@@ -54,6 +54,18 @@ class User implements UserInterface
      */
     private $createdAt;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+
+    private $profilPicture;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+
+    private  $
+
 
 // *****************
 
@@ -111,10 +123,17 @@ class User implements UserInterface
     }
     public function getRoles()
     {
-        return $this->role;
+        $roles = $this->role;
+
+        if (!in_array('ROLE_USER', $roles)){ // pour faire en sorte que l'utilisateur est au minimum le role user
+            $roles[] = 'ROLE_USER';
+        }
+
+        return $roles;
     }
     public function getRole(): ?array
     {
+
         return $this->role;
     }
 
@@ -163,4 +182,17 @@ class User implements UserInterface
     {
 
     }
+
+    public function getProfilPicture(): ?string
+    {
+        return $this->profilPicture;
+    }
+
+    public function setProfilPicture(string $profilPicture): self
+    {
+       $this->profilPicture = $profilPicture;
+
+       return $this;
+    }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Webmozart\Assert\Assert;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -23,6 +24,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("/default/artistview", name="artistview")
+     * @Security("has_role('ROLE_USER')")
      */
     public function artistviewAction (Request $request)
     {

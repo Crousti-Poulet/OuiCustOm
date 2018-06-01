@@ -13,23 +13,44 @@
         <div class="row">
             <div class="col-md-12 offset-md-0 mb-5 bg-white rounded border">
                 <div class="artisteprofile">
-                    <h6>Votre profil</h6>
-                    {{ dump(app.user) }}
-                    {#{% for r in artist_profile %}#}
+                    <h6>Votre profil :</h6>
 
-                    {#{%  endfor %}#}
+                    <p>{{ app.user.username }}</p>
+                    <p>{{ app.user.email }}</p>
+                    <p>{{ app.user.location }}</p>
+
                     <button type="submit" class="btn btn-primary mb-3"> modifier profil</button>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-lg-8 col-md-12 mb-4 bg-white rounded border p-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <div class="col-12 col-md-8 bg-white rounded border p-2 mb-4">
+                <h6>Votre présentation</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A atque cumque cupiditate, delectus dolores error facere harum illum inventore iusto laborum modi non quaerat recusandae repellendus rerum veritatis, voluptates voluptatum.
+                </p>
+
+                <a href="#" class="btn btn-primary sticky-bottom">modifier votre présentations</a>
+            </div>
+
+            <div class="col-12 col-md-4 mb-4 card">
+                <img src="{{ asset(app.user.profilPicture )}}" alt="photo d'utilisateur" class="card-img-top mb-2">
+                <div class="card-body">
+                    <a href="#" class="btn btn-primary">Changer votre photo</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 col-md-12 mb-4 bg-white rounded border p-2">
+                <h6>vos derniers messages</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
 
             <div class="d-flex justify-content-center col-lg-4 col-md-6 col-sm-12 mb-4">
