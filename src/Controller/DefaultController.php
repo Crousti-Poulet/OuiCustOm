@@ -67,11 +67,13 @@ class DefaultController extends Controller
              
         if($form->isSubmitted() && $form->isValid()) {
 
+            //Enregistrement dans la base de donnée.
             $messageForAdmin = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($messageForAdmin);
             $em->flush();
-
+            
+            //Envoi de mail (ne fonctionne pas)
             $message = (new \Swift_Message('Hello Email'))
             ->setFrom('send@example.com')
             ->setTo('el-ouni-mehdi@hotmail.fr')
@@ -88,17 +90,6 @@ class DefaultController extends Controller
             'formMessage' => $form->createView()
         ]);
     }
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * @Route("/help", name="helpPage")
@@ -133,9 +124,6 @@ class DefaultController extends Controller
                      
                      ->getForm() ;       // on le RECUPERE   
 
-             
-                 
-
         $form->handleRequest($request);  // ANALYSE de la requete et ducou symfony lié title content avec $article
              
         if($form->isSubmitted() && $form->isValid()) {
@@ -159,5 +147,13 @@ class DefaultController extends Controller
         return $this->render('default/registration.html.twig',[
             'formUser' => $form->createView(), //on envoi a twig le RESULTAT de la fonction createView () == cree un petit objet plutot type affichage.
         ]);
+    }
+    
+    /**
+     * @Route("/messaging", name="messagingPage")
+     */
+    public function messagingAction(Request $request)
+    {
+        return $this->render('default/messaging.html.twig');
     }
 }

@@ -297,3 +297,32 @@ footer .col-4{
 }
 
 ////////////Fin du formulaire de contact//////////////////////////////////////////
+
+#bloc_page_registration
+{
+  min-height: 700px;
+}
+
+///////////////////Messagerie//////////////////////////////////////////
+
+#bloc_page_messaging
+{
+  min-height: 500px;
+}
+
+.bloc_list_contact
+{
+  width: 40%;
+  min-width: 300px;
+  max-height: 50vh;
+  background-color: purple;
+}
+
+.bloc_contact
+{
+  width: 90%;
+  min-width: 200px;
+  height: 100px;
+  background-color: #f38787;
+  margin: auto;
+}
