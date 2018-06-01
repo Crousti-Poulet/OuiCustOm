@@ -71,16 +71,17 @@ class User implements UserInterface
     }
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
 
     private $profilPicture;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
 
-    private  $
+    private $description;
+
 
 
 // ******** getters & setters *********
@@ -211,4 +212,77 @@ class User implements UserInterface
        return $this;
     }
 
+    public function  getDescription(): ?text
+    {
+        return $this->description;
+    }
+
+    public function setDescription(text $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+ 
+     /**
+      * @return Collection|CustomRequest[]
+      */
+     public function getCustomRequestsCreated(): Collection
+     {
+         return $this->customRequestsCreated;
+     }
+ 
+     public function addCustomRequestsCreated(CustomRequest $customRequestsCreated): self
+     {
+         if (!$this->customRequestsCreated->contains($customRequestsCreated)) {
+             $this->customRequestsCreated[] = $customRequestsCreated;
+             $customRequestsCreated->setUser($this);
+         }
+ 
+         return $this;
+     }
+ 
+     public function removeCustomRequestsCreated(CustomRequest $customRequestsCreated): self
+     {
+         if ($this->customRequestsCreated->contains($customRequestsCreated)) {
+             $this->customRequestsCreated->removeElement($customRequestsCreated);
+             // set the owning side to null (unless already changed)
+             if ($customRequestsCreated->getUser() === $this) {
+                 $customRequestsCreated->setUser(null);
+             }
+         }
+ 
+         return $this;
+     }
+ 
+     /**
+      * @return Collection|CustomRequest[]
+      */
+     public function getCustomRequestsAssigned(): Collection
+     {
+         return $this->customRequestsAssigned;
+     }
+ 
+     public function addCustomRequestsAssigned(CustomRequest $customRequestsAssigned): self
+     {
+         if (!$this->customRequestsAssigned->contains($customRequestsAssigned)) {
+             $this->customRequestsAssigned[] = $customRequestsAssigned;
+             $customRequestsAssigned->setUserAssignedTo($this);
+         }
+ 
+         return $this;
+     }
+ 
+     public function removeCustomRequestsAssigned(CustomRequest $customRequestsAssigned): self
+     {
+         if ($this->customRequestsAssigned->contains($customRequestsAssigned)) {
+             $this->customRequestsAssigned->removeElement($customRequestsAssigned);
+             // set the owning side to null (unless already changed)
+             if ($customRequestsAssigned->getUserAssignedTo() === $this) {
+                 $customRequestsAssigned->setUserAssignedTo(null);
+             }
+         }
+ 
+         return $this;
+     }
 }
