@@ -1,0 +1,16 @@
+{% extends 'base_front.html.twig' %}
+
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+
+    <h1 class="display-4 mt-5">Nous contacter</h1>
+
+    <div class="mx-auto mb-5 pt-4" id="bloc_page_contact">
+
+        {{ form(formMessage) }}
+
+    </div>
+
+{% endblock %}
