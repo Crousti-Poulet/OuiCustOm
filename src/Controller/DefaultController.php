@@ -79,7 +79,7 @@ class DefaultController extends Controller
         if($form->isSubmitted() && $form->isValid()) {
 
             if(!$user->getId()){
-                 $user->setCreatedAt(new \Datetime());
+                 $user->setCreationDate(new \Datetime());
             }
 
              if(!$user->getRole()){

@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CustomRequestRepository")
  */
@@ -40,12 +43,8 @@ class CustomRequest
      * @ORM\Column(type="datetime")
      */
     private $creationDate;
-// to do default dans DB : now()
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    // todo ajouter relation vers User
-    private $user;
+    // todo default dans DB : now()
+
     /**
      * @ORM\Column(type="string", length=15)
      * @Assert\Choice(
@@ -54,10 +53,31 @@ class CustomRequest
      * )
      */
     private $status;
+
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="customRequestsCreated")
+     * @ORM\JoinColumn(nullable=false)
+     * utilisateur qui a fait la demande
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="customRequestsAssigned")
+     * utilisateur artisan qui a répondu à la demande
      */
     private $userAssignedTo;
+
+    /**
+     * CustomRequest constructor.
+     */
+    public function __construct()
+    {
+        // à défaut de pouvoir mettre now() par défaut sur la colonne de la BD !
+        $this->creationDate = new DateTime();
+    }
+
+    /****************** getters & setters ****************************/
+
     public function getId()
     {
         return $this->id;
