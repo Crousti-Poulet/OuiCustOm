@@ -271,4 +271,25 @@ footer .col-4{
   text-align: justify;
 }
 
-////////////Fin du menu accordéon//////////////////////////////////////////
+////////////Fin du menu accordéon FAQ//////////////////////////////////////////
+
+////////////Formulaire de contact//////////////////////////////////////////
+
+#bloc_page_contact
+{
+  width: 35%;
+  min-width: 400px;
+}
+
+#form__message
+{
+  height: 250px;
+}
+
+#form__author, #form__email, #form__object
+{
+  max-width: 250px;
+  margin: auto;
+}
+
+////////////Fin du formulaire de contact//////////////////////////////////////////
