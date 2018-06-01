@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -74,6 +75,8 @@ class CustomRequest
     {
         // à défaut de pouvoir mettre now() par défaut sur la colonne de la BD !
         $this->creationDate = new DateTime();
+        $this->status  = CustomRequest::STATUS_A_VALIDER;
+//        $this->user = app.user;
     }
 
     /****************** getters & setters ****************************/
