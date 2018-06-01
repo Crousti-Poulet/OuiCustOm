@@ -2,7 +2,8 @@
 
 namespace App\Entity;
 
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\Length;
@@ -21,18 +22,17 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=190, unique=true)
      */
-    
-    private $Username;
+    private $username;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=190, unique=true)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=190, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $password;
 
@@ -52,7 +52,23 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private $creationDate;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CustomRequest", mappedBy="user")
+     */
+    private $customRequestsCreated;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CustomRequest", mappedBy="userAssignedTo")
+     */
+    private $customRequestsAssigned;
+
+    public function __construct()
+    {
+        $this->customRequestsCreated = new ArrayCollection();
+        $this->customRequestsAssigned = new ArrayCollection();
+    }
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -67,7 +83,7 @@ class User implements UserInterface
     private  $
 
 
-// *****************
+// ******** getters & setters *********
 
     public function getId()
     {
@@ -76,12 +92,12 @@ class User implements UserInterface
 
     public function getUsername(): ?string
     {
-        return $this->Username;
+        return $this->username;
     }
 
-    public function setUsername(string $Username): self
+    public function setUsername(string $username): self
     {
-        $this->Username = $Username;
+        $this->username = $username;
 
         return $this;
     }
@@ -144,14 +160,14 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreationDate(): ?\DateTimeInterface
     {
-        return $this->createdAt;
+        return $this->creationDate;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreationDate(\DateTimeInterface $creationDate): self
     {
-        $this->createdAt = $createdAt;
+        $this->creationDate = $creationDate;
 
         return $this;
     }
