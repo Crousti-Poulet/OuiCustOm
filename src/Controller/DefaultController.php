@@ -23,7 +23,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/home", name="homePage")
+     * @Route("/", name="homePage") 
      */
     public function homeAction(Request $request)
     {
