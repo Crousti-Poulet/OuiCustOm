@@ -38,9 +38,7 @@ class CustomRequestAddForm extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => CustomRequest::class,
-
         ]);
-
     }
 
 

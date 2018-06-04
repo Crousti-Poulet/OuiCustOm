@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,6 +22,15 @@ class Category
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CustomRequest", mappedBy="category")
+     */
+    private $customRequests;
+
+    public function __construct()
+    {
+        $this->customRequests = new ArrayCollection();
+    }
 
     public function __toString() : string
     {
@@ -44,5 +54,15 @@ class Category
         $this->name = $name;
 
         return $this;
+    }
+
+    public function getCustomRequests()
+    {
+        return $this->customRequests;
+    }
+
+    public function setCustomRequests($customRequests): void
+    {
+        $this->customRequests = $customRequests;
     }
 }

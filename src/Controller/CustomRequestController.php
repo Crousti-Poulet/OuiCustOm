@@ -20,13 +20,14 @@ class CustomRequestController extends Controller
         $customRequest = new CustomRequest();
 
         $form = $this->createForm(CustomRequestAddForm::class, $customRequest);
-        
+
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
             $customRequest = $form->getData();
             $em = $this->getDoctrine()->getManager();
+            $customRequest->setUser($this->getUser());
             $em->persist($customRequest); // pour créer un nouvel enregistrement dans la base, seulement en création, pas en modif
             $em->flush(); // enregistre dans la base
 

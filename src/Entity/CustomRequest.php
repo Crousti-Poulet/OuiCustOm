@@ -24,16 +24,19 @@ class CustomRequest
      * @ORM\Column(type="integer")
      */
     private $id;
+
     /**
      * @ORM\Column(type="string", length=100)
      */
     private $title;
+
     /**
      * @ORM\Column(type="text")
      */
     private $description;
+
     /**
-     * @ORM\Column(type="string")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="$customRequests")
      */
     private $category;
     /**
@@ -121,20 +124,20 @@ class CustomRequest
         $this->creationDate = $creationDate;
         return $this;
     }
-    public function getUser(): ?string
+    public function getUser(): ?User
     {
         return $this->user;
     }
-    public function setUser(string $user): self
+    public function setUser(User $user): self
     {
         $this->user = $user;
         return $this;
     }
-    public function getUserAssignedTo(): ?string
+    public function getUserAssignedTo(): ?User
     {
         return $this->userAssignedTo;
     }
-    public function setUserAssignedTo(?string $userAssignedTo): self
+    public function setUserAssignedTo(?User $userAssignedTo): self
     {
         $this->userAssignedTo = $userAssignedTo;
         return $this;
