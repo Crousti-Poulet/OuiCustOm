@@ -104,4 +104,31 @@ class UpdateController extends Controller
         return md5(uniqid());
     }
 
+    /**
+     * @Route ("/updateUserProfile", name="updateUserProfile")
+     */
+
+    public function updateUserProfile (Request $request, ObjectManager $manager)
+    {
+        $user = $this->getUser();
+
+        $form = $this->createFormBuilder($user) // on CREE et CONFIGURE le form grace a createFormBuilder qui sera lié a $user
+        ->add('username')
+        ->add('email')
+        ->add('location')
+
+        ->getForm() ;
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $manager->flush();
+            return $this->redirectToRoute('userview');
+        }
+        return $this->render('security/updateUserProfile.html.twig',[
+            'updateProfile' => $form->createView(),
+        ]);
+    }
+
 }
