@@ -79,10 +79,16 @@ class User implements UserInterface
     {
         return ['id', 'username', 'email', 'password', 'role', 'creationDate'];
     }
+
     public function __construct()
     {
         $this->customRequestsCreated = new ArrayCollection();
         $this->customRequestsAssigned = new ArrayCollection();
+    }
+
+    public function __toString() : string
+    {
+        return $this->username;
     }
 
 // ******** getters & setters *********

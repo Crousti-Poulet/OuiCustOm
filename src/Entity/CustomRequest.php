@@ -106,11 +106,11 @@ class CustomRequest
         $this->description = $description;
         return $this;
     }
-    public function getPhotoPath(): ?string
+    public function getPhotoPath()
     {
         return $this->photoPath;
     }
-    public function setPhotoPath(?string $photoPath): self
+    public function setPhotoPath( $photoPath): self
     {
         $this->photoPath = $photoPath;
         return $this;

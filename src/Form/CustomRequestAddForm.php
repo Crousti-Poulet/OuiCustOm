@@ -7,6 +7,7 @@ use App\Entity\CustomRequest;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -30,7 +31,7 @@ class CustomRequestAddForm extends AbstractType
                 'expanded' => false,
                 'multiple' => false
             ])
-            ->add('photoPath')
+            ->add('photoPath', FileType::class, ['label' => 'Photo de l\'objet'])
             ->add('Valider', SubmitType::class);
     }
 
@@ -39,11 +40,5 @@ class CustomRequestAddForm extends AbstractType
         $resolver->setDefaults([
             'data_class' => CustomRequest::class,
         ]);
-    }
-
-
-    public function getBlockPrefix()
-    {
-        return 'my_form_movie';
     }
 }
