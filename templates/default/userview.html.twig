@@ -1,0 +1,26 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %}{{ app.user.username }}{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid artistbanner mb-5 d-flex align-items-center d-flex justify-content-center">
+        <h1>votre espace personnel</h1>
+    </div>
+
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12 offset-md-0 mb-5 bg-white rounded border">
+            <div class="artisteprofile">
+                <h6>Votre profil :</h6>
+
+                <p>{{ app.user.username }}</p>
+                <p>{{ app.user.email }}</p>
+                <p>{{ app.user.location }}</p>
+
+                <a class="btn btn-primary mb-3" href="{{ path('updateUserProfile') }}"> modifier profil</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -30,6 +30,28 @@ class CustomRequestRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findAllByUser($user)
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.user = :user')
+            ->setParameter('user', $user)
+            ->orderBy('r.creationDate', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findAllByUserAssignedTo($userAssignedTo)
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.userAssignedTo = :userAssignedTo')
+            ->setParameter('userAssignedTo', $userAssignedTo)
+            ->orderBy('r.creationDate', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 //    /**
 //     * @return CustomRequest[] Returns an array of CustomRequest objects
 //     */

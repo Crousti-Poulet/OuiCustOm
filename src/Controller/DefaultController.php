@@ -39,15 +39,6 @@ class DefaultController extends Controller
     {
         return $this->render('error/errorUser.html.twig');
     }
-
-    /**
-     * @route("/error/404", name="unfind")
-     */
-
-    public function  unfindAction(Request $request)
-    {
-        return $this->render('error/404.hmtl.twig');
-    }
     //fin des pages d'erreurs
     /**
      * @Route("/default/artistview", name="artistview")
@@ -61,10 +52,22 @@ class DefaultController extends Controller
         return $this->render('default/artistview.html.twig');
     }
 
+
     /**
- * @Route("/default/profildetail", name="profildetail")
- *@Security("has_role('ROLE_USER', 'ROLE_ARTISTE')")
- */
+     * @Route("/default/userview", name="userview")
+     */
+    public function userviewAction (Request $request)
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')){
+            return $this->redirectToRoute('errorUser');
+        }
+        return $this->render('default/userview.html.twig');
+    }
+
+    /**
+     * @Route("/default/profildetail", name="profildetail")
+     *@Security("has_role('ROLE_USER', 'ROLE_ARTISTE')")
+     */
     public function profildetailAction (Request $request)
     {
         return $this->render('default/profildetail.html.twig');
