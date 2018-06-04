@@ -32,6 +32,7 @@ class Category
         $this->customRequests = new ArrayCollection();
     }
 
+    // pour afficher un attribut de l'utilisateur dans la liste des demandes par exemple
     public function __toString() : string
     {
         return $this->name;

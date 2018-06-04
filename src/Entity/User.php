@@ -74,15 +74,26 @@ class User implements UserInterface
      */
     private $description;
 
+    /**
+     * @ORM\column(type="string", length=255, nullable=true)
+     */
+    private  $category;
+
     // pour éviter que l'image uploadée soir considérée comme un string
     public function __sleep()
     {
         return ['id', 'username', 'email', 'password', 'role', 'creationDate'];
     }
+
     public function __construct()
     {
         $this->customRequestsCreated = new ArrayCollection();
         $this->customRequestsAssigned = new ArrayCollection();
+    }
+
+    public function __toString() : string
+    {
+        return $this->username;
     }
 
 // ******** getters & setters *********
@@ -224,7 +235,19 @@ class User implements UserInterface
 
         return $this;
     }
- 
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(string $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
      /**
       * @return Collection|CustomRequest[]
       */
