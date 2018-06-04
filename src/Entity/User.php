@@ -64,12 +64,6 @@ class User implements UserInterface
      */
     private $customRequestsAssigned;
 
-    public function __construct()
-    {
-        $this->customRequestsCreated = new ArrayCollection();
-        $this->customRequestsAssigned = new ArrayCollection();
-    }
-
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -81,6 +75,17 @@ class User implements UserInterface
      */
 
     private $description;
+
+
+    public function __sleep()
+    {
+        return ['id', 'username', 'email', 'password', 'role', 'creationDate'];
+    }
+    public function __construct()
+    {
+        $this->customRequestsCreated = new ArrayCollection();
+        $this->customRequestsAssigned = new ArrayCollection();
+    }
 
 
 
@@ -200,24 +205,24 @@ class User implements UserInterface
 
     }
 
-    public function getProfilPicture(): ?string
+    public function getProfilPicture()
     {
         return $this->profilPicture;
     }
 
-    public function setProfilPicture(string $profilPicture): self
+    public function setProfilPicture($profilPicture)
     {
        $this->profilPicture = $profilPicture;
 
        return $this;
     }
 
-    public function  getDescription(): ?text
+    public function  getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription(text $description): self
+    public function setDescription(string $description): self
     {
         $this->description = $description;
 
