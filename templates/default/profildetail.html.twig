@@ -1,37 +1,37 @@
 {% extends 'base_front.html.twig' %}
 
 
-{% block title %}Profile de 'inserer nom ici'{% endblock %}
+{% block title %}Profil de {{ user.username }}{% endblock %}
 
 {% block body %}
 
 <div class="container-fluid artistbanner mb-5 d-flex align-items-center d-flex justify-content-center">
-    <h1>votre espace personnel</h1>
+    <h1>Page de {{user.username }}</h1>
 </div>
 
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-8">
 
-                <p class="col-12 offset-md-3 col-md-6 bg-white rounded border p-2">nom</p>
-                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">catégorie/spécialité</p>
-                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">Ville</p>
-                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">date d'inscription</p>
-                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">suivit par  x personnes</p>
+                <p class="col-12 offset-md-3 col-md-6 bg-white rounded border p-2">{{user.username }}</p>
+                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">{{ user.category }}</p>
+                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">{{ user.location }}</p>
+                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">{{ user.creationDate|date("d/m/y") }}</p>
+                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">{{ user.email }}</p>
                 <p class="col-12 col-md-6 bg-white rounded border p-2 float-left"><a href="#">voir la galerie</a></p>
                 <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">système de note</p>
 
             </div>
 
             <div class="col-12 col-md-4 mb-4">
-                <img src="http://via.placeholder.com/300x400" alt="photo d'utilisateur">
+                <img src="{{ asset('uploads/profilPictures/' ~ user.profilPicture )}}" alt="photo d'utilisateur" class="card-img-top mb-2" alt="photo d'utilisateur">
             </div>
         </div>
 
         <div class="row">
             <div class="col-12 bg-white rounded border p-2 mb-4">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci alias animi beatae blanditiis cumque debitis dignissimos ea esse ipsum laboriosam mollitia, nostrum omnis porro quo recusandae tempore! Reiciendis, sunt!
-                </p>
+                <p>{{ user.description }}</p>
+
             </div>
 
             <button class="btn btn-primary col-12 col-sm-5 col-md-3 mb-2">Ajouter aux favoris</button>

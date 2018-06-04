@@ -26,21 +26,60 @@ class DefaultController extends Controller
         return $this->render('default/home.html.twig');
     }
 
+    //pages d'erreurs
+    /**
+     * @route("/error/errorUser", name="errorUser")
+     */
+
+    public function errorUserAction(Request $request)
+    {
+        return $this->render('error/errorUser.html.twig');
+    }
+    //fin des pages d'erreurs
     /**
      * @Route("/default/artistview", name="artistview")
-     * @Security("has_role('ROLE_USER')")
      */
     public function artistviewAction (Request $request)
     {
+
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ARTISTE')){
+            return $this->redirectToRoute('errorUser');
+        }
         return $this->render('default/artistview.html.twig');
+    }
+
+
+    /**
+     * @Route("/default/userview", name="userview")
+     */
+    public function userviewAction (Request $request)
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')){
+            return $this->redirectToRoute('errorUser');
+        }
+        return $this->render('default/userview.html.twig');
     }
 
     /**
      * @Route("/default/profildetail", name="profildetail")
+     *@Security("has_role('ROLE_USER', 'ROLE_ARTISTE')")
      */
     public function profildetailAction (Request $request)
     {
         return $this->render('default/profildetail.html.twig');
+    }
+    //page du détqail de profil d'un artiste
+    /**
+     * @Route("/default/profildetail/{id}", name="profildetailuser")
+     */
+    public function profildetailUserAction (Request $request, User $user)
+    {
+        if(!in_array('ROLE_ARTISTE', $user->getRoles())){//on vérrifie que l'id est bien celle d'un artiste
+            return $this->redirectToRoute('errorUser');// si ce n'est pas le cas, on retourne un 404
+        }
+        return $this->render('default/profildetail.html.twig', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -124,7 +163,7 @@ class DefaultController extends Controller
                      
                      ->getForm() ;       // on le RECUPERE   
 
-        $form->handleRequest($request);  // ANALYSE de la requete et ducou symfony lié title content avec $article
+        $form->handleRequest($request);  // ANALYSE de la requete et du coup symfony lié title content avec $article
              
         if($form->isSubmitted() && $form->isValid()) {
 
