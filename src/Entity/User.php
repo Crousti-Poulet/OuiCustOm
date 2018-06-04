@@ -64,20 +64,26 @@ class User implements UserInterface
      */
     private $customRequestsAssigned;
 
-    public function __construct()
-    {
-        $this->customRequestsCreated = new ArrayCollection();
-        $this->customRequestsAssigned = new ArrayCollection();
-    }
-
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $profilPicture;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
 
-
-
+    // pour éviter que l'image uploadée soir considérée comme un string
+    public function __sleep()
+    {
+        return ['id', 'username', 'email', 'password', 'role', 'creationDate'];
+    }
+    public function __construct()
+    {
+        $this->customRequestsCreated = new ArrayCollection();
+        $this->customRequestsAssigned = new ArrayCollection();
+    }
 
 // ******** getters & setters *********
 
@@ -137,7 +143,7 @@ class User implements UserInterface
     {
         $roles = $this->role;
 
-        if (!in_array('ROLE_USER', $roles)){ // pour faire en sorte que l'utilisateur est au minimum le role user
+        if (!in_array('ROLE_USER', $roles)){ // pour faire en sorte que l'utilisateur ait au minimum le role user
             $roles[] = 'ROLE_USER';
         }
 
@@ -195,16 +201,89 @@ class User implements UserInterface
 
     }
 
-    public function getProfilPicture(): ?string
+    public function getProfilPicture()
     {
         return $this->profilPicture;
     }
 
-    public function setProfilPicture(string $profilPicture): self
+    public function setProfilPicture($profilPicture)
     {
        $this->profilPicture = $profilPicture;
 
        return $this;
     }
 
+    public function  getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+ 
+     /**
+      * @return Collection|CustomRequest[]
+      */
+     public function getCustomRequestsCreated(): Collection
+     {
+         return $this->customRequestsCreated;
+     }
+ 
+     public function addCustomRequestsCreated(CustomRequest $customRequestsCreated): self
+     {
+         if (!$this->customRequestsCreated->contains($customRequestsCreated)) {
+             $this->customRequestsCreated[] = $customRequestsCreated;
+             $customRequestsCreated->setUser($this);
+         }
+ 
+         return $this;
+     }
+ 
+     public function removeCustomRequestsCreated(CustomRequest $customRequestsCreated): self
+     {
+         if ($this->customRequestsCreated->contains($customRequestsCreated)) {
+             $this->customRequestsCreated->removeElement($customRequestsCreated);
+             // set the owning side to null (unless already changed)
+             if ($customRequestsCreated->getUser() === $this) {
+                 $customRequestsCreated->setUser(null);
+             }
+         }
+ 
+         return $this;
+     }
+ 
+     /**
+      * @return Collection|CustomRequest[]
+      */
+     public function getCustomRequestsAssigned(): Collection
+     {
+         return $this->customRequestsAssigned;
+     }
+ 
+     public function addCustomRequestsAssigned(CustomRequest $customRequestsAssigned): self
+     {
+         if (!$this->customRequestsAssigned->contains($customRequestsAssigned)) {
+             $this->customRequestsAssigned[] = $customRequestsAssigned;
+             $customRequestsAssigned->setUserAssignedTo($this);
+         }
+ 
+         return $this;
+     }
+ 
+     public function removeCustomRequestsAssigned(CustomRequest $customRequestsAssigned): self
+     {
+         if ($this->customRequestsAssigned->contains($customRequestsAssigned)) {
+             $this->customRequestsAssigned->removeElement($customRequestsAssigned);
+             // set the owning side to null (unless already changed)
+             if ($customRequestsAssigned->getUserAssignedTo() === $this) {
+                 $customRequestsAssigned->setUserAssignedTo(null);
+             }
+         }
+ 
+         return $this;
+     }
 }

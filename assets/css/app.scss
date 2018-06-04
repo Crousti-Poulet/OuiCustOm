@@ -275,4 +275,54 @@ footer .col-4{
   text-align: justify;
 }
 
-////////////Fin du menu accordéon//////////////////////////////////////////
+////////////Fin du menu accordéon FAQ//////////////////////////////////////////
+
+////////////Formulaire de contact//////////////////////////////////////////
+
+#bloc_page_contact
+{
+  width: 35%;
+  min-width: 400px;
+}
+
+#form__message
+{
+  height: 250px;
+}
+
+#form__author, #form__email, #form__object
+{
+  max-width: 250px;
+  margin: auto;
+}
+
+////////////Fin du formulaire de contact//////////////////////////////////////////
+
+#bloc_page_registration
+{
+  min-height: 700px;
+}
+
+///////////////////Messagerie//////////////////////////////////////////
+
+#bloc_page_messaging
+{
+  min-height: 500px;
+}
+
+.bloc_list_contact
+{
+  width: 40%;
+  min-width: 300px;
+  max-height: 50vh;
+  background-color: purple;
+}
+
+.bloc_contact
+{
+  width: 90%;
+  min-width: 200px;
+  height: 100px;
+  background-color: #f38787;
+  margin: auto;
+}
