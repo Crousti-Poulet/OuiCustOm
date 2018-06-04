@@ -76,6 +76,11 @@ class User implements UserInterface
 
     private $description;
 
+    /**
+     * @ORM\column(type="string", length=255, nullable=true)
+     */
+    private  $category;
+
 
     public function __sleep()
     {
@@ -228,7 +233,19 @@ class User implements UserInterface
 
         return $this;
     }
- 
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(string $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
      /**
       * @return Collection|CustomRequest[]
       */

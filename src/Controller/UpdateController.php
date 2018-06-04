@@ -51,6 +51,7 @@ class UpdateController extends Controller
             ->add('profilPicture', FileType::class)//on précise qu'il va s'agire d'un fichier
                 //ainsi l'utilisateur purra choisir une image et la palcer dans ce champs
             ->add('description')
+            ->add('category')
 
             ->getForm() ;       // on le RECUPERE
 
