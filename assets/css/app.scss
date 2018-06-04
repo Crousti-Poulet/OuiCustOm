@@ -307,15 +307,19 @@ footer .col-4{
 
 #bloc_page_messaging
 {
-  min-height: 500px;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px #000000;
 }
 
 .bloc_list_contact
 {
-  width: 40%;
-  min-width: 300px;
-  max-height: 50vh;
-  background-color: purple;
+  min-width: 350px;
+  height: 550px;
+  background-color:lightblue;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px #000000;
 }
 
 .bloc_contact
@@ -323,6 +327,68 @@ footer .col-4{
   width: 90%;
   min-width: 200px;
   height: 100px;
-  background-color: #f38787;
-  margin: auto;
+  background-color: lightgray;
+  border-radius: 10px;
+  border: solid white 3px;
 }
+
+.bloc_list_message
+{
+  min-width: 450px;
+  height: 550px;
+  background-color: lightblue;
+  padding-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px #000000;
+  overflow: scroll;  
+}
+
+.bloc_message
+{
+  width: 90%;
+  min-width: 200px;
+  min-height: 190px;
+  background-color: lightgray;
+  border-radius: 10px;
+  border: solid white 3px;
+}
+
+#my_space_link
+{
+ font-size: 1.2em;
+}
+
+.message_banner
+{
+  height: 25px;
+  border-radius: 7px 7px 0px 0px;
+}
+
+.interlocutor
+{
+  float: left;
+}
+
+.message_datetime
+{
+  float: right;
+}
+
+.message_sending
+{
+  float: right;
+}
+
+#sending_message_button
+{
+  float: right;
+}
+
+#message_response
+{
+  width: 80%;
+  height: 100%;
+  float: left;
+}
+
+///////////////////Fin de la messagerie//////////////////////////////////////////

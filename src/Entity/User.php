@@ -67,13 +67,11 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-
     private $profilPicture;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-
     private $description;
 
     /**
@@ -81,18 +79,22 @@ class User implements UserInterface
      */
     private  $category;
 
-
+    // pour éviter que l'image uploadée soir considérée comme un string
     public function __sleep()
     {
         return ['id', 'username', 'email', 'password', 'role', 'creationDate'];
     }
+
     public function __construct()
     {
         $this->customRequestsCreated = new ArrayCollection();
         $this->customRequestsAssigned = new ArrayCollection();
     }
 
-
+    public function __toString() : string
+    {
+        return $this->username;
+    }
 
 // ******** getters & setters *********
 
@@ -152,7 +154,7 @@ class User implements UserInterface
     {
         $roles = $this->role;
 
-        if (!in_array('ROLE_USER', $roles)){ // pour faire en sorte que l'utilisateur est au minimum le role user
+        if (!in_array('ROLE_USER', $roles)){ // pour faire en sorte que l'utilisateur ait au minimum le role user
             $roles[] = 'ROLE_USER';
         }
 

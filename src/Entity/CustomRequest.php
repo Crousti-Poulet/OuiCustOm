@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -23,16 +24,19 @@ class CustomRequest
      * @ORM\Column(type="integer")
      */
     private $id;
+
     /**
      * @ORM\Column(type="string", length=100)
      */
     private $title;
+
     /**
      * @ORM\Column(type="text")
      */
     private $description;
+
     /**
-     * @ORM\Column(type="string")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="$customRequests")
      */
     private $category;
     /**
@@ -74,6 +78,8 @@ class CustomRequest
     {
         // à défaut de pouvoir mettre now() par défaut sur la colonne de la BD !
         $this->creationDate = new DateTime();
+        $this->status  = CustomRequest::STATUS_A_VALIDER;
+//        $this->user = app.user;
     }
 
     /****************** getters & setters ****************************/
@@ -100,11 +106,11 @@ class CustomRequest
         $this->description = $description;
         return $this;
     }
-    public function getPhotoPath(): ?string
+    public function getPhotoPath()
     {
         return $this->photoPath;
     }
-    public function setPhotoPath(?string $photoPath): self
+    public function setPhotoPath( $photoPath): self
     {
         $this->photoPath = $photoPath;
         return $this;
@@ -118,20 +124,20 @@ class CustomRequest
         $this->creationDate = $creationDate;
         return $this;
     }
-    public function getUser(): ?string
+    public function getUser(): ?User
     {
         return $this->user;
     }
-    public function setUser(string $user): self
+    public function setUser(User $user): self
     {
         $this->user = $user;
         return $this;
     }
-    public function getUserAssignedTo(): ?string
+    public function getUserAssignedTo(): ?User
     {
         return $this->userAssignedTo;
     }
-    public function setUserAssignedTo(?string $userAssignedTo): self
+    public function setUserAssignedTo(?User $userAssignedTo): self
     {
         $this->userAssignedTo = $userAssignedTo;
         return $this;
