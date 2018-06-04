@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Messaging;
 use App\Entity\User;
+use App\Entity\Messages;
+use App\Entity\Messaging;
 use App\Entity\AdminContact;
+use App\Entity\Conversation;
 use Webmozart\Assert\Assert;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -13,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -111,13 +114,13 @@ class DefaultController extends Controller
             $em->flush();
             
             //Envoi de mail (ne fonctionne pas)
-            // $message = (new \Swift_Message('Hello Email'))
-            // ->setFrom('send@example.com')
-            // ->setTo('el-ouni-mehdi@hotmail.fr')
-            // ->setBody('Coucou !'
-        // );
+            $message = (new \Swift_Message('Hello Email'))
+            ->setFrom('send@example.com')
+            ->setTo('el-ouni-mehdi@hotmail.fr')
+            ->setBody('Coucou !'
+        );
        
-            // $mailer->send($message);
+            $mailer->send($message);
             return $this->redirect($this->generateUrl('contactPage'));
 
         }
@@ -191,17 +194,24 @@ class DefaultController extends Controller
      */
     public function messagingAction(Request $request)
     {
+        $conversation_messages = $this->getDoctrine()->getManager()->getRepository(Conversation::class)->findAllByUser($this->getUser());
+        return $this->render('/default/messaging.html.twig', [
+            'conversation_messages' => $conversation_messages
+        ]);
+
         //Création du message
         $message = new Messaging();       
         
-        // Création et configuration du formulaire en se utilisant sur createFormBuilder 
-        $form = $this->createFormBuilder($message) 
-                     ->add('_message', TextareaType::class, ['label' => 'Votre message'])
-                     ->add('Envoyer', SubmitType::class)
-                     // Récupération
-                     ->getForm() 
-                     ;
-
+        // Création et configuration du formulaire en utilisant sur createFormBuilder 
+        $form = $this->createFormBuilder($message)
+                    
+                    ->add('_sender', HiddenType::class, ['data'=> $this->getUser()->getUsername()]) 
+                    ->add('_message', TextareaType::class, ['label' => 'Votre message'])
+                    ->add('Envoyer', SubmitType::class)
+                    // Récupération
+                    ->getForm() 
+                    ;
+        
         //Analyse de la requête
         $form->handleRequest($request);
              
