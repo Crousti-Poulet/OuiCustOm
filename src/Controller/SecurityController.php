@@ -32,7 +32,8 @@ class SecurityController extends Controller
      */
     public function registration(Request $request, ObjectManager $manager)
     {
-         $user = new User (); // on crée l'utilisateur       
+        $user = new User (); // on crée l'utilisateur
+        $user->setProfilPicture('placeholder_profil.png'); //Met un placeholder à la place de la photo de profil       
         $form = $this->createFormBuilder($user) // on CREE et CONFIGURE le form grace a createFormBuilder qui sera lié a $user 
                      ->add('username',TextType::class,[
                         'required'    => true,
