@@ -4,24 +4,29 @@
 
 {% block body %}
 <div class=" text-center d-flex justify-content-center formRegister pt-5 pb-5">
-        <div>
-            
-        </div>
-        <div class="form col-8 col-md-6 col-lg-3">
-            <h1 class="text-white"> Connexion</h1>
-            <fieldset class="border m-3 p-3 bg-light"  >
-                {% if error %}
-                    <div>{{ error.messageKey|trans(error.messageData) }}</div>
-                {% endif %}
-                   
-                {{ form_start(monForm) }}
-                    {{ form_row(monForm._email) }}
-                    {{ form_row(monForm._password) }}
-
-                    <button type="submit" class="btn btn-outline-success "> Se Connecter </button>
-                {{form_end(monForm)}}
-            </fieldset>
-        </div>
+    <div>
+        
     </div>
+
+    <div class="form col-8 col-md-6 col-lg-3">
+        <h1 class="text-white"> Connexion</h1>
+        <fieldset class="border m-3 p-3 bg-light rounded"  >
+            {% if error %}
+                <div>{{ error.messageKey|trans(error.messageData) }}</div>
+            {% endif %}
+                
+            {{ form_start(monForm) }}
+                {{ form_row(monForm._email) }}
+                {{ form_row(monForm._password) }}
+
+                <button type="submit" class="btn btn-success "> Se Connecter </button>
+            {{form_end(monForm)}}
+            <hr>
+        <p> Vous n'etes pas encore membre ?</p>
+        <a href="{{path('registrationPage')}}" class="btn btn-outline-primary " role="button" aria-pressed="true">Devenir membre</a>
+       </fieldset>
+        </fieldset>
+    </div>
+</div>
 {% endblock %}
 

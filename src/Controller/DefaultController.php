@@ -120,8 +120,7 @@ class DefaultController extends Controller
             $message = (new \Swift_Message('Hello Email'))
             ->setFrom('send@example.com')
             ->setTo('el-ouni-mehdi@hotmail.fr')
-            ->setBody('Coucou !'
-        );
+            ->setBody('Coucou !');
        
             $mailer->send($message);
             return $this->redirect($this->generateUrl('contactPage'));

@@ -35,11 +35,11 @@
                         <ul class="navbar-nav ml-auto">
 
                             <li class="nav-item">
-                                <a class="nav-link text-white text-center" id="nav-link-index" href="{{ path('homePage') }}">Accueil</a>
+                                <a class="nav-link text-white text-center" id="nav-link-index" href="{{ path('homePage') }}"> <i class="fas fa-home"></i> Accueil</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-white text-center" id="nav-link-login" href="{{ path('security_login') }}">Connexion</a>
+                                <a class="nav-link text-white text-center" id="nav-link-login" href="{{ path('security_login') }}"> <i class="fas fa-sign-in-alt"></i> Connexion</a>
                             </li>
 
                             <li class="nav-item">
@@ -47,11 +47,11 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-white text-center mr-3" id="nav-link-help" href="{{ path('helpPage') }}">Aide</a>
+                                <a class="nav-link text-white text-center mr-3" id="nav-link-help" href="{{ path('helpPage') }}"> <i class="fas fa-question-circle"></i> Aide</a>
                             </li>
                             {% if is_granted('ROLE_ARTISTE') %}
                             <li class="nav-item">
-                                <a class="nav-link text-white text-center mr-3" id="nav-link-help" href="{{ path('artistview') }}">Mon compte</a>
+                                <a class="nav-link text-white text-center mr-3" id="nav-link-help" href="{{ path('artistview') }}"> <i class="fas fa-user"> </i>  Mon compte </a>
                             </li>
                             {% endif %}
 
