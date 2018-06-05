@@ -5,8 +5,12 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
 
         {% block stylesheets %}
+        
+            <!--Fontawsome -->
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
-            <!-- Add icon library -->
+            
+            <!--Logo présent dans l'onglet de la page-->
+            <link rel="shortcut icon" href="{{ asset('img/logo_onglet.png') }}">
 
             <!-- Bootstrap core CSS -->
             <link href="{{ asset('build/css/app.css') }}" rel="stylesheet">
