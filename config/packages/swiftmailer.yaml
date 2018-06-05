@@ -1,7 +1,9 @@
 swiftmailer:
     host:       smtp.mailtrap.io
     port:       2525
-    username:   bd0aa2b4349918
-    password:   e89f47c54834e6
+    username:  8a1d82d6796219
+    password:  330f6be34b5109 
     auth_mode:  cram-md5
     spool: { type: 'memory' }
+#  bd0aa2b4349918
+# e89f47c54834e6

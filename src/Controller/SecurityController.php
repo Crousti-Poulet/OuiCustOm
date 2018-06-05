@@ -224,7 +224,7 @@ class SecurityController extends Controller
             'tokenpassword' => $token
             ]);
         if($user){
-            $form = $this->createFormBuilder() 
+            $form = $this->createFormBuilder($user) 
                 ->add('plainPassword', RepeatedType::class, [
                     'type' => PasswordType::class,
                     'first_options' => ['label' => 'Entrez le nouveau mot de passe'],
@@ -253,7 +253,7 @@ class SecurityController extends Controller
             
                 $user = $form->getData(); // getData() garde les valeurs soumises au formulaire
     
-                $manager->persist($user); //on demande au manager de se preparer a faire persister l'article
+                //$manager->persist($user); //on demande au manager de se preparer a faire persister l'article
                 $manager->flush();           //on demande au manager de lancer la requete
                 $this->addFlash('success', 'Votre compte à bien été créé.');
                 return $this->redirectToRoute('homePage');

@@ -1,3 +1,6 @@
+{% extends 'base_front.html.twig' %}
+
+
 {% block title %} Inscription {% endblock  %}
 {% block body %}
 
@@ -7,14 +10,14 @@
         <h1 class="text-white"> Nouveau Mot de Passe</h1>
         <fieldset class="border m-3 p-3 bg-light rounded"  >
 
-            {{ form_start(formPass) }}
+            {{ form_start(formNew) }}
 
-            {{ form_row(formPass.plainPassword.first) }}
-            {{ form_row(formPass.plainPassword.second) }}
+            {{ form_row(formNew.plainPassword.first) }}
+            {{ form_row(formNew.plainPassword.second) }}
 
             <button type="submit" class="btn btn-outline-success "> Enregistrer </button>
 
-        {{form_end(formPass)}}
+        {{form_end(formNew)}}
 
         </fieldset>
     </div>

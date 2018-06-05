@@ -14,10 +14,14 @@
                 
             {{ form_start(monForm) }}
                 {{ form_row(monForm._email) }}
+       
                 {{ form_row(monForm._password) }}
-
-                <button type="submit" class="btn btn-success "> Se Connecter </button>
+                
+                
+                <button type="submit" class="col-6 btn btn-success mb-3 mt-3"> Se Connecter </button>
+                <a href="{{ path('reset_password') }}"><small id="pwdforgot" class="form-text text-muted">Mot de passe oublié ?</small></a>
             {{form_end(monForm)}}
+            
             <hr>
         <p> Vous n'etes pas encore membre ?</p>
         <a href="{{path('registrationPage')}}" class="btn btn-outline-primary " role="button" aria-pressed="true">Devenir membre</a>
