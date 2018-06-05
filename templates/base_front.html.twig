@@ -11,13 +11,13 @@
             <!-- Bootstrap core CSS -->
             <link href="{{ asset('build/css/app.css') }}" rel="stylesheet">
             
-        {% endblock %}
-    
-    </head>
-    <body>
+            {% endblock %}
+            
+        </head>
+        <body>
             <!-- HEADER FRONT -->
             <header class="container-fluid p-0" id="header_front">
-
+                
                 <!-- navbar -->
                 <nav class="navbar navbar-expand-lg bg-primary p-0">
                     <!-- logo -->
@@ -28,38 +28,63 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"><i class="fas fa-bars white" style="font-size:1.4em; color:White"></i></span>
                     </button>
-
+                    
                     <!-- Nav-links -->
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    
+                        
                         <ul class="navbar-nav ml-auto">
-
+                            
                             <li class="nav-item">
                                 <a class="nav-link text-white text-center" id="nav-link-index" href="{{ path('homePage') }}"> <i class="fas fa-home"></i> Accueil</a>
                             </li>
-
+                            
+                            {% if is_granted('ROLE_ARTISTE') %}
+                               
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-white text-center " data-toggle="dropdown" href="#"  aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"> </i> Mon Compte</a>
+                                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                        <a class="dropdown-item" href="{{ path('artistview') }}"><i class="fas fa-cogs"></i> Gestion de compte</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{ path('security_logout') }}"> <i class="fas fa-sign-out-alt"></i>  Logout</a>
+                                    </div>
+                                </li>
+                        
+                            {% elseif not is_granted('ROLE_ARTISTE') and is_granted('IS_AUTHENTICATED_FULLY') and not is_granted('ROLE_ADMIN')%}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-white text-center " data-toggle="dropdown" href="#"  aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"> </i> Mon Compte</a>
+                                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                        <a class="dropdown-item" href="{{ path('userview') }}"><i class="fas fa-cogs"></i> Gestion de compte</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{ path('security_logout') }}"> <i class="fas fa-sign-out-alt"></i>  Logout</a>
+                                    </div>
+                                </li>
+                            {% endif %}
+                        
+                            {% if is_granted('ROLE_ADMIN') %}
+                            <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-white text-center " data-toggle="dropdown" href="#"  aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"> </i> ADMIN</a>
+                                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                        <a class="dropdown-item" href="{{ path('default_admin') }}"><i class="fas fa-cogs"></i> Tableau de bord </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{ path('security_logout') }}"> <i class="fas fa-sign-out-alt"></i>  Logout</a>
+                                    </div>
+                                </li>
+                            {% endif %}            
+                            
                             <li class="nav-item">
-                                <a class="nav-link text-white text-center" id="nav-link-login" href="{{ path('security_login') }}"> <i class="fas fa-sign-in-alt"></i> Connexion</a>
+                                <a class="nav-link text-white text-center" id="nav-link-contact" href="{{ path('contactPage') }}"> <i class="fas fa-envelope"></i> Contact</a>
                             </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link text-white text-center" id="nav-link-contact" href="{{ path('contactPage') }}">Contact</a>
-                            </li>
-
+                            
                             <li class="nav-item">
                                 <a class="nav-link text-white text-center mr-3" id="nav-link-help" href="{{ path('helpPage') }}"> <i class="fas fa-question-circle"></i> Aide</a>
                             </li>
-                            {% if is_granted('ROLE_ARTISTE') %}
-                            <li class="nav-item">
-                                <a class="nav-link text-white text-center mr-3" id="nav-link-help" href="{{ path('artistview') }}"> <i class="fas fa-user"> </i>  Mon compte </a>
-                            </li>
-                            {% endif %}
 
-                            {% if not is_granted('ROLE_ARTISTE') %}
-                            <li class="nav-item">
-                                <a class="nav-link text-white text-center mr-3" id="nav-link-help" href="{{ path('userview') }}">Mon compte</a>
-                            </li>
+                            {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <li class="nav-item">
+                                    <a class="nav-link text-white text-center mr-3" id="nav-link-login" href="{{ path('security_login') }}"> <i class="fas fa-sign-in-alt"></i> Connexion</a>
+                                </li>
                             {% endif %}
+                            
 
                         </ul>
                     </div>

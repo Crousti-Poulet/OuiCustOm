@@ -1,11 +1,7 @@
 {% extends 'base_front.html.twig' %}
 
-
-
 {% block title %} Inscription {% endblock  %}
 {% block body %}
-
-
 
 <div class=" text-center d-flex justify-content-center formRegister">
     <div>
@@ -14,21 +10,21 @@
     <div class="form col-8 col-md-6 col-lg-4" id="bloc_page_registration">
         <h1 class="text-white"> Inscription</h1>
         <fieldset class="border m-3 p-3 bg-light rounded"  >
-        {{form_start(formUser, {'attr' : { 'novalidate' : 'true'}}) }}
 
-        {{ form_row(formUser.email, {'attr' : { 'placeholder' : "monadress@mail.com"}}) }}
-        {{ form_row(formUser.username,   {'attr' : { 'placeholder' : " 20 caratères (max)"}, 'label': 'Pseudo'}  ) }}
-        {{ form_row(formUser.location,   {'attr' : { 'placeholder' : "20 caractères (max)"}, 'label': 'Ville'} ) }}
+            {{form_start(formUser, {'attr' : { 'novalidate' : 'true'}}) }}
 
-        {{ form_row(formUser.plainPassword.first) }}
-        {{ form_row(formUser.plainPassword.second) }}
-        {{ form_row(formUser.role )}}
+            {{ form_row(formUser.email, {'attr' : { 'placeholder' : "monadresse@mail.com"}, 'label': 'Adresse email'}) }}
+            {{ form_row(formUser.username,   {'attr' : { 'placeholder' : " 20 caratères max"}, 'label': 'Pseudo'}  ) }}
+            {{ form_row(formUser.location,   {'attr' : { 'placeholder' : "20 caractères max"}, 'label': 'Ville'} ) }}
 
+            {{ form_row(formUser.plainPassword.first) }}
+            {{ form_row(formUser.plainPassword.second) }}
+            {{ form_row(formUser.role )}}
 
-        <button type="submit" class="btn btn-outline-success "> s'enregistrer </button>
+            <button type="submit" class="btn btn-outline-success "> s'enregistrer </button>
+
         {{form_end(formUser)}}
 
-        
         </fieldset>
     </div>
 </div>

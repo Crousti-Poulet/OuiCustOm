@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Entity\Messages;
+use App\Entity\Message;
 use App\Entity\Messaging;
 use App\Entity\AdminContact;
 use App\Entity\Conversation;

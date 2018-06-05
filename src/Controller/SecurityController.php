@@ -24,15 +24,12 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class SecurityController extends Controller
 {
 
-
-
 ////////INSCRIPTION////////
 
     /**
      * @Route("/registration", name="registrationPage")
      * 
      */
-
     public function registration(Request $request, ObjectManager $manager)
     {
          $user = new User (); // on crée l'utilisateur       
@@ -47,7 +44,7 @@ class SecurityController extends Controller
                                 'maxMessage' => "Maximum 20 caractères"
                             ]),
                             new NotBlank( [
-                                'message' => "Champs non-rempli" 
+                                'message' => "Le pseudo est obligatoire"
                             ])                                           
                         ] ,            
                     ]) 
@@ -61,7 +58,7 @@ class SecurityController extends Controller
                                 'maxMessage' => "Maximum 20 caractères"
                             ]),
                             new NotBlank( [
-                                'message' => "Champs non-rempli" 
+                                'message' => "La ville est obligatoire"
                             ])                                           
                         ] ,            
                     ])     
@@ -72,7 +69,7 @@ class SecurityController extends Controller
                                 'message' => "Format non-valide (monadress@exemple.com)"
                             ]),
                             new NotBlank( [
-                                'message' => "Champs non-rempli" 
+                                'message' => "L'adresse email est obligatoire"
                             ])                     
                         ] ,            
                     ])   
@@ -97,7 +94,7 @@ class SecurityController extends Controller
                                 'maxMessage' => "Maximum 50 caractères"
                             ]),
                             new NotBlank( [
-                                'message' => "Champs non-rempli" 
+                                'message' => "Le mot de passe est obligatoire"
                             ])                                           
                         ] 
                     ])
@@ -121,20 +118,13 @@ class SecurityController extends Controller
  
             $manager->persist($user); //on demande au manager de se preparer a faire persister l'article
             $manager->flush();           //on demande au manager de lancer la requete
-            $this->addFlash('success', 'Votre compte à bien été enregistré.');
+            $this->addFlash('success', 'Votre compte à bien été créé.');
             return $this->redirectToRoute('homePage');
         }
 
-       
         return $this->render('security/registration.html.twig',[
             'formUser' => $form->createView(), //on envoi a twig le RESULTAT de la fonction createView () == cree un petit objet plutot type affichage.
         ]);
-
-
-
-
-
-
     }
 
 
