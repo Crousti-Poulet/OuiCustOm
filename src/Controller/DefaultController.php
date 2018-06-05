@@ -110,17 +110,21 @@ class DefaultController extends Controller
              
         if($form->isSubmitted() && $form->isValid()) {
 
+            //Récupération de la date d'envoi du message
+            $message->setReceiptDate(new \Datetime());
+
             //Enregistrement dans la base de donnée.
             $messageForAdmin = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($messageForAdmin);
             $em->flush();
-            
+
             //Envoi de mail (ne fonctionne pas)
-            $message = (new \Swift_Message('Hello Email'))
-            ->setFrom('send@example.com')
-            ->setTo('el-ouni-mehdi@hotmail.fr')
-            ->setBody('Coucou !');
+            $message = (new \Swift_Message($request->get('form')['_object']))
+            ->setFrom($request->get('form')['_email'])
+            ->setTo('admin@wanadoo.fr')
+            ->setBody($request->get('form')['_message'])
+            ->addPart('Expéditeur : ' . $request->get('form')['_author']); 
        
             $mailer->send($message);
             return $this->redirect($this->generateUrl('contactPage'));
@@ -147,7 +151,7 @@ class DefaultController extends Controller
     public function registration(Request $request, ObjectManager $manager)
     {
        
-         $user = new User (); // on crée l'utilisateur       
+        $user = new User (); // on crée l'utilisateur       
         
         $form = $this->createFormBuilder($user) // on CREE et CONFIGURE le form grace a createFormBuilder qui sera lié a $user 
                      ->add('username')     
