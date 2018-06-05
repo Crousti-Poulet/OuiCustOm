@@ -378,7 +378,6 @@ class User implements UserInterface
          return $this;
      }
 
-<<<<<<< HEAD
     /**
      * Get the value of tokenpassword
      */ 
@@ -398,6 +397,4 @@ class User implements UserInterface
 
         return $this;
     }
-=======
->>>>>>> 5ba55c7a73a366e7567146c5997e2139ffa13e14
 }
