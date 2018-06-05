@@ -19,6 +19,22 @@ class MessagesRepository extends ServiceEntityRepository
         parent::__construct($registry, Message::class);
     }
 
+    public function findAllByUser($user): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT m
+        FROM App\Entity\Message m
+        JOIN App\Entity\Conversation c
+        WHERE m.sender = :user OR m.recipient = :user
+        ORDER BY c.creationDate DESC'
+        )->setParameter('user', $user);
+
+        // returns an array of Conversation objects
+        return $query->execute();
+    }
+
 //    /**
 //     * @return Messages[] Returns an array of Messages objects
 //     */

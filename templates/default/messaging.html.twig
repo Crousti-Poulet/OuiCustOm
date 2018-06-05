@@ -14,19 +14,24 @@
                 <div class="col-12 bloc_list_contact pt-3 mt-3">
                     <h2>Liste des contacts</h2>
                     <!--Bloc contact-->
-                    <div class="bloc_contact mt-3 mx-auto">
-                        
-                    </div>
-                    <!--Bloc contact-->
-                    <div class="bloc_contact mt-3 mx-auto">
-                    
-                    </div>
-                    <!--Bloc contact-->
-                    <div class="bloc_contact mt-3 mx-auto">
-                    
-                    </div>
-                    <!--Bloc contact-->
-                    <div class="bloc_contact mt-3 mx-auto">  
+                    {% for c in conversations %}
+                        <div class="bloc_contact mt-3 mx-auto">
+                            {{ c.id }}
+                        </div>
+                    {%  endfor %}
+                    {#<div class="bloc_contact mt-3 mx-auto">#}
+                        {#{{ conversations[0].id }}#}
+                    {#</div>#}
+                    {#<!--Bloc contact-->#}
+                    {#<div class="bloc_contact mt-3 mx-auto">#}
+                    {##}
+                    {#</div>#}
+                    {#<!--Bloc contact-->#}
+                    {#<div class="bloc_contact mt-3 mx-auto">#}
+                    {##}
+                    {#</div>#}
+                    {#<!--Bloc contact-->#}
+                    {#<div class="bloc_contact mt-3 mx-auto">  #}
 
                     </div>
                 </div>
@@ -45,9 +50,20 @@
                         </div>
                         <!--Message-->
                         <div>
-                            <p class="pt-3">
-                                <p>{{ conversation_messages.id }}</p>
-                            </p>
+                            {% for m in conversations[0].messages %}
+                                <p class="pt-3">
+                                    <p>{{ m.content }}</p>
+                                </p>
+                            {%  endfor %}
+                            {#<p class="pt-3">#}
+                                {#<p>{{ conversations[0].messages.content }}</p>#}
+                            {#</p>#}
+                            {#<p class="pt-3">#}
+                            {#<p>{{ conversations[0].messages.content }}</p>#}
+                            {#</p>#}
+                            {#<p class="pt-3">#}
+                            {#<p>{{ conversations[0].messages.content }}</p>#}
+                            {#</p>#}
                         </div>
                         <div class="container-fluid mt-5">
                             <form method="POST">
