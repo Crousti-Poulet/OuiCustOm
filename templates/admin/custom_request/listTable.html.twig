@@ -60,7 +60,7 @@
                                 {#to do : lien vers le profil du demandeur#}
                                 <td>{{ r.status }}</td>
                                 <td>{{ r.userAssignedTo }}</td>
-                                <td><img src="{{ r.photoPath }}" alt="photo de l'objet à customiser" class="img-responsive"></td>
+                                <td><img src="{{ asset('uploads/customRequestPictures/' ~ r.photoPath) }}" alt="photo de l'objet à customiser" class="img-responsive"></td>
                                 <td><a href="{{ path('admin_custom_request_validate', {id: r.id}) }}">Valider</a></td>
                             </tr>
                         {%  endfor %}

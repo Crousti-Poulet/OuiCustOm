@@ -18,8 +18,9 @@
                     <p>{{ app.user.username }}</p>
                     <p>{{ app.user.email }}</p>
                     <p>{{ app.user.location }}</p>
+                    <p>{{ app.user.category }}</p>
 
-                    <button type="submit" class="btn btn-primary mb-3"> modifier profil</button>
+                    <a class="btn btn-primary mb-3" href="{{ path('updateProfile') }}"> modifier profil</a>
                 </div>
             </div>
         </div>
@@ -28,13 +29,14 @@
             <div class="col-12 col-md-8 bg-white rounded border p-2 mb-4">
                 <h6>Votre présentation</h6>
                 <p>{{ app.user.description }}</p>
-                <a href="#" class="btn btn-primary sticky-bottom">modifier votre présentations</a>
+                <a href="{{ path('updateProfile') }}" class="btn btn-primary sticky-bottom">modifier votre présentations</a>
             </div>
 
             <div class="col-12 col-md-4 mb-4 card">
-                <img src="{{ asset(app.user.profilPicture )}}" alt="photo d'utilisateur" class="card-img-top mb-2">
+                <!--récupère le lien de le chemin de l'image dans le dossier et renvoi sur le dossier public-->
+                <img src="{{ asset('uploads/profilPictures/' ~ app.user.profilPicture )}}" alt="photo d'utilisateur" class="card-img-top mb-2">
                 <div class="card-body">
-                    <a href="#" class="btn btn-primary">Changer votre photo</a>
+                    <a href="{{ path('updateProfile') }}" class="btn btn-primary">Changer votre photo</a>
                 </div>
             </div>
 

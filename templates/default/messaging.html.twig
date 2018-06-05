@@ -1,0 +1,138 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %}Messagerie{% endblock %}
+
+{% block body %}
+
+    <h1 class="display-4 mt-5">Messagerie</h1>
+
+    <!--MAIN-->
+    <div class="container mx-auto mb-5 pt-4 mt-4" id="bloc_page_messaging">
+        <div class="row">
+            <div class="col-lg-5 col-sm-12 ml-lg-5 ml-sm-0 pb-4">   
+                <!--Bloc contenant la liste des contactes-->
+                <div class="col-12 bloc_list_contact pt-3 mt-3">
+                    <h2>Liste des contacts</h2>
+                    <!--Bloc contact-->
+                    <div class="bloc_contact mt-3 mx-auto">
+                        
+                    </div>
+                    <!--Bloc contact-->
+                    <div class="bloc_contact mt-3 mx-auto">
+                    
+                    </div>
+                    <!--Bloc contact-->
+                    <div class="bloc_contact mt-3 mx-auto">
+                    
+                    </div>
+                    <!--Bloc contact-->
+                    <div class="bloc_contact mt-3 mx-auto">  
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-12 pb-4">
+                <!--Bloc de la liste des messages-->
+                <div class="col-12 bloc_list_message pt-3 mt-3">
+                    <h2>Liste des messages</h2>
+                    <!--Bloc message-->
+                    <div class="bloc_message mt-3 mx-auto">
+                        <!--Bannière message-->
+                        <div class="container-fluid bg-white message_banner">
+                            <span class="interlocutor">Interlocuteur</span>
+                            <span class="message_datetime">Datetime</span>
+                        </div>
+                        <!--Message-->
+                        <div>
+                            <p class="pt-3">
+                                <p>{{ conversation_messages.id }}</p>
+                            </p>
+                        </div>
+                        <div class="container-fluid mt-5">
+                            <form method="POST">
+                                {# {{ form(formMessage) }} #}
+                            </form>
+                        </div>
+                    </div>
+                    <!--Bloc message-->
+                    <div class="bloc_message mt-3 mx-auto">
+                        <!--Bannière message-->
+                        <div class="container-fluid bg-white message_banner">
+                            <span class="interlocutor">Interlocuteur</span>
+                            <span class="message_datetime">Datetime</span>
+                        </div>
+                        <!--Message-->
+                        <div>
+                            <p class="pt-3">
+                                Message
+                            </p>
+                        </div>
+
+                       <div class="container-fluid mt-5">
+                            <div>
+                                <textarea class="form-control" id="message_response" rows="2"></textarea>
+                            </div>
+
+                            <div>
+                                <button type="button" class="btn btn-info btn-sm mt-3" id="sending_message_button">Envoyer</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Bloc message-->
+                    <div class="bloc_message mt-3 mx-auto">
+                        <!--Bannière message-->
+                        <div class="container-fluid bg-white message_banner">
+                            <span class="interlocutor">Interlocuteur</span>
+                            <span class="message_datetime">Datetime</span>
+                        </div>
+                        <!--Message-->
+                        <div>
+                            <p class="pt-3">
+                                Message
+                            </p>
+                        </div>
+
+                        <div class="container-fluid mt-5">
+                            <div>
+                                <textarea class="form-control" id="message_response" rows="2"></textarea>
+                            </div>
+
+                            <div>
+                                <button type="button" class="btn btn-info btn-sm mt-3" id="sending_message_button">Envoyer</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Bloc message-->
+                    <div class="bloc_message mt-3 mx-auto">  
+                        <!--Bannière message-->
+                        <div class="container-fluid bg-white message_banner">
+                            <span class="interlocutor">Interlocuteur</span>
+                            <span class="message_datetime">Datetime</span>
+                        </div>
+                        <!--Message-->
+                        <div>
+                            <p class="pt-3">
+                                Message
+                            </p>
+                        </div>
+
+                        <div class="container-fluid mt-5">
+                            <div>
+                                <textarea class="form-control" id="message_response" rows="2"></textarea>
+                            </div>
+
+                            <div>
+                                <button type="button" class="btn btn-info btn-sm mt-3" id="sending_message_button">Envoyer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <P class="pb-4" id="my_space_link">
+            <a href="#" class="badge badge-pill badge-dark p-3">Retour à l'espace personnel</a>
+        </p>
+    </div>
+
+{% endblock %}

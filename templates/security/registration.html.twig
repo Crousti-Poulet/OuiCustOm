@@ -11,7 +11,7 @@
     <div>
         
     </div>
-    <div class="form col-8 col-md-6 col-lg-4">
+    <div class="form col-8 col-md-6 col-lg-4" id="bloc_page_registration">
         <h1 class="text-white"> Inscription</h1>
         <fieldset class="border m-3 p-3 bg-light"  >
         {{form_start(formUser, {'attr' : { 'novalidate' : 'true'}}) }}
@@ -27,6 +27,8 @@
 
         <button type="submit" class="btn btn-outline-success "> s'enregistrer </button>
         {{form_end(formUser)}}
+
+        <a href="{{ path('security_login') }}">Vous avez déjà un compte?</a>
         </fieldset>
     </div>
 </div>
