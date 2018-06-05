@@ -11,6 +11,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class CustomRequestController extends Controller
 {
+    /**
+     * @Route("/customrequest/list", name="custom_request_list")
+     */
+    public function listCustomRequestsByUserLoggedIn()
+    {
+        $custom_requests = $this->getDoctrine()->getManager()->getRepository(CustomRequest::class)->findAllByUser($this->getUser());
+        return $this->render('/custom_request/list.html.twig', [
+            'custom_requests' => $custom_requests,
+            'title' => 'Mes demandes de customisation'
+        ]);
+    }
 
     /**
      * @Route("/customrequest/create", name="custom_request_create")
@@ -31,14 +42,10 @@ class CustomRequestController extends Controller
             //upload de la photo de l'objet
             /** @var UploadedFile $file */
             $file = $customRequest->getPhotoPath();
-
             $fileName = $this->generateUniqueFileName().'.'. $file->guessExtension();
-
             //déplace le fichier image dans le dossier voulu
             $file->move($this->getParameter('customRequestPictures_directory'),$fileName);
-
             $customRequest->setPhotoPath($fileName);
-
 
             // lier la demande à l'utilisateur loggé
             $customRequest->setUser($this->getUser());

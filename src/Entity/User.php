@@ -79,6 +79,11 @@ class User implements UserInterface
      */
     private  $category;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Conversation", mappedBy="user1")
+     */
+    private $conversations;
+
     // pour éviter que l'image uploadée soir considérée comme un string
     public function __sleep()
     {
@@ -89,6 +94,7 @@ class User implements UserInterface
     {
         $this->customRequestsCreated = new ArrayCollection();
         $this->customRequestsAssigned = new ArrayCollection();
+        $this->conversations = new ArrayCollection();
     }
 
     public function __toString() : string
@@ -304,6 +310,37 @@ class User implements UserInterface
              // set the owning side to null (unless already changed)
              if ($customRequestsAssigned->getUserAssignedTo() === $this) {
                  $customRequestsAssigned->setUserAssignedTo(null);
+             }
+         }
+ 
+         return $this;
+     }
+ 
+     /**
+      * @return Collection|Conversation[]
+      */
+     public function getConversations(): Collection
+     {
+         return $this->conversations;
+     }
+ 
+     public function addConversation(Conversation $conversation): self
+     {
+         if (!$this->conversations->contains($conversation)) {
+             $this->conversations[] = $conversation;
+             $conversation->setUser1($this);
+         }
+ 
+         return $this;
+     }
+ 
+     public function removeConversation(Conversation $conversation): self
+     {
+         if ($this->conversations->contains($conversation)) {
+             $this->conversations->removeElement($conversation);
+             // set the owning side to null (unless already changed)
+             if ($conversation->getUser1() === $this) {
+                 $conversation->setUser1(null);
              }
          }
  

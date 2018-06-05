@@ -46,17 +46,13 @@
                         <!--Message-->
                         <div>
                             <p class="pt-3">
-                                Message
+                                <p>{{ conversation_messages.id }}</p>
                             </p>
                         </div>
                         <div class="container-fluid mt-5">
-                            <div>
-                                <textarea class="form-control" id="message_response" rows="2"></textarea>
-                            </div>
-
-                            <div>
-                                <button type="button" class="btn btn-info btn-sm mt-3" id="sending_message_button">Envoyer</button>
-                            </div>
+                            <form method="POST">
+                                {# {{ form(formMessage) }} #}
+                            </form>
                         </div>
                     </div>
                     <!--Bloc message-->
@@ -73,7 +69,7 @@
                             </p>
                         </div>
 
-                        <div class="container-fluid mt-5">
+                       <div class="container-fluid mt-5">
                             <div>
                                 <textarea class="form-control" id="message_response" rows="2"></textarea>
                             </div>

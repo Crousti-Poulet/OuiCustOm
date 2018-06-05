@@ -277,11 +277,14 @@
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Utilisateurs<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                {#<a href="{{ path('list_user') }}">Liste</a>#}
+                            {# <li>
+                                <a href="{{ path('list_user') }}">Liste des utilisateurs</a>
                             </li>
                             <li>
-                                {#<a href="{{ path('add_user') }}">Ajouter</a>#}
+                                <a href="{{ path('add_user') }}">Ajouter un utilisateur</a>
+                            </li> #}
+                            <li>
+                                <a href="{{ path('admin_list_custom_requests') }}">Liste des demandes</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
