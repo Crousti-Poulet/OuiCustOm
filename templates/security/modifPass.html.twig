@@ -1,0 +1,23 @@
+{% block title %} Inscription {% endblock  %}
+{% block body %}
+
+<div class=" text-center d-flex justify-content-center formRegister">
+    
+    <div class="form col-8 col-md-6 col-lg-4" id="bloc_page_registration">
+        <h1 class="text-white"> Nouveau Mot de Passe</h1>
+        <fieldset class="border m-3 p-3 bg-light rounded"  >
+
+            {{ form_start(formPass) }}
+
+            {{ form_row(formPass.plainPassword.first) }}
+            {{ form_row(formPass.plainPassword.second) }}
+
+            <button type="submit" class="btn btn-outline-success "> Enregistrer </button>
+
+        {{form_end(formPass)}}
+
+        </fieldset>
+    </div>
+</div>
+
+{% endblock %}
