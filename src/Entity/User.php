@@ -84,6 +84,10 @@ class User implements UserInterface
      */
     private $conversations;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="author")
+     */
+    private $messages;
 
     // pour éviter que l'image uploadée soit considérée comme un string
     public function __sleep()
@@ -96,6 +100,7 @@ class User implements UserInterface
         $this->customRequestsCreated = new ArrayCollection();
         $this->customRequestsAssigned = new ArrayCollection();
         $this->conversations = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
     public function __toString() : string
@@ -315,22 +320,54 @@ class User implements UserInterface
      {
          return $this->conversations;
      }
- 
+
      public function addConversation(Conversation $conversation): self
      {
          if (!$this->conversations->contains($conversation)) {
              $this->conversations[] = $conversation;
          }
- 
+
          return $this;
      }
- 
+
      public function removeConversation(Conversation $conversation): self
      {
          if ($this->conversations->contains($conversation)) {
              $this->conversations->removeElement($conversation);
          }
+
+         return $this;
+     }
+ 
+     /**
+      * @return Collection|Message[]
+      */
+     public function getMessages(): Collection
+     {
+         return $this->messages;
+     }
+ 
+     public function addMessage(Message $message): self
+     {
+         if (!$this->messages->contains($message)) {
+             $this->messages[] = $message;
+             $message->setAuthor($this);
+         }
  
          return $this;
      }
+ 
+     public function removeMessage(Message $message): self
+     {
+         if ($this->messages->contains($message)) {
+             $this->messages->removeElement($message);
+             // set the owning side to null (unless already changed)
+             if ($message->getAuthor() === $this) {
+                 $message->setAuthor(null);
+             }
+         }
+ 
+         return $this;
+     }
+
 }
