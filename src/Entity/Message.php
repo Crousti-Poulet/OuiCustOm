@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MessagesRepository")
  */
-class Messages
+class Message
 {
     /**
      * @ORM\Id()
@@ -24,7 +24,7 @@ class Messages
     /**
      * @ORM\Column(type="datetime")
      */
-    private $dateCreation;
+    private $creationDate;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Conversation", inversedBy="messages")
@@ -49,14 +49,14 @@ class Messages
         return $this;
     }
 
-    public function getDateCreation(): ?\DateTimeInterface
+    public function getCreationDate(): ?\DateTimeInterface
     {
-        return $this->dateCreation;
+        return $this->creationDate;
     }
 
-    public function setDateCreation(\DateTimeInterface $dateCreation): self
+    public function setCreationDate(\DateTimeInterface $creationDate): self
     {
-        $this->dateCreation = $dateCreation;
+        $this->creationDate = $creationDate;
 
         return $this;
     }

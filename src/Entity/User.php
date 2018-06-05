@@ -80,11 +80,12 @@ class User implements UserInterface
     private  $category;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Conversation", mappedBy="user1")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Conversation", inversedBy="users")
      */
     private $conversations;
 
-    // pour éviter que l'image uploadée soir considérée comme un string
+
+    // pour éviter que l'image uploadée soit considérée comme un string
     public function __sleep()
     {
         return ['id', 'username', 'email', 'password', 'role', 'creationDate'];
@@ -117,7 +118,6 @@ class User implements UserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
-
         return $this;
     }
 
@@ -129,7 +129,6 @@ class User implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -141,7 +140,6 @@ class User implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
         return $this;
     }
 
@@ -153,7 +151,6 @@ class User implements UserInterface
     public function setLocation(string $location): self
     {
         $this->location = $location;
-
         return $this;
     }
     public function getRoles()
@@ -175,7 +172,6 @@ class User implements UserInterface
     public function setRole(array $role): self
     {
         $this->role = $role;
-
         return $this;
     }
 
@@ -187,7 +183,6 @@ class User implements UserInterface
     public function setCreationDate(\DateTimeInterface $creationDate): self
     {
         $this->creationDate = $creationDate;
-
         return $this;
     }
 
@@ -215,7 +210,6 @@ class User implements UserInterface
 
      public function getSalt()
     {
-
     }
 
     public function getProfilPicture()
@@ -238,7 +232,6 @@ class User implements UserInterface
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -250,7 +243,6 @@ class User implements UserInterface
     public function setCategory(string $category): self
     {
         $this->category = $category;
-
         return $this;
     }
 
@@ -328,7 +320,6 @@ class User implements UserInterface
      {
          if (!$this->conversations->contains($conversation)) {
              $this->conversations[] = $conversation;
-             $conversation->setUser1($this);
          }
  
          return $this;
@@ -338,10 +329,6 @@ class User implements UserInterface
      {
          if ($this->conversations->contains($conversation)) {
              $this->conversations->removeElement($conversation);
-             // set the owning side to null (unless already changed)
-             if ($conversation->getUser1() === $this) {
-                 $conversation->setUser1(null);
-             }
          }
  
          return $this;
