@@ -28,7 +28,7 @@
 
             <div class="col-lg-6 col-sm-12 pb-4">
                 <!--Bloc de la liste des messages-->
-                <div class="col-12 bloc_list_message pt-3 mt-3" id="messages"">
+                <div class="col-12 bloc_list_message pt-3 mt-3" id="listemessages">
                     {#<h2>Liste des messages</h2>#}
                     <!--Bloc message-->
                     <div class="bloc_message mt-3 mx-auto">
@@ -59,7 +59,12 @@
                     <!--Bloc envoi nouveau message-->
                     <div class="bloc_new_message mt-3 mx-auto">
                         <div class="container-fluid mt-3">
-                            {{ form_start(formMessage, {'action': path('messagingSendMessage', {'id': conversationSelected.id}), 'method': 'POST'}) }}
+                            {% if conversationSelected is defined and conversationSelected is not null %}
+                                {{ form_start(formMessage, {'action': path('messagingSendMessage', {'id': conversationSelected.id} ), 'method': 'POST'}) }}
+                            {% else %}
+                                {{ form_start(formMessage, {'action': path('messagingPage' ), 'method': 'POST'}) }}
+                            {% endif %}
+
                                 <div>
                                     {{ form_row(formMessage._content) }}
                                     {#<textarea class="form-control message_response" rows="2"></textarea>#}
@@ -84,7 +89,7 @@
 
  {% block javascripts %}
      <script type="text/javascript">
-         var objDiv = document.getElementById("your_div");
+         var objDiv = document.getElementById("listemessages");
          objDiv.scrollTop = objDiv.scrollHeight;
      </script>
  {% endblock %}
