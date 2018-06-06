@@ -30,7 +30,7 @@
                 <input class="form-control" type="text" name="city" placeholder="Ville / Code postal">
             </div>
             <div class="col-sm-4 offset-sm-4 col-md-1 offset-md-0 mt-1">
-                <button class="btn " type="submit">Rechercher</button>
+                <button class="btn " type="submit" id="search_submit">Rechercher</button>
             </div>
 
         </form>
@@ -38,12 +38,12 @@
     </div>
 
     <!--Block affichant le résultat de la recherche ajax-->
-    <div class="card-deck mt-5 mb-5" id="search_result">
+    <div class="card-deck" id="search_result">
                        
     </div>
 
     <div class="container-fluid pb-5">
-        <div class="row darkgreyzone pt-5 pb-5">
+        <div class="row darkgreyzone pt-5 pb-5" id="sub_banner">
             <div class="col-12">
                 <h2>La personnalisation d'objets, c'est <span class="OCO">OuiCustOm</span></h2>
                 <h6>Mise en relation de particuliers avec des artistes et des artisans de proximité pour transformer vos objets</h6>
@@ -121,6 +121,17 @@
         src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
+    </script>
+
+    <script>
+
+        $('#search_submit').click(function() {
+
+            $("#sub_banner").addClass("none");
+            $("#search_result").addClass("mt-4");
+            $("#search_result").addClass("mb-4");
+		})
+
     </script>
 
     <script type="text/javascript">
