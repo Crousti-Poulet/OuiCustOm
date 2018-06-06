@@ -9,17 +9,42 @@
     </div>
 
     <div class="container">
-    <div class="row">
-        <div class="col-md-12 offset-md-0 mb-5 bg-white rounded border">
-            <div class="artisteprofile">
-                <h6>Votre profil :</h6>
+        <div class="row">
+            <div class="col-md-12 offset-md-0 mb-5 bg-white rounded border">
+                <div class="artisteprofile">
+                    <h6>Votre profil :</h6>
 
-                <p>{{ app.user.username }}</p>
-                <p>{{ app.user.email }}</p>
-                <p>{{ app.user.location }}</p>
+                    <p>{{ app.user.username }}</p>
+                    <p>{{ app.user.email }}</p>
+                    <p>{{ app.user.location }}</p>
 
-                <a class="btn btn-primary mb-3" href="{{ path('updateUserProfile') }}"> modifier profil</a>
+                    <a class="btn btn-outline-dark mb-3" href="{{ path('updateUserProfile') }}"> modifier profil</a>
+                </div>
             </div>
+        </div>
+
+        <div class="row">
+
+            <div class="d-flex justify-content-center col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="http://via.placeholder.com/100x180" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Messagerie</h5>
+                        <a href="#" class="btn btn-outline-light">Accès messagerie</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center col-lg-4 offset-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="http://via.placeholder.com/100x180" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Mes demandes</h5>
+                        <a href="#" class="btn btn-outline-light">Accès à mes demandes</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
