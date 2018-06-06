@@ -2,30 +2,16 @@
 
 namespace App\Controller;
 
-//use App\Entity\User;
-//use App\Form\LoginForm;
 use App\Entity\Product;
 use App\Form\ProductType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-//use Symfony\Component\Form\FormBuilderInterface;
-//use Webmozart\Assert\Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
-//use Symfony\Component\Validator\Constraints\Email;
-//use Symfony\Component\Validator\Constraints\Length;
-//use Symfony\Component\Validator\Constraints\NotBlank;
-//use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-//use Symfony\Component\Form\Extension\Core\Type\EmailType;
-//use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-//use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-//use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-//use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-//use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-//use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 
 class UpdateController extends Controller
 {
@@ -48,10 +34,13 @@ class UpdateController extends Controller
         ->add('username')
             ->add('email')
             ->add('location')
-            ->add('profilPicture', FileType::class)//on précise qu'il va s'agire d'un fichier
-                //ainsi l'utilisateur purra choisir une image et la palcer dans ce champs
+            ->add('phone')
             ->add('description')
             ->add('category')
+            ->add('profilPicture', FileType::class)//on précise qu'il va s'agire d'un fichier
+                //ainsi l'utilisateur purra choisir une image et la palcer dans ce champs
+
+
 
             ->getForm() ;       // on le RECUPERE
 

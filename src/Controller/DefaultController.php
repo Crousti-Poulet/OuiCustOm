@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Messages;
+use App\Entity\Image;
 use App\Entity\Message;
 use App\Entity\Messaging;
 use App\Entity\AdminContact;
@@ -48,6 +50,21 @@ class DefaultController extends Controller
             return $this->redirectToRoute('errorUser');
         }
         return $this->render('default/artistview.html.twig');
+    }
+
+    /**
+     * @Route("/gallery", name="gallery")
+     */
+    public function galleryAction($id)
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ARTISTE')) {
+            return $this->redirectToRoute('errorUser');
+        }
+        $gallery = $this->getDoctrine()
+            ->getRepository(Image::class)
+            ->find($id);
+
+        $userName = $gallery->getUser()->getUsername();
     }
 
     /**
