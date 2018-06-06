@@ -142,6 +142,17 @@ class DefaultController extends Controller
     {
         return $this->render('default/help.html.twig');
     }
-    
+
+    /**
+     * @Route("/ajax_handle", name="ajaxHandle")
+     */
+    public function ajaxHandle(Request $request)
+    {
+        $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findByCategoryField('bananes');
+        // return $this->render('default/home.html.twig');
+        // dump($users);
+        // die();
+        return $this->json($users);
+    }
 
 }
