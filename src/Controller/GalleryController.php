@@ -24,29 +24,24 @@ class GalleryController extends Controller
      * @Route("/addPicture", name="addPicture")
      */
 
-    public function addGallery(Request $request, ObjectManager $manager)
+    public function addPictureArtiste(Request $request, ObjectManager $manager)
     {
-        $user = $this->getUser();//on récupère l'objet user
+        //on recupere l'user par son id de la table User            
+        $user = $this->getUser();    
 
-//        $Images = $user->getImages;
-//        $image = new Image();//on récupère l'objet image
-//        $galleryImg = new File($this->getParameter('galleryPicture_directory') . '/' . $image->getLink());
-//
-//        $image->setLink($galleryImg);
+        // on cree un objet image
         $image = new Image();
-        /*
+        
+        // on lui ajoute l'id de l'utilisateur recuperer
+        $image->setUser($user);
 
-        if (!empty($user->getProfilPicture()) ){
-        $image = new Image();//on crée la la gallerie
-        $picture = new File($this->getParameter('galleryPicture_directory') . '/' . $image->getLink());
-        $image->setLink($picture);
-        }*/
-
-
-        $form = $this->createFormBuilder($image)//création et configuration du form
+        
+        //création et configuration du form
+        //on donne les conditions de validation de ces champs
+        $form = $this->createFormBuilder($image)
                     ->add('name', TextType::class,[
                         'required' => true,
-                        'constraints' => [ //on donne les coditions de validation de ce champ
+                        'constraints' => [ 
                             new Length([
                                 'min' => 3,
                                 'max' => 15,
@@ -59,19 +54,19 @@ class GalleryController extends Controller
 
                         ],
                     ])
-                    ->add('link', FileType::class,[//on précise qu'il va s'agire d'un fichier
-                //ainsi l'utilisateur purra choisir une image et la palcer dans ce champs
-                        'required' => true,
-                        'constraints' => [
+                    //on précise qu'il va s'agire d'un fichier
+                     //ainsi l'utilisateur purra choisir une image et la palcer dans ce champs
+                     ->add('link', FileType::class,[
+                         'required' => true,
+                         'constraints' => [
                             new NotBlank( [
-                                'message' => "Vous devez choisir un fichier"
+                                'message' => "Choisir une image"
                             ])
                         ],
                      ])
-
                     ->getForm(); //on récupère le formulaire
 
-
+                        
         $form->handleRequest($request);  // ANALYSE de la requete et ducou symfony lié title content avec $user
 
         //Verification de la soumission du formulaire
@@ -80,8 +75,9 @@ class GalleryController extends Controller
             if(!$image->getId()){
                 $image->setDate(new \Datetime());
             }
-            //upload de fichier
-
+            
+            // //upload de fichier
+           
             /** @var UploadedFile $file */
             $file = $image->getLink();
 
@@ -97,21 +93,21 @@ class GalleryController extends Controller
 
             }
 
-            $image->setUser($user);//le many to one de gallery vers user
-            $user->addImage($image);
-
-            $Manager = $this->getDoctrine()->getManager();
-            $Manager->persist($image);
+            // $user->addImage($image);
+            $image = $form->getData();    // on garde les donnée sounmi au formulaire
+             $user->addImage($image);
+            
+            $manager->persist($image);  // on demande au manager de se preparer à persister l'image
 
 
             $manager->flush();           //on demande au manager de lancer la requete
-
-            return $this->redirectToRoute('ArtistGallery');
+           // $user_id = $user->getId();
+            return $this->redirectToRoute('gallery' );
         }
 
 
-        return $this->render('security/galleryAdd.html.twig',[
-            'updateProfile' => $form->createView(),
+        return $this->render('gallery/galleryAdd.html.twig',[
+            'addPicForm' => $form->createView(),
         ]);
     }
 
