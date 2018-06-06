@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Image;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -84,6 +85,16 @@ class User implements UserInterface
      */
     private $conversations;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $phone;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="user")
+     */
+    private $images;
+
     // pour éviter que l'image uploadée soir considérée comme un string
     public function __sleep()
     {
@@ -95,6 +106,7 @@ class User implements UserInterface
         $this->customRequestsCreated = new ArrayCollection();
         $this->customRequestsAssigned = new ArrayCollection();
         $this->conversations = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function __toString() : string
@@ -254,6 +266,18 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    public function setPhone($phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
      /**
       * @return Collection|CustomRequest[]
       */
@@ -341,6 +365,37 @@ class User implements UserInterface
              // set the owning side to null (unless already changed)
              if ($conversation->getUser1() === $this) {
                  $conversation->setUser1(null);
+             }
+         }
+ 
+         return $this;
+     }
+ 
+     /**
+      * @return Collection|Image[]
+      */
+     public function getImages(): Collection
+     {
+         return $this->images;
+     }
+ 
+     public function addImage(Image $image): self
+     {
+         if (!$this->images->contains($image)) {
+             $this->images[] = $image;
+             $image->setUser($this);
+         }
+ 
+         return $this;
+     }
+ 
+     public function removeImage(Image $image): self
+     {
+         if ($this->images->contains($image)) {
+             $this->images->removeElement($image);
+             // set the owning side to null (unless already changed)
+             if ($image->getUser() === $this) {
+                 $image->setUser(null);
              }
          }
  
