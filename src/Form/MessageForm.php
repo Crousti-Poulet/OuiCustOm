@@ -2,26 +2,22 @@
 
 namespace App\Form;
 
-use App\Form\MessagingForm;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-//Ne sert à rien pour l'instant mais peut être utile dans le cas où 
-//on voudrait utiliser le formulaire dans plusieurs twigs.
 
-class MessagingForm extends AbstractType
+class MessageForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('_sender', HiddenType::class)
-        ->add('_message', TextareaType::class)
-        ->add('submit', SubmitType::class)
+        ->add('_content', TextareaType::class, ['attr' => ['class' => 'form-control message_response', 'rows' => '2'], 'label' => false])
+        ->add('submit', SubmitType::class, ['attr' => ['class' => 'btn btn-info btn-sm mt-3 sending_message_button'], 'label' => 'Envoyer'])
     ;
     }
 
@@ -31,4 +27,5 @@ class MessagingForm extends AbstractType
             // Configure your form options here
         ]);
     }
+
 }

@@ -396,7 +396,7 @@ footer .col-4{
 {
   min-width: 450px;
   height: 550px;
-  background-color: lightblue;
+  //background-color: lightblue;
   padding-bottom: 20px;
   border-radius: 5px;
   box-shadow: 2px 2px 2px 2px #000000;
@@ -408,6 +408,16 @@ footer .col-4{
   width: 90%;
   min-width: 200px;
   min-height: 190px;
+  background-color: lightgray;
+  border-radius: 10px;
+  border: solid white 3px;
+}
+
+.bloc_new_message
+{
+  width: 90%;
+  min-width: 200px;
+  min-height: 100px;
   background-color: lightgray;
   border-radius: 10px;
   border: solid white 3px;
@@ -440,17 +450,16 @@ footer .col-4{
 }
 
 // messages envoyés alignés à droite
+// ATTENTION : pas de float, ça fait n'importe quoi !
 .message_sent
 {
   text-align: right;
-  float: right;
 }
 
 // messages reçus alignés à gauche
 .message_received
 {
   text-align: left;
-  float: left;
 }
 
 .message_sending
@@ -464,12 +473,13 @@ footer .col-4{
   height: 80px;
 }
 
-#sending_message_button
+.sending_message_button
 {
   float: right;
 }
 
-#message_response
+// classe au lieu d'id car l'ID est généré automatiquement dans le form builder
+.message_response
 {
   width: 80%;
   height: 100%;
@@ -500,7 +510,18 @@ footer .col-4{
 
 ///////////////////Fin de la page de registration//////////////////////////
 
+//////////////////Page d'accueil ajax/////////////////////////////////////
+
+#search_result
+{
+  max-width: 800px;
+  max-height: 400px;
+  margin: auto;
+}
+
 #category_select
 {
   width: 500px;;
 }
+
+//////////////////Fin de page d'accueil ajax//////////////////////////////
