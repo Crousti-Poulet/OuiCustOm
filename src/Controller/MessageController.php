@@ -18,19 +18,17 @@ class MessageController extends Controller
      */
     public function messagingAction(Request $request)
     {
+        // conversations de l'utilisateur
         $conversations = $this->getDoctrine()->getManager()->getRepository(Conversation::class)->findAllByUser($this->getUser());
-//        $messages = $conversations[1]->getMessages();
-//        foreach ($messages as $message){
-//            echo $message->getContent();
+//        if (count($conversations)>0)
+//        {
+//            $conversationId = $conversations[0]->getId();
 //        }
-//        dump($messages);
-////        dump($conversations);
-//
-//        die();
+//        else
+//        {
+//            $conversationId = 0;
+//        }
 
-//        return $this->render('/default/messaging.html.twig', [
-//            'conversation_messages' => $conversation_messages
-//        ]);
 
         //Création du message
 //        $message = new Message();
@@ -69,6 +67,26 @@ class MessageController extends Controller
         //Envoi au twig du resultat de la fonction createView ()
         return $this->render('default/messaging.html.twig',[
             'conversations' => $conversations
+        ]);
+
+//        // rediriger sur la messagerie avec la première conversation selectionnée
+//        return $this->redirectToRoute('messagingPageConversation',['id' => $conversationId]);
+    }
+
+    /**
+     * @Route("/messaging/{id}", name="messagingPageConversation")
+     */
+    public function messagingConversationSelected(Request $request,Conversation $conversation)
+    {
+        // conversations de l'utilisateur
+        $conversations = $this->getDoctrine()->getManager()->getRepository(Conversation::class)->findAllByUser($this->getUser());
+
+//        dump($conversations);
+//        die();
+
+        return $this->render('default/messaging.html.twig',[
+            'conversations' => $conversations,
+            'conversationSelected' => $conversation
         ]);
 
     }

@@ -30,21 +30,21 @@ class ConversationRepository extends ServiceEntityRepository
             ;
     }
 
-    public function findAllByUser2($user): array
-    {
-        $entityManager = $this->getEntityManager();
-
-        $query = $entityManager->createQuery(
-            'SELECT c, m
-        FROM App\Entity\Conversation c
-        JOIN App\Entity\Message m
-        WHERE m.sender = :user OR m.recipient = :user
-        ORDER BY c.creationDate DESC'
-        )->setParameter('user', $user);
-
-        // returns an array of Conversation objects
-        return $query->execute();
-    }
+//    public function findAllByUser2($user): array
+//    {
+//        $entityManager = $this->getEntityManager();
+//
+//        $query = $entityManager->createQuery(
+//            'SELECT c, m
+//        FROM App\Entity\Conversation c
+//        JOIN App\Entity\Message m
+//        WHERE m.sender = :user OR m.recipient = :user
+//        ORDER BY c.creationDate DESC'
+//        )->setParameter('user', $user);
+//
+//        // returns an array of Conversation objects
+//        return $query->execute();
+//    }
 
 //    /**
 //     * @return Conversation[] Returns an array of Conversation objects
