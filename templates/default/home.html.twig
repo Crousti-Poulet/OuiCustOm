@@ -12,10 +12,21 @@
 
 
         <form class="form-row" action="" method="post">
-            <div class="col-sm-6 offset-sm-3 col-md-4 offset-md-2 mt-1">
-                <input class="form-control" type="text" name="search" placeholder="recherche">
+            <div class="col-sm-4 offset-sm-1 col-md-2 offset-md-2 mt-1 ">
+                <input class="form-control" type="text" name="search" placeholder="recherche">  
             </div>
-            <div class="col-sm-6 offset-sm-3 col-md-3 offset-md-0 mt-1">
+
+            <div class="col-sm-3 col-md-2 mt-1 ml-4 ml-sm-0" id="category_select">
+                <select class="form-control">
+                    <option>Catégories</option>
+                    <option>Bananes</option>
+                    <option>Instruments</option>
+                    <option>On s'en fout</option>
+                    <option>On s'en fout aussi</option>
+                </select>
+            </div>
+
+            <div class="col-sm-3 col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0">
                 <input class="form-control" type="text" name="city" placeholder="Ville / Code postal">
             </div>
             <div class="col-sm-4 offset-sm-4 col-md-1 offset-md-0 mt-1">
@@ -24,6 +35,9 @@
 
         </form>
 
+    </div>
+
+    <div id="search_result">
 
     </div>
 
@@ -98,4 +112,32 @@
             </div>
         </div>
     </div>
+
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous">
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('form').submit(function(e){
+                
+                e.preventDefault();
+
+                $.ajax({
+                    url: '{{ path("ajaxHandle") }}',
+                    type: 'post',
+                    data: $(this).serialize(),
+                    
+                    dataType: 'json', 
+                    success: function(resultJSON){
+                        $("ajax_result").append(resultJSON);
+                        console.table(resultJSON); 
+                    }
+                });
+            });
+        });
+    </script>
+
 {% endblock %}
