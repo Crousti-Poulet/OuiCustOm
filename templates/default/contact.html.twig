@@ -5,12 +5,20 @@
 
 {% block body %}
 
-    <h1 class="display-4 mt-5">Nous contacter</h1>
+<div class=" text-center d-flex justify-content-center formRegister">
+    <div>
 
-    <div class="mx-auto mb-5 pt-4" id="bloc_page_contact">
+    </div>
+    <div class="form col-8 col-md-6 col-lg-4" id="bloc_page_registration">
+        <h1 class="text-white"> Nous contacter</h1>
+        <fieldset class="border m-3 p-3 bg-light rounded"  >
 
         {{ form(formMessage) }}
 
+        </fieldset>
     </div>
+</div>
+
+
 
 {% endblock %}

@@ -40,6 +40,14 @@ body, html
   color: #FF8914;
 }
 
+.card img{
+  max-height: 150px;
+}
+
+
+#profilimg img{
+  max-height: 210px;
+}
 .artisteprofile ul{
   list-style: none;
 }
@@ -220,7 +228,7 @@ footer .col-4{
 
 .menu .area 
 { 
-  border-left: 4px solid #f38787; 
+  border-left: 4px solid #FF8914;
 }
 
 .area
@@ -242,7 +250,7 @@ footer .col-4{
   :focus
   {
     color: black;
-    background-color: #f38787;
+    background-color: #FF8914;
     transition: 1.2s;
     border-radius: 20px 0px 20px 0px;
   }
