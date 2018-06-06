@@ -148,10 +148,8 @@ class DefaultController extends Controller
      */
     public function ajaxHandle(Request $request)
     {
-        $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findByCategoryField('bananes');
-        // return $this->render('default/home.html.twig');
-        // dump($users);
-        // die();
+        $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findByCategoryField($request->get('category'));
+        
         return $this->json($users);
     }
 

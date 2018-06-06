@@ -17,7 +17,7 @@
             </div>
 
             <div class="col-sm-3 col-md-2 mt-1 ml-4 ml-sm-0" id="category_select">
-                <select class="form-control">
+                <select class="form-control" name="category">
                     <option>Catégories</option>
                     <option>Bananes</option>
                     <option>Instruments</option>
@@ -37,8 +37,8 @@
 
     </div>
 
-    <div id="search_result">
-
+    <div class="card-deck" id="search_result">
+                       
     </div>
 
     <div class="container-fluid pt-5 pb-5 ">
@@ -132,8 +132,22 @@
                     
                     dataType: 'json', 
                     success: function(resultJSON){
-                        $("ajax_result").append(resultJSON);
-                        console.table(resultJSON); 
+
+                        $output = '';
+
+                        $.each(resultJSON, function(id, element){
+                           $output += '<div class="card" style="width: 10rem;">' + 
+                                        '<img class="card-img-top" src="/uploads/profilPictures/' + element.profilPicture + '" alt="Card image cap">' +
+                                        '<div class="card-body">' +
+                                            '<h5 class="card-title">' + element.username +'</h5>' +
+                                            '<p class="card-text">'+ element.description +'</p>' +
+                                            '<a href="#" class="btn btn-primary">Voir profil</a>' +
+                                        '</div>' +
+                                        '</div>';
+                                    });
+                        
+                        $('#search_result').html($output);
+                        
                     }
                 });
             });
