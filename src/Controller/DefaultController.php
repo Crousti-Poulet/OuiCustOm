@@ -3,12 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\User;
-<<<<<<< HEAD
 use App\Entity\Messages;
 use App\Entity\Image;
-=======
 use App\Entity\Message;
->>>>>>> e985b58bac865a007445a9b7a7b14fea434dc31a
 use App\Entity\Messaging;
 use App\Entity\AdminContact;
 use App\Entity\Conversation;
@@ -55,7 +52,6 @@ class DefaultController extends Controller
         return $this->render('default/artistview.html.twig');
     }
 
-<<<<<<< HEAD
     /**
      * @Route("/gallery", name="gallery")
      */
@@ -71,9 +67,6 @@ class DefaultController extends Controller
         $userName = $gallery->getUser()->getUsername();
     }
 
-
-=======
->>>>>>> e985b58bac865a007445a9b7a7b14fea434dc31a
     /**
      * @Route("/default/userview", name="userview")
      */
