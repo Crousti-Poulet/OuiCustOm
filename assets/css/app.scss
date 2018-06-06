@@ -44,6 +44,10 @@ body, html
   list-style: none;
 }
 
+div .btn-outline-dark:hover{
+  color: #FF8914;
+}
+
 .banner{
   background: url("../img/baner.jpg");
   background-repeat: no-repeat;
@@ -75,6 +79,23 @@ body, html
 
 .left{
   text-align: left;
+}
+
+/*----help page---*/
+
+.helpbanner{
+  background: url("../img/banner2.jpg");
+  background-size: cover;
+  height: 200px;
+  color: #FF8914;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+/*---page de détail profil---*/
+
+.infoprofil p{
+  color: white;
+  background: #2e3233;
 }
 /*--- masonery ---*/
 /* ---- grid ---- */
@@ -120,6 +141,11 @@ body, html
 {
   height: 70px;
   width: 80px;  
+}
+
+.nav-link:hover{
+  background: #FF8914;
+  transition: 0.2s;
 }
 
 /////////////////Fin du Header Front////////////////////////////////////
@@ -206,7 +232,7 @@ footer .col-4{
   :hover
   {
     text-decoration: none;
-    background-color: #f38787;
+    background-color: #FF8914;
     border-radius: 20px 0px 20px 0px;
     color:black;
     transition: 1.2s;
