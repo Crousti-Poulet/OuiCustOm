@@ -37,6 +37,14 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $tokenpassword;
+
+
+
+
     private $plainPassword;
 
     /**
@@ -81,7 +89,7 @@ class User implements UserInterface
     private  $category;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Conversation", mappedBy="user1")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Conversation", inversedBy="users")
      */
     private $conversations;
 
@@ -96,6 +104,12 @@ class User implements UserInterface
     private $images;
 
     // pour éviter que l'image uploadée soir considérée comme un string
+     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="author")
+     */
+    private $messages;
+
+    // pour éviter que l'image uploadée soit considérée comme un string
     public function __sleep()
     {
         return ['id', 'username', 'email', 'password', 'role', 'creationDate'];
@@ -106,7 +120,10 @@ class User implements UserInterface
         $this->customRequestsCreated = new ArrayCollection();
         $this->customRequestsAssigned = new ArrayCollection();
         $this->conversations = new ArrayCollection();
+
         $this->images = new ArrayCollection();
+
+        $this->messages = new ArrayCollection();
     }
 
     public function __toString() : string
@@ -129,7 +146,6 @@ class User implements UserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
-
         return $this;
     }
 
@@ -141,7 +157,6 @@ class User implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -153,10 +168,9 @@ class User implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
         return $this;
     }
-
+   
     public function getLocation(): ?string
     {
         return $this->location;
@@ -165,7 +179,6 @@ class User implements UserInterface
     public function setLocation(string $location): self
     {
         $this->location = $location;
-
         return $this;
     }
     public function getRoles()
@@ -187,7 +200,6 @@ class User implements UserInterface
     public function setRole(array $role): self
     {
         $this->role = $role;
-
         return $this;
     }
 
@@ -199,7 +211,6 @@ class User implements UserInterface
     public function setCreationDate(\DateTimeInterface $creationDate): self
     {
         $this->creationDate = $creationDate;
-
         return $this;
     }
 
@@ -227,7 +238,6 @@ class User implements UserInterface
 
      public function getSalt()
     {
-
     }
 
     public function getProfilPicture()
@@ -250,7 +260,6 @@ class User implements UserInterface
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -262,7 +271,6 @@ class User implements UserInterface
     public function setCategory(string $category): self
     {
         $this->category = $category;
-
         return $this;
     }
 
@@ -347,30 +355,56 @@ class User implements UserInterface
      {
          return $this->conversations;
      }
- 
+
      public function addConversation(Conversation $conversation): self
      {
          if (!$this->conversations->contains($conversation)) {
              $this->conversations[] = $conversation;
-             $conversation->setUser1($this);
+         }
+
+         return $this;
+     }
+
+     public function removeConversation(Conversation $conversation): self
+     {
+         if ($this->conversations->contains($conversation)) {
+             $this->conversations->removeElement($conversation);
+         }
+
+         return $this;
+     }
+ 
+     /**
+      * @return Collection|Message[]
+      */
+     public function getMessages(): Collection
+     {
+         return $this->messages;
+     }
+ 
+     public function addMessage(Message $message): self
+     {
+         if (!$this->messages->contains($message)) {
+             $this->messages[] = $message;
+             $message->setAuthor($this);
          }
  
          return $this;
      }
  
-     public function removeConversation(Conversation $conversation): self
+     public function removeMessage(Message $message): self
      {
-         if ($this->conversations->contains($conversation)) {
-             $this->conversations->removeElement($conversation);
+         if ($this->messages->contains($message)) {
+             $this->messages->removeElement($message);
              // set the owning side to null (unless already changed)
-             if ($conversation->getUser1() === $this) {
-                 $conversation->setUser1(null);
+             if ($message->getAuthor() === $this) {
+                 $message->setAuthor(null);
              }
          }
  
          return $this;
      }
- 
+
      /**
       * @return Collection|Image[]
       */
@@ -401,4 +435,24 @@ class User implements UserInterface
  
          return $this;
      }
+
+    /**
+     * Get the value of tokenpassword
+     */ 
+    public function getTokenpassword()
+    {
+        return $this->tokenpassword;
+    }
+
+    /**
+     * Set the value of tokenpassword
+     *
+     * @return  self
+     */ 
+    public function setTokenpassword($tokenpassword)
+    {
+        $this->tokenpassword = $tokenpassword;
+
+        return $this;
+    }
 }

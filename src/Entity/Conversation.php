@@ -18,27 +18,30 @@ class Conversation
      */
     private $id;
 
-
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Messages", mappedBy="conversation")
+     * @ORM\OneToMany(targetEntity="Message", mappedBy="conversation")
      */
     private $messages;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="conversations")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\CustomRequest", inversedBy="conversations")
      */
-    private $user1;
+    private $customRequest;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="conversations")
      */
-    private $user2;
+    private $users;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $creationDate;
 
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId()
@@ -46,17 +49,15 @@ class Conversation
         return $this->id;
     }
 
-   
-
     /**
-     * @return Collection|Messages[]
+     * @return Collection|Message[]
      */
     public function getMessages(): Collection
     {
         return $this->messages;
     }
 
-    public function addMessage(Messages $message): self
+    public function addMessage(Message $message): self
     {
         if (!$this->messages->contains($message)) {
             $this->messages[] = $message;
@@ -66,7 +67,7 @@ class Conversation
         return $this;
     }
 
-    public function removeMessage(Messages $message): self
+    public function removeMessage(Message $message): self
     {
         if ($this->messages->contains($message)) {
             $this->messages->removeElement($message);
@@ -79,27 +80,56 @@ class Conversation
         return $this;
     }
 
-    public function getUser1(): ?User
+    public function getCustomRequest(): ?CustomRequest
     {
-        return $this->user1;
+        return $this->customRequest;
     }
 
-    public function setUser1(?User $user1): self
+    public function setCustomRequest(?CustomRequest $customRequest): self
     {
-        $this->user1 = $user1;
+        $this->customRequest = $customRequest;
 
         return $this;
     }
 
-    public function getUser2(): ?User
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
     {
-        return $this->user2;
+        return $this->users;
     }
 
-    public function setUser2(?User $user2): self
+    public function addUser(User $user): self
     {
-        $this->user2 = $user2;
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addConversation($this);
+        }
 
         return $this;
     }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            $user->removeConversation($this);
+        }
+
+        return $this;
+    }
+
+    public function getCreationDate(): ?\DateTimeInterface
+    {
+        return $this->creationDate;
+    }
+
+    public function setCreationDate(\DateTimeInterface $creationDate): self
+    {
+        $this->creationDate = $creationDate;
+
+        return $this;
+    }
+
 }

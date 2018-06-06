@@ -12,10 +12,21 @@
 
 
         <form class="form-row" action="" method="post">
-            <div class="col-sm-6 offset-sm-3 col-md-4 offset-md-2 mt-1">
-                <input class="form-control" type="text" name="search" placeholder="recherche">
+            <div class="col-sm-4 offset-sm-1 col-md-2 offset-md-2 mt-1 ">
+                <input class="form-control" type="text" name="search" placeholder="recherche">  
             </div>
-            <div class="col-sm-6 offset-sm-3 col-md-3 offset-md-0 mt-1">
+
+            <div class="col-sm-3 col-md-2 mt-1 ml-4 ml-sm-0" id="category_select">
+                <select class="form-control">
+                    <option>Catégories</option>
+                    <option>Bananes</option>
+                    <option>Instruments</option>
+                    <option>On s'en fout</option>
+                    <option>On s'en fout aussi</option>
+                </select>
+            </div>
+
+            <div class="col-sm-3 col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0">
                 <input class="form-control" type="text" name="city" placeholder="Ville / Code postal">
             </div>
             <div class="col-sm-4 offset-sm-4 col-md-1 offset-md-0 mt-1">
@@ -24,19 +35,22 @@
 
         </form>
 
+    </div>
+
+    <div id="search_result">
 
     </div>
 
     <div class="container-fluid pt-5 pb-5 ">
-        <h2>La personnalisation d'objet, c'est <span class="OCO">OuiCustOm</span></h2>
-        <h6>Mise en relation de particulier avec des artistes et des artisants de proxilités pour transformer vos objets</h6>
+        <h2>La personnalisation d'objets, c'est <span class="OCO">OuiCustOm</span></h2>
+        <h6>Mise en relation de particuliers avec des artistes et des artisans de proximité pour transformer vos objets</h6>
 
-        <h5><span class="OCO">OuiCusOm</span>c'est :</h5>
+        <h5><span class="OCO">OuiCustOm </span>c'est :</h5>
 
         <div class="icones row pt-5 pb-5">
             <div class="col-sm-12 col-md-4">
                 <i class="fas fa-handshake fa-10x"></i><br>
-                <p class="pt-2">une communauté</p>
+                <p class="pt-2">Une communauté</p>
             </div>
 
             <div class="col-sm-12 col-md-4">
@@ -98,4 +112,32 @@
             </div>
         </div>
     </div>
+
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous">
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('form').submit(function(e){
+                
+                e.preventDefault();
+
+                $.ajax({
+                    url: '{{ path("ajaxHandle") }}',
+                    type: 'post',
+                    data: $(this).serialize(),
+                    
+                    dataType: 'json', 
+                    success: function(resultJSON){
+                        $("ajax_result").append(resultJSON);
+                        console.table(resultJSON); 
+                    }
+                });
+            });
+        });
+    </script>
+
 {% endblock %}

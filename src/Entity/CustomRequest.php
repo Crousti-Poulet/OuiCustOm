@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -72,6 +74,11 @@ class CustomRequest
     private $userAssignedTo;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Conversation", mappedBy="customRequest")
+     */
+    private $conversations;
+
+    /**
      * CustomRequest constructor.
      */
     public function __construct()
@@ -79,6 +86,7 @@ class CustomRequest
         // à défaut de pouvoir mettre now() par défaut sur la colonne de la BD !
         $this->creationDate = new DateTime();
         $this->status  = CustomRequest::STATUS_A_VALIDER;
+        $this->conversations = new ArrayCollection();
 //        $this->user = app.user;
     }
 
@@ -157,5 +165,36 @@ class CustomRequest
     public function setStatus($status): void
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return Collection|Conversation[]
+     */
+    public function getConversations(): Collection
+    {
+        return $this->conversations;
+    }
+
+    public function addConversation(Conversation $conversation): self
+    {
+        if (!$this->conversations->contains($conversation)) {
+            $this->conversations[] = $conversation;
+            $conversation->setCustomRequest($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConversation(Conversation $conversation): self
+    {
+        if ($this->conversations->contains($conversation)) {
+            $this->conversations->removeElement($conversation);
+            // set the owning side to null (unless already changed)
+            if ($conversation->getCustomRequest() === $this) {
+                $conversation->setCustomRequest(null);
+            }
+        }
+
+        return $this;
     }
 }

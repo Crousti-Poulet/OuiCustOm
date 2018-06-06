@@ -3,8 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\User;
+<<<<<<< HEAD
 use App\Entity\Messages;
 use App\Entity\Image;
+=======
+use App\Entity\Message;
+>>>>>>> e985b58bac865a007445a9b7a7b14fea434dc31a
 use App\Entity\Messaging;
 use App\Entity\AdminContact;
 use App\Entity\Conversation;
@@ -35,7 +39,6 @@ class DefaultController extends Controller
     /**
      * @route("/error/errorUser", name="errorUser")
      */
-
     public function errorUserAction(Request $request)
     {
         return $this->render('error/errorUser.html.twig');
@@ -46,13 +49,13 @@ class DefaultController extends Controller
      */
     public function artistviewAction (Request $request)
     {
-
         if (!$this->get('security.authorization_checker')->isGranted('ROLE_ARTISTE')){
             return $this->redirectToRoute('errorUser');
         }
         return $this->render('default/artistview.html.twig');
     }
 
+<<<<<<< HEAD
     /**
      * @Route("/gallery", name="gallery")
      */
@@ -69,6 +72,8 @@ class DefaultController extends Controller
     }
 
 
+=======
+>>>>>>> e985b58bac865a007445a9b7a7b14fea434dc31a
     /**
      * @Route("/default/userview", name="userview")
      */
@@ -88,6 +93,7 @@ class DefaultController extends Controller
     {
         return $this->render('default/profildetail.html.twig');
     }
+
     //page du détqail de profil d'un artiste
     /**
      * @Route("/default/profildetail/{id}", name="profildetailuser")
@@ -126,17 +132,21 @@ class DefaultController extends Controller
              
         if($form->isSubmitted() && $form->isValid()) {
 
+            //Récupération de la date d'envoi du message
+            $message->setReceiptDate(new \Datetime());
+
             //Enregistrement dans la base de donnée.
             $messageForAdmin = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($messageForAdmin);
             $em->flush();
-            
+
             //Envoi de mail (ne fonctionne pas)
-            $message = (new \Swift_Message('Hello Email'))
-            ->setFrom('send@example.com')
-            ->setTo('el-ouni-mehdi@hotmail.fr')
-            ->setBody('Coucou !');
+            $message = (new \Swift_Message($request->get('form')['_object']))
+            ->setFrom($request->get('form')['_email'])
+            ->setTo('admin@wanadoo.fr')
+            ->setBody($request->get('form')['_message'])
+            ->addPart('Expéditeur : ' . $request->get('form')['_author']); 
        
             $mailer->send($message);
             return $this->redirect($this->generateUrl('contactPage'));
@@ -158,101 +168,15 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/registration", name="registrationPage")
+     * @Route("/ajax_handle", name="ajaxHandle")
      */
-    public function registration(Request $request, ObjectManager $manager)
+    public function ajaxHandle(Request $request)
     {
-       
-         $user = new User (); // on crée l'utilisateur       
-        
-        $form = $this->createFormBuilder($user) // on CREE et CONFIGURE le form grace a createFormBuilder qui sera lié a $user 
-                     ->add('username')     
-                     ->add('email')   
-                     ->add('password')     
-                    //  ->add('confirm_password')     
-                     ->add('location')     
-                     ->add('role', ChoiceType::class,[
-                          'expanded' => true,
-                          'multiple' => true,
-                          'label'     =>false,
-                          'choices' => [ 
-                              'S\'inscrire en tant qu\'Artiste'     => "ROLE_ARTISTE"
-                            ]
-                     ])     
-                     
-                     ->getForm() ;       // on le RECUPERE   
-
-        $form->handleRequest($request);  // ANALYSE de la requete et du coup symfony lié title content avec $article
-             
-        if($form->isSubmitted() && $form->isValid()) {
-
-            if(!$user->getId()){
-                 $user->setCreationDate(new \Datetime());
-            }
-
-             if(!$user->getRole()){
-                 $user->setRole(['ROLE_USER']);
-            }
-
-       
-            $manager->persist($user); //on demande au manager de se preparer a faire persister l'article
-            $manager->flush();           //on demande au manager de lancer la requete
-
-            return $this->redirectToRoute('homepage');
-        }
-
-       
-        return $this->render('default/registration.html.twig',[
-            'formUser' => $form->createView(), //on envoi a twig le RESULTAT de la fonction createView () == cree un petit objet plutot type affichage.
-        ]);
+        $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findByCategoryField('bananes');
+        // return $this->render('default/home.html.twig');
+        // dump($users);
+        // die();
+        return $this->json($users);
     }
-    
-    /**
-     * @Route("/messaging", name="messagingPage")
-     */
-    public function messagingAction(Request $request)
-    {
-        $conversation_messages = $this->getDoctrine()->getManager()->getRepository(Conversation::class)->findAllByUser($this->getUser());
-        return $this->render('/default/messaging.html.twig', [
-            'conversation_messages' => $conversation_messages
-        ]);
 
-        //Création du message
-        $message = new Messaging();       
-        
-        // Création et configuration du formulaire en utilisant sur createFormBuilder 
-        $form = $this->createFormBuilder($message)
-                    
-                    ->add('_sender', HiddenType::class, ['data'=> $this->getUser()->getUsername()]) 
-                    ->add('_message', TextareaType::class, ['label' => 'Votre message'])
-                    ->add('Envoyer', SubmitType::class)
-                    // Récupération
-                    ->getForm() 
-                    ;
-        
-        //Analyse de la requête
-        $form->handleRequest($request);
-             
-        if($form->isSubmitted() && $form->isValid()) {
-
-            
-            //Crée la date d'envoi
-            $message->setSendingDate(new \Datetime());
-
-            //Enregistrement dans la base de donnée.
-            $message = $form->getData();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($message);
-            $em->flush();
-
-            return $this->render('default/messaging.html.twig');
-
-        }
-
-        //Envoi au twig du resultat de la fonction createView ()
-        return $this->render('default/messaging.html.twig',[
-            'formMessage' => $form->createView()
-        ]);
-        
-    }
 }

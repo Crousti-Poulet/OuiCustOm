@@ -7,7 +7,7 @@ body, html
   padding: 0;
   text-align: center;
   background-color: #f7f8f9;
-  height: 100%;
+  min-height: 100vh;
 }
 
 *
@@ -93,6 +93,7 @@ body, html
   max-width: 100%;
 }
 
+//////////////////////Header Front////////////////////////////////////////
 
 #header_front img
 {
@@ -108,8 +109,9 @@ body, html
   width: 80px;  
 }
 
-#footer_front{
-}
+/////////////////Fin du Header Front////////////////////////////////////
+
+///////////////////Footer Front/////////////////////////////////////////
 
 #footer_front ul
 {
@@ -149,12 +151,14 @@ footer .col-4{
   margin: 10px;
 
  }
+////////////Fin du Footer Front/////////////////////////////////////////
+
 ////////////Menu accordéon FAQ//////////////////////////////////////////
 
-#main_bloc_help
+#bloc_page_help
 {
   height: auto;
-  min-height: 700px;
+  min-height: 70vh;
 }
 
 .menu .accordion-heading 
@@ -279,19 +283,19 @@ footer .col-4{
   text-align: justify;
 }
 
-////////////Fin du menu accordéon FAQ//////////////////////////////////////////
+////////////Fin du menu accordéon FAQ//////////////////////////////////////
 
 ////////////Formulaire de contact//////////////////////////////////////////
 
 #bloc_page_contact
 {
-  width: 35%;
+  width: 30%;
   min-width: 400px;
 }
 
 #form__message
 {
-  height: 250px;
+  min-height: 250px;
 }
 
 #form__author, #form__email, #form__object
@@ -300,7 +304,7 @@ footer .col-4{
   margin: auto;
 }
 
-////////////Fin du formulaire de contact//////////////////////////////////////////
+////////////Fin du formulaire de contact/////////////////////////////////
 
 #bloc_page_registration
 {
@@ -334,6 +338,13 @@ footer .col-4{
   background-color: lightgray;
   border-radius: 10px;
   border: solid white 3px;
+}
+
+.bloc_contact_selected
+{
+  background-color: gray;
+  border-radius: 10px;
+  border: solid black 3px;
 }
 
 .bloc_list_message
@@ -383,9 +394,29 @@ footer .col-4{
   float: right;
 }
 
+// messages envoyés alignés à droite
+.message_sent
+{
+  text-align: right;
+  float: right;
+}
+
+// messages reçus alignés à gauche
+.message_received
+{
+  text-align: left;
+  float: left;
+}
+
 .message_sending
 {
   float: right;
+}
+
+.conversation_image
+{
+  width: auto;
+  height: 80px;
 }
 
 #sending_message_button
@@ -400,4 +431,31 @@ footer .col-4{
   float: left;
 }
 
-///////////////////Fin de la messagerie//////////////////////////////////////////
+///////////////////Fin de la messagerie///////////////////////////////////
+
+///////////////////Page login////////////////////////////////////////////
+
+#bloc_page_login
+{
+  height: 75vh;
+}
+
+#login_form
+{
+  min-width: 450px;
+}
+///////////////////Fin de la page de login/////////////////////////////////
+
+///////////////////Registration///////////////////////////////////////////
+
+#bloc_page_registration
+{
+  min-width: 480px;
+}
+
+///////////////////Fin de la page de registration//////////////////////////
+
+#category_select
+{
+  width: 500px;;
+}

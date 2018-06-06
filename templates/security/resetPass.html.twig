@@ -1,0 +1,28 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %} Mot de passe oublié {% endblock  %}
+{% block body %}
+
+<div class=" text-center d-flex justify-content-center formRegister">
+    <div>
+        
+    </div>
+    <div class="form col-8 col-md-6 col-lg-4" id="bloc_page_registration">
+        <h1 class="text-white"> Demande de mot de passe </h1>
+        <fieldset class="border m-3 p-3 bg-light rounded"  >
+
+        {{form_start(formReset)}}
+
+            {{ form_row(formReset._email, {'attr' : { 'placeholder' : "monadresse@mail.com"}, 'label': 'Adresse email'}) }}
+            
+            <button type="submit" class="btn btn-outline-success "> Faire ma demande </button>
+          
+
+
+        {{form_end(formReset)}}
+
+        </fieldset>
+    </div>
+</div>
+
+{% endblock %}
