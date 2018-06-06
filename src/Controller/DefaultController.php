@@ -165,9 +165,12 @@ class DefaultController extends Controller
      */
     public function ajaxHandle(Request $request)
     {
-        $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findByCategoryField($request->get('category'));
+        // dump($request->get('category_id'));
+        // die();
+        $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findByCategoryField($request->get('category_id'));
         
         return $this->json($users);
+
     }
 
 }

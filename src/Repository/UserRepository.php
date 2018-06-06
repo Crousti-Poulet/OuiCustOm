@@ -26,8 +26,8 @@ class UserRepository extends ServiceEntityRepository
     public function findByCategoryField($category): array
     {
         $qb = $this->createQueryBuilder('c')
-            ->andWhere('c.category = :category')
-            ->setParameter('category', $category)
+            ->andWhere('c.category_id = :category_id')
+            ->setParameter('category_id', $category)
             ->getQuery();
 
             return $qb->execute();
