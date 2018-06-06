@@ -1,0 +1,16 @@
+{% extends 'base_front.html.twig' %}
+
+
+{% block title %}gallerie{% endblock %}
+
+{% block body %}
+
+    <h1>gallerie</h1>
+
+{% for pic in ArtistGallery %}
+
+    <img src="{{ pic.link }}" alt="{{ pic.name }}">
+
+{% endfor %}
+
+{% endblock %}

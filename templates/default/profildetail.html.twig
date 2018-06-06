@@ -16,10 +16,12 @@
                 <p class="col-12 offset-md-3 col-md-6 bg-white rounded border p-2">{{user.username }}</p>
                 <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">{{ user.category }}</p>
                 <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">{{ user.location }}</p>
-                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">{{ user.creationDate|date("d/m/y") }}</p>
+                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">Inscrit le {{ user.creationDate|date("d/m/y") }}</p>
                 <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">{{ user.email }}</p>
+                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">{{ user.phone }}</p>
                 <p class="col-12 col-md-6 bg-white rounded border p-2 float-left"><a href="#">voir la galerie</a></p>
                 <p class="col-12 col-md-6 bg-white rounded border p-2 float-left">système de note</p>
+                <p class="col-12 col-md-6 bg-white rounded border p-2 float-left"><a href="#">contacter</a></p>
 
             </div>
 
@@ -34,8 +36,8 @@
 
             </div>
 
-            <button class="btn btn-primary col-12 col-sm-5 col-md-3 mb-2">Ajouter aux favoris</button>
-            <button class=" btn btn-primary col-12 col-sm-5 offset-sm-2 col-md-3 offset-md-6 mb-2">Rerour à la liste</button>
+            <a href="{{ path('custom_request_create') }}" class="btn btn-primary col-12 col-sm-5 col-md-3 mb-2">Faire une demande</a>
+            <a href="#" class=" btn btn-primary col-12 col-sm-5 offset-sm-2 col-md-3 offset-md-6 mb-2">Rerour à la liste</a>
         </div>
     </div>
 

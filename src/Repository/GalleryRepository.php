@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Gallery;
+use App\Entity\Image;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Gallery|null find($id, $lockMode = null, $lockVersion = null)
- * @method Gallery|null findOneBy(array $criteria, array $orderBy = null)
- * @method Gallery[]    findAll()
- * @method Gallery[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Image|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Image|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Image[]    findAll()
+ * @method Image[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class GalleryRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Gallery::class);
+        parent::__construct($registry, Image::class);
     }
 
 //    /**
-//     * @return Gallery[] Returns an array of Gallery objects
+//     * @return Image[] Returns an array of Image objects
 //     */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class GalleryRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Gallery
+    public function findOneBySomeField($value): ?Image
     {
         return $this->createQueryBuilder('g')
             ->andWhere('g.exampleField = :val')

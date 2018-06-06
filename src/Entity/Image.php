@@ -2,12 +2,17 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\GalleryRepository")
  */
-class Gallery
+class Image
 {
     /**
      * @ORM\Id()
@@ -30,6 +35,20 @@ class Gallery
      * @ORM\Column(type="datetime")
      */
     private $date;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="galleries")
+     */
+    private $user;
+
+    public function __construct()
+    {
+        $this->link = new ArrayCollection();
+    }
+
+
+
+    // ******** getters & setters *********
 
     public function getId()
     {
@@ -68,6 +87,18 @@ class Gallery
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

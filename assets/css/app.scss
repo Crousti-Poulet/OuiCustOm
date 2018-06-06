@@ -6,7 +6,7 @@ body, html
   margin: 0;
   padding: 0;
   text-align: center;
-  background-color: #f7f8f9;
+  background-color: #E6E7DF;
   min-height: 100vh;
 }
 
@@ -24,12 +24,20 @@ body, html
 }
 /*vue artiste*/
 .artistbanner{
-  background: url("../img/background1.jpg");
+  background: url("../img/banner1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
   text-shadow: 2px 2px 4px #000000;
   height: 100px;
+}
+
+.card, #list li{
+  background: #2E3233;
+  color: white;
+}
+.card a{
+  color: #FF8914;
 }
 
 .artisteprofile ul{
@@ -46,6 +54,11 @@ body, html
   button{
     background: #FF8914 ;
   }
+}
+
+.darkgreyzone{
+  background: #2E3233;
+  color: white;
 }
 
 .OCO{
@@ -66,9 +79,6 @@ body, html
 /*--- masonery ---*/
 /* ---- grid ---- */
 
-.grid {
-  background: #DDD;
-}
 
 /* clear fix */
 .grid:after {
@@ -94,6 +104,9 @@ body, html
 }
 
 //////////////////////Header Front////////////////////////////////////////
+#header_front{
+  background: black;
+}
 
 #header_front img
 {
@@ -113,8 +126,13 @@ body, html
 
 ///////////////////Footer Front/////////////////////////////////////////
 
+#footer_front{
+  background: black;
+}
+
 #footer_front ul
 {
+
   list-style-type: none;
 }
 
@@ -137,7 +155,7 @@ body, html
 
 .social i:hover
 {
-  color: black!important;
+  color: #FF8914!important;
 }
 
 footer .col-4{
@@ -151,6 +169,7 @@ footer .col-4{
   margin: 10px;
 
  }
+
 ////////////Fin du Footer Front/////////////////////////////////////////
 
 ////////////Menu accordéon FAQ//////////////////////////////////////////
@@ -351,7 +370,7 @@ footer .col-4{
 {
   min-width: 450px;
   height: 550px;
-  background-color: lightblue;
+  //background-color: lightblue;
   padding-bottom: 20px;
   border-radius: 5px;
   box-shadow: 2px 2px 2px 2px #000000;
@@ -363,6 +382,16 @@ footer .col-4{
   width: 90%;
   min-width: 200px;
   min-height: 190px;
+  background-color: lightgray;
+  border-radius: 10px;
+  border: solid white 3px;
+}
+
+.bloc_new_message
+{
+  width: 90%;
+  min-width: 200px;
+  min-height: 100px;
   background-color: lightgray;
   border-radius: 10px;
   border: solid white 3px;
@@ -395,17 +424,16 @@ footer .col-4{
 }
 
 // messages envoyés alignés à droite
+// ATTENTION : pas de float, ça fait n'importe quoi !
 .message_sent
 {
   text-align: right;
-  float: right;
 }
 
 // messages reçus alignés à gauche
 .message_received
 {
   text-align: left;
-  float: left;
 }
 
 .message_sending
@@ -419,12 +447,13 @@ footer .col-4{
   height: 80px;
 }
 
-#sending_message_button
+.sending_message_button
 {
   float: right;
 }
 
-#message_response
+// classe au lieu d'id car l'ID est généré automatiquement dans le form builder
+.message_response
 {
   width: 80%;
   height: 100%;

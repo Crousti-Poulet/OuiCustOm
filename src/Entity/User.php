@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Image;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -82,10 +83,7 @@ class User implements UserInterface
      */
     private $description;
 
-    /**
-     * @ORM\column(type="string", length=255, nullable=true)
-     */
-    private  $category;
+
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Conversation", inversedBy="users")
@@ -93,9 +91,25 @@ class User implements UserInterface
     private $conversations;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $phone;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="user")
+     */
+    private $images;
+
+    // pour éviter que l'image uploadée soir considérée comme un string
+     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="author")
      */
     private $messages;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="users")
+     */
+    private $category;
 
     // pour éviter que l'image uploadée soit considérée comme un string
     public function __sleep()
@@ -108,6 +122,9 @@ class User implements UserInterface
         $this->customRequestsCreated = new ArrayCollection();
         $this->customRequestsAssigned = new ArrayCollection();
         $this->conversations = new ArrayCollection();
+
+        $this->images = new ArrayCollection();
+
         $this->messages = new ArrayCollection();
     }
 
@@ -248,14 +265,15 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getCategory(): ?string
+    public function getPhone()
     {
-        return $this->category;
+        return $this->phone;
     }
 
-    public function setCategory(string $category): self
+    public function setPhone($phone): self
     {
-        $this->category = $category;
+        $this->phone = $phone;
+
         return $this;
     }
 
@@ -378,6 +396,37 @@ class User implements UserInterface
          return $this;
      }
 
+     /**
+      * @return Collection|Image[]
+      */
+     public function getImages(): Collection
+     {
+         return $this->images;
+     }
+ 
+     public function addImage(Image $image): self
+     {
+         if (!$this->images->contains($image)) {
+             $this->images[] = $image;
+             $image->setUser($this);
+         }
+ 
+         return $this;
+     }
+ 
+     public function removeImage(Image $image): self
+     {
+         if ($this->images->contains($image)) {
+             $this->images->removeElement($image);
+             // set the owning side to null (unless already changed)
+             if ($image->getUser() === $this) {
+                 $image->setUser(null);
+             }
+         }
+ 
+         return $this;
+     }
+
     /**
      * Get the value of tokenpassword
      */ 
@@ -394,6 +443,18 @@ class User implements UserInterface
     public function setTokenpassword($tokenpassword)
     {
         $this->tokenpassword = $tokenpassword;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
