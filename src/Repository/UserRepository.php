@@ -19,19 +19,32 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    /**
-     * @return User[] Returns an array of User objects
-     */
 
-    public function findByCategoryField($category): array
-    {
-        $qb = $this->createQueryBuilder('c')
-            ->andWhere('c.category_id = :category_id')
-            ->setParameter('category_id', $category)
-            ->getQuery();
+    public function findAllByCategory($category)
+            {
+                return $this->createQueryBuilder('u')
+                    ->join('u.category', 'c')
+                    ->andWhere('c.id = :category')
+                    ->setParameter('category', $category)
+                    ->getQuery()
+                    ->getResult()
+                    ;
+            }
+    // /**
+    //  * @return User[] Returns an array of User objects
+    //  */
 
-            return $qb->execute();
-    }
+    // public function findByCategoryField($category): array
+    // {
+    //     $qb = $this->createQueryBuilder('c')
+    //         ->andWhere('c.category_id = :category_id')
+    //         ->setParameter('category_id', $category)
+    //         ->getQuery();
+
+    //         return $qb->execute();
+
+           
+    // }
 
     /*
     public function findOneBySomeField($value): ?User

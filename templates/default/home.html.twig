@@ -37,7 +37,8 @@
 
     </div>
 
-    <div class="card-deck" id="search_result">
+    <!--Block affichant le résultat de la recherche ajax-->
+    <div class="card-deck mt-5 mb-5" id="search_result">
                        
     </div>
 
@@ -135,7 +136,7 @@
                     
                     dataType: 'json', 
                     success: function(resultJSON){
-
+                        console.log(resultJSON);
                         $output = '';
 
                         $.each(resultJSON, function(id, element){
@@ -144,7 +145,7 @@
                                         '<div class="card-body">' +
                                             '<h5 class="card-title">' + element.username +'</h5>' +
                                             '<p class="card-text">'+ element.description +'</p>' +
-                                            '<a href="#" class="btn btn-primary">Voir profil</a>' +
+                                            '<a href="/default/profildetail/' + element.id + '" class="btn btn-primary">Voir profil</a>' +
                                         '</div>' +
                                         '</div>';
                                     });
