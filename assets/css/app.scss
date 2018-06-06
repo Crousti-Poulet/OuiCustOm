@@ -7,7 +7,7 @@ body, html
   padding: 0;
   text-align: center;
   background-color: #f7f8f9;
-  height: 100%;
+  min-height: 100vh;
 }
 
 *
@@ -340,6 +340,13 @@ footer .col-4{
   border: solid white 3px;
 }
 
+.bloc_contact_selected
+{
+  background-color: gray;
+  border-radius: 10px;
+  border: solid black 3px;
+}
+
 .bloc_list_message
 {
   min-width: 450px;
@@ -387,9 +394,29 @@ footer .col-4{
   float: right;
 }
 
+// messages envoyés alignés à droite
+.message_sent
+{
+  text-align: right;
+  float: right;
+}
+
+// messages reçus alignés à gauche
+.message_received
+{
+  text-align: left;
+  float: left;
+}
+
 .message_sending
 {
   float: right;
+}
+
+.conversation_image
+{
+  width: auto;
+  height: 80px;
 }
 
 #sending_message_button

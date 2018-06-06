@@ -36,6 +36,14 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $tokenpassword;
+
+
+
+
     private $plainPassword;
 
     /**
@@ -147,7 +155,7 @@ class User implements UserInterface
         $this->password = $password;
         return $this;
     }
-
+   
     public function getLocation(): ?string
     {
         return $this->location;
@@ -370,4 +378,23 @@ class User implements UserInterface
          return $this;
      }
 
+    /**
+     * Get the value of tokenpassword
+     */ 
+    public function getTokenpassword()
+    {
+        return $this->tokenpassword;
+    }
+
+    /**
+     * Set the value of tokenpassword
+     *
+     * @return  self
+     */ 
+    public function setTokenpassword($tokenpassword)
+    {
+        $this->tokenpassword = $tokenpassword;
+
+        return $this;
+    }
 }

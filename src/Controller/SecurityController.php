@@ -20,6 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 
 class SecurityController extends Controller
 {
@@ -156,4 +157,113 @@ class SecurityController extends Controller
     {
         throw new \Exception('this should not be reached!');
     }
-}
+
+   //////// MDP OUBLIE /////////// 
+    /**
+     * @Route("/reset", name="reset_password")
+     *
+     */
+    public function resetPass(Request $request, \Swift_Mailer $mailer, TokenGeneratorInterface $tokenGenerator, ObjectManager $manager)
+    {
+               
+        
+        // Création et configuration du formulaire en se utilisant sur createFormBuilder 
+        $form = $this->createFormBuilder() 
+                       
+                     ->add('_email', EmailType::class, ['label' => 'E-mail'])   
+                     
+                    //  ->add('Envoyer', SubmitType::class)
+                     // Récupération
+                     ->getForm() 
+                     ;
+
+        //Analyse de la requête
+        $form->handleRequest($request);
+             
+        if($form->isSubmitted() && $form->isValid()) {
+
+            //Récupération de la date d'envoi du message
+            $token = $tokenGenerator->generateToken(); //generation du token
+            $user = $manager->getRepository(User::class)->findOneBy([
+                'email' => $request->get('form')['_email']
+                ]);
+            //enregistrement dans la base de donnée.
+            if($user){
+  
+                $user->setTokenpassword($token);
+                $em = $this->getDoctrine()->getManager();
+                $em->flush();
+
+            
+                //Envoi de mail (ne fonctionne pas)
+                $message = (new \Swift_Message('Recuperation de mot de passe'))
+                ->setFrom('admin@wanadoo.fr')
+                ->setTo($request->get('form')['_email'])
+                ->setBody('cliquez sur le liens suivants pour /recuperer & modifier votre mot de passe : <a href="http://localhost:8000/resetCheck/'. $token.'">' )
+                ->addPart('Expéditeur : OuiCustOm Team ' ); 
+        
+                $mailer->send($message);
+             }
+             return $this->redirect($this->generateUrl('security_login'));
+
+        }
+
+        //Envoi au twig du resultat de la fonction createView ()
+        return $this->render('security/resetPass.html.twig',[
+            'formReset' => $form->createView()
+        ]);
+    }
+
+
+    /**
+     * @Route("/resetCheck/{token}", name="reset_check")
+     *
+     */
+      public function resetCheck(Request $request, ObjectManager $manager, $token){
+        $user = $manager->getRepository(User::class)->findOneBy([
+            'tokenpassword' => $token
+            ]);
+        if($user){
+            $form = $this->createFormBuilder($user) 
+                ->add('plainPassword', RepeatedType::class, [
+                    'type' => PasswordType::class,
+                    'first_options' => ['label' => 'Entrez le nouveau mot de passe'],
+                    'second_options' => ['label' => 'Confirmer le nouveau de mot de passe'],
+                    'required'    => true,
+                    'constraints' => [
+                        new Length( [
+                            'min' => 8,
+                            'max' => 50,
+                            'minMessage' => "Minimum 8 caractères",
+                            'maxMessage' => "Maximum 50 caractères"
+                        ]),
+                        new NotBlank( [
+                            'message' => "Le mot de passe est obligatoire"
+                        ])                                          
+                    ]
+                ])    
+                    
+                     ->getForm() ;
+
+            //Analyse de la requête
+            $form->handleRequest($request);
+                
+            //Verification de la soumission du formulaire
+            if($form->isSubmitted() && $form->isValid()) {
+            
+                $user = $form->getData(); // getData() garde les valeurs soumises au formulaire
+    
+                //$manager->persist($user); //on demande au manager de se preparer a faire persister l'article
+                $manager->flush();           //on demande au manager de lancer la requete
+                $this->addFlash('success', 'Votre compte à bien été créé.');
+                return $this->redirectToRoute('homePage');
+            }
+        }else{
+            throw $this->createNotFoundException('Error 404');
+        }
+    
+        return $this->render('security/modifPass.html.twig',[
+            'formNew' => $form->createView(), //on envoi a twig le RESULTAT de la fonction createView () == cree un petit objet plutot type affichage.
+        ]);
+    }  
+}    
