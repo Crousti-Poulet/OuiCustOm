@@ -45,6 +45,9 @@ class DefaultController extends Controller
         return $this->render('error/errorUser.html.twig');
     }
     //fin des pages d'erreurs
+    
+
+    // Affiche le Dashboard de l'artiste connecté.
     /**
      * @Route("/default/artistview", name="artistview")
      */
@@ -60,16 +63,30 @@ class DefaultController extends Controller
     
     // Affichage de gallerie d'artiste 
     /**
-     * @Route("/gallery", name="gallery")
+     * @Route("/gallery/{id}", name="gallery")
      */
-    public function galleryAction($id)
+    
+    public function show_gallery(User $artist)
     {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ARTISTE')) {
-            return $this->redirectToRoute('errorUser');
+        // if (!$this->get('security.authorization_checker')->isGranted('ROLE_ARTISTE')) {
+        //     return $this->redirectToRoute('errorUser');
+        // }
+
+        $images = $artist->getImages();
+        // dump($images);
+        // dump($images[1]->getId());
+        // die();
+        // $repo = $this->getDoctrine()->getRepository(Image::class);
+        // $image = $repo->find($id);
+    
+           
+        // $userName = $gallery->getUser()->getUsername();
+        if (!$images) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
         }
-        $gallery = $this->getDoctrine()
-            ->getRepository(Image::class)
-            ->find($id);
+        
 
         return $this->render('gallery/gallery.html.twig', [
             'images' => $images
