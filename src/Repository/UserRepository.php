@@ -30,6 +30,17 @@ class UserRepository extends ServiceEntityRepository
                     ->getResult()
                     ;
             }
+
+    public function findAllByCity($category)
+            {
+                return $this->createQueryBuilder('u')
+                    ->join('u.category', 'c')
+                    ->andWhere('c.id = :category')
+                    ->setParameter('category', $category)
+                    ->getQuery()
+                    ->getResult()
+                    ;
+            }
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

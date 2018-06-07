@@ -9,8 +9,6 @@
 
     <h1 class="pb-5 pt-4">Faites de Vos objets du quotidien des pièces uniques</h1>
 
-
-
         <form class="form-row" action="" method="post">
             <div class="col-sm-4 offset-sm-1 col-md-2 offset-md-2 mt-1 ">
                 <input class="form-control" type="text" name="search" placeholder="recherche">  
@@ -18,11 +16,11 @@
 
             <div class="col-sm-3 col-md-2 mt-1 ml-4 ml-sm-0" id="category_select">
                 <select class="form-control" name="category_id">
-                    <option value="1">Bananes</option>
-                    <option value="2">Instruments</option>
-                    <option value="3">Gravure</option>
-                    <option value="4">Vêtements</option>
-                    <option value="5">Informatique</option>
+                    <option value="1">Catégorie 1</option>
+                    <option value="2">Catégorie 2</option>
+                    <option value="3">Catégorie 3</option>
+                    <option value="4">Catégorie 4</option>
+                    <option value="5">Catégorie 5</option>
                 </select>
             </div>
 
@@ -38,9 +36,10 @@
     </div>
 
     <!--Block affichant le résultat de la recherche ajax-->
-    <div class="card-deck" id="search_result">
+    <div class="card-deck mx-auto" id="search_result">
                        
     </div>
+    <!--Fin du block affichant le résultat de la recherche ajax-->
 
     <div class="container-fluid pb-5">
         <div class="row darkgreyzone pt-5 pb-5" id="sub_banner">
@@ -151,7 +150,7 @@
                         $output = '';
 
                         $.each(resultJSON, function(id, element){
-                           $output += '<div class="card" style="width: 10rem;">' + 
+                           $output += '<div class="card" style="max-width: 200px;">' + 
                                         '<img class="card-img-top" src="/uploads/profilPictures/' + element.profilPicture + '" alt="Card image cap">' +
                                         '<div class="card-body">' +
                                             '<h5 class="card-title">' + element.username +'</h5>' +
