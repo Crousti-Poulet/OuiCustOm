@@ -172,6 +172,8 @@ class SecurityController extends Controller
         throw new \Exception('this should not be reached!');
     }
 
+
+    
    //////// MDP OUBLIE /////////// 
     /**
      * @Route("/reset", name="reset_password")
