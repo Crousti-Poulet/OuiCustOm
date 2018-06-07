@@ -83,7 +83,7 @@
             <div class="col-md-6 col-sm-12 mb-4" id="profilimg">
                 <div class="bg-white rounded border">
                     <!--récupère le lien de le chemin de l'image dans le dossier et renvoi sur le dossier public-->
-                    <img src="{{ asset('uploads/profilPictures/' ~ app.user.profilPicture )}}" alt="photo d'utilisateur" class="card-img-top mb-2">
+                    <img src="{{ asset('uploads/profilPictures/' ~ app.user.profilPicture ) | imagine_filter('my_thumb' )}}" alt="photo d'utilisateur" class="card-img-top mb-2">
                     <a href="{{ path('updateProfile') }}" class="btn btn-outline-dark sticky-bottom mt-3 mb-3">Changer votre photo</a>
                 </div>
             </div>

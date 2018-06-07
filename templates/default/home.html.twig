@@ -42,7 +42,7 @@
     </div>
 
     <!--Block affichant le résultat de la recherche ajax-->
-    <div class="card-deck mx-auto" id="search_result">
+    <div class="card-deck mx-auto no-gutter" id="search_result">
                        
     </div>
     <!--Fin du block affichant le résultat de la recherche ajax-->
@@ -158,7 +158,7 @@
                         $.each(resultJSON, function(id, element){
                            $output += '<div class="card mt-3 mb-3" id="search_card" style="max-width: 200px;">' + 
                                         '<img class="card-img-top" src="/uploads/profilPictures/' + element.profilPicture + '" alt="Card image cap">' +
-                                        '<div class="card-body mt-1 mb-1">' +
+                                        '<div class="card-body">' +
                                             '<h5 class="card-title">' + element.username +'</h5>' +
                                             '<p class="card-text text-truncate">'+ element.description +'</p>' +
                                             '<a href="/default/profildetail/' + element.id + '" class="btn btn-outline-light">Voir profil</a>' +

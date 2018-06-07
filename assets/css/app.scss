@@ -223,7 +223,7 @@ footer .col-4{
 #bloc_page_help
 {
   height: auto;
-  min-height: 70vh;
+  min-height: 75vh;
 }
 
 .menu .accordion-heading 
@@ -564,7 +564,7 @@ footer .col-4{
 
 #search_result
 {
-  max-width: 80%;
+  // max-width: 80%;
   height: auto;
   padding: auto;
 }
@@ -577,6 +577,22 @@ footer .col-4{
 #search_card
 {
   min-width: 200px;
+}
+
+#search_card .card-body
+{
+  background-color: #2E3233;
+  color:white; 
+}
+
+#search_card a
+{
+  color :#FF8914;
+}
+
+#search_card a:hover
+{
+  color:black !important;
 }
 
 //////////////////Fin de page d'accueil ajax//////////////////////////////
