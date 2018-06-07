@@ -178,8 +178,8 @@ class DefaultController extends Controller
         if(null!==($request->get('category_id')) && ''!==($request->get('category_id'))  && null!==($request->get('city')) 
         && ''!==($request->get('city')) && null!==($request->get('zipcode')) && ''!==($request->get('zipcode'))) {
 
-            // dump($request);
-            // die();
+            dump($request);
+            die();
 
             $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategoryAndCityAndZipcode($request->get('category_id'), $request->get('city'), $request->get('zipcode'));
 
@@ -192,11 +192,12 @@ class DefaultController extends Controller
             });
         }
         //Si seuls les champs catégorie et code postal ou seuls les champs catégorie et ville sont remplis 
-        elseif(null!==(($request->get('category_id')) && ''!==($request->get('category_id'))  && null!==($request->get('city')) && ''!==($request->get('city'))) 
-        || null!==(($request->get('category_id')) && ''!==($request->get('category_id'))  && null!==($request->get('zipcode')) && ''!==($request->get('zipcode'))) ) {
-
+        elseif((null!==$request->get('category_id') && ''!==$request->get('category_id')  && null!==$request->get('city') && ''!==$request->get('city') )
+        || (null!==$request->get('category_id') && ''!==$request->get('category_id')  && null!==$request->get('zipcode') && ''!==$request->get('zipcode') ) 
+        || (null!==($request->get('category_id')) && ''!==($request->get('category_id')))) {
+            
             //Si seuls les champs catégorie et code postal sont remplis
-            if(null!==($request->get('category_id')) && ''!==($request->get('category_id')) && null!==($request->get('zipcode')) && ''!==($request->get('zipcode'))) {
+            if(null!==$request->get('category_id') && ''!==$request->get('category_id') && null!==$request->get('zipcode') && ''!==$request->get('zipcode')) {         
 
                 $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategoryAndZipcode($request->get('category_id'), $request->get('zipcode'));
 
@@ -212,9 +213,6 @@ class DefaultController extends Controller
             //Si seuls les champs catégorie et ville sont remplis
             elseif (null!==($request->get('category_id')) && ''!==($request->get('category_id')) && null!==($request->get('city')) && ''!==($request->get('city'))) {
 
-                // dump($request);
-                // die();
-
                 $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategoryAndCity($request->get('category_id'), $request->get('city'));
 
                 $encoder = new JsonEncoder();
@@ -227,7 +225,7 @@ class DefaultController extends Controller
             }
             //Si seul le champ catégorie est rempli
             elseif (null!==($request->get('category_id')) && ''!==($request->get('category_id'))) {
-                
+
             $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategory($request->get('category_id'));
 
             $encoder = new JsonEncoder();
