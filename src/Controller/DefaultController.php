@@ -59,6 +59,9 @@ class DefaultController extends Controller
         }
         return $this->render('default/artistview.html.twig');
     }
+
+
+
     // Affichage de gallerie d'artiste 
     /**
      * @Route("/gallery/{id}", name="gallery")
@@ -86,7 +89,7 @@ class DefaultController extends Controller
         }
         
 
-        return $this->render('gallery/gallerie.html.twig', [
+        return $this->render('gallery/gallery.html.twig', [
             'images' => $images
         ]);
     }

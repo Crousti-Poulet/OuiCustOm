@@ -19,7 +19,7 @@
                 <p class="col-12 col-md-5 rounded border p-2 float-left">Inscrit le {{ user.creationDate|date("d/m/y") }}</p>
                 <p class="col-12 col-md-5 offset-md-1  rounded border p-2 float-left">{{ user.email }}</p>
                 <p class="col-12 col-md-5  rounded border p-2 float-left">{{ user.phone }}</p>
-                <p class="col-12 col-md-5 offset-md-1  rounded border p-2 float-left"><a href="#">voir la galerie</a></p>
+                <p class="col-12 col-md-5 offset-md-1  rounded border p-2 float-left"><a href="{{ path('gallery', {'id': user.id}) }}">voir la galerie</a></p>
                 <p class="col-12 col-md-5 rounded border p-2 float-left">système de note</p>
                 <p class="col-12 col-md-5 offset-md-1 rounded border p-2 float-left"><a href="{{ path('contactArtist', {'id': user.id}) }}">contacter</a></p>
 
