@@ -49,7 +49,13 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      * 
      */
-    private $location;
+    private $city;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * 
+     */
+    private $zipcode;
 
     /**
      * @ORM\Column(type="array")
@@ -171,16 +177,28 @@ class User implements UserInterface
         return $this;
     }
    
-    public function getLocation(): ?string
+    public function getCity(): ?string
     {
-        return $this->location;
+        return $this->city;
     }
 
-    public function setLocation(string $location): self
+    public function setCity(string $city): self
     {
-        $this->location = $location;
+        $this->city = $city;
         return $this;
     }
+
+    public function getZipcode(): ?string
+    {
+        return $this->zipcode;
+    }
+
+    public function setZipcode(string $zipcode): self
+    {
+        $this->zipcode = $zipcode;
+        return $this;
+    }
+
     public function getRoles()
     {
         $roles = $this->role;

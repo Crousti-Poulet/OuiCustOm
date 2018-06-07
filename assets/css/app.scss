@@ -522,9 +522,9 @@ footer .col-4{
 
 #search_result
 {
-  max-width: 800px;
-  max-height: 400px;
-  margin: auto;
+  max-width: 80%;
+  height: auto;
+  padding: auto;
 }
 
 #category_select
@@ -544,7 +544,11 @@ footer .col-4{
 
 //////////////////Fin de la page erreur utilisateur////////////////////////
 
+////////////////////////////////////addClass///////////////////////////////
+
 .none
 {
   display: none;
 }
+
+/////////////////////////////Fin des addClass///////////////////////////////
