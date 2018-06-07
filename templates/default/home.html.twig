@@ -11,11 +11,12 @@
 
         <form class="form-row" action="" method="post">
             <div class="col-sm-4 offset-sm-1 col-md-2 offset-md-2 mt-1 ">
-                <input class="form-control" type="text" name="search" placeholder="recherche">  
+                <input class="form-control" type="text" name="search" placeholder="Recherche">  
             </div>
 
             <div class="col-sm-3 col-md-2 mt-1 ml-4 ml-sm-0" id="category_select">
                 <select class="form-control" name="category_id">
+                    <option value=""> - Catégorie - </option>
                     <option value="1">Catégorie 1</option>
                     <option value="2">Catégorie 2</option>
                     <option value="3">Catégorie 3</option>
@@ -25,8 +26,13 @@
             </div>
 
             <div class="col-sm-3 col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0">
-                <input class="form-control" type="text" name="city" placeholder="Ville / Code postal">
+                <input class="form-control" type="text" name="city" placeholder="Ville">
             </div>
+
+            <div class="col-sm-3 col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0">
+                <input class="form-control" type="text" name="zipcode" placeholder="Code postal">
+            </div>
+
             <div class="col-sm-4 offset-sm-4 col-md-1 offset-md-0 mt-1">
                 <button class="btn " type="submit" id="search_submit">Rechercher</button>
             </div>

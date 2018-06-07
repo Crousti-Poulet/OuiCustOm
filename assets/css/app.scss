@@ -41,15 +41,15 @@ main{
   height: 100px;
 }
 
-.card, #list li{
+.cardArtistView, #list li{
   background: #2E3233;
   color: white;
 }
-.card a{
+.cardArtistView a{
   color: #FF8914;
 }
 
-.card img{
+.cardArtistView img{
   max-height: 150px;
 }
 
@@ -519,6 +519,24 @@ footer .col-4{
 }
 
 ///////////////////Fin de la messagerie///////////////////////////////////
+
+///////////////////Page liste des demandes////////////////////////////////////////////
+//
+//.img-card-customrequest
+//{
+//  max-width: 200px;
+//}
+
+.card-customrequest, .card-customrequest img
+{
+
+  min-width: 200px;
+  max-width: 300px;
+
+}
+
+/////////////////// Fin page liste des demandes////////////////////////////////////////////
+
 
 ///////////////////Page login////////////////////////////////////////////
 
