@@ -4,43 +4,33 @@
 
 {% block body %}
 
-    <div class="row">
-        <div class="col-md-8 col-md-offset-1">
+    <div class="row p-5">
+        <div class="mx-auto">
             <h1>{{ title }}</h1>
 
-            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-customRequests">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Titre</th>
-                    <th>Description</th>
-                    <th>Catégorie</th>
-                    <th>Date demande</th>
-                    <th>Demandeur</th>
-                    <th>Status</th>
-                    <th>Artisan</th>
-                    <th>Photo</th>
-                    <th>Valider</th>
-                </tr>
-                </thead>
-                <tbody>
+
+            <div class="card-deck">
                 {% for r in custom_requests %}
-                    <tr>
-                        <td>{{ r.id }}</td>
-                        <td>{{ r.title }}</td>
-                        <td>{{ r.description }}</td>
-                        <td>{{ r.category }}</td>
-                        <td>{{ r.creationDate|date("d/m/Y H:i") }}</td>
-                        <td>{{  r.user  }}</td>
-                        {#to do : lien vers le profil du demandeur#}
-                        <td>{{ r.status }}</td>
-                        <td>{{ r.userAssignedTo }}</td>
-                        <td><img src="{{ asset('uploads/customRequestPictures/' ~ r.photoPath) }}" alt="photo de l'objet à customiser" class="img-responsive"></td>
-                        <td><a href="{{ path('admin_custom_request_validate', {id: r.id}) }}">Valider</a></td>
-                    </tr>
+
+                    <div class="card card-customrequest m-2">
+                        <div class="card-header">
+                            {{ r.category }}
+                        </div>
+                        <img class="card-img-top img-responsive" src="{{ asset('uploads/customRequestPictures/' ~ r.photoPath) }}" alt="photo de l'objet à customiser" >
+                        <div class="card-body">
+                            <h5 class="card-title">{{ r.title }}</h5>
+                            <p class="card-text">{{ r.description }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">{{ r.user }} - {{ r.creationDate|date("d/m/Y H:i") }}</small>
+                        </div>
+
+                    </div>
                 {%  endfor %}
-                </tbody>
-            </table>
+            </div>
+
+
+
 
         </div>
     </div>

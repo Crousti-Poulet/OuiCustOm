@@ -98,6 +98,8 @@ class MessageController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($message);
             $em->flush();
+
+            return $this->redirect($this->generateUrl('messagingPageConversation',['id' => $conversation->getId()]));
         }
 
         // dans tous les cas on reste sur la page de messagerie
