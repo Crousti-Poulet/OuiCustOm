@@ -95,14 +95,14 @@ class GalleryController extends Controller
 
             // $user->addImage($image);
             $image = $form->getData();    // on garde les donnée sounmi au formulaire
-             $user->addImage($image);
+            $user->addImage($image);
             
             $manager->persist($image);  // on demande au manager de se preparer à persister l'image
 
 
             $manager->flush();           //on demande au manager de lancer la requete
            // $user_id = $user->getId();
-            return $this->redirectToRoute('gallery' );
+           return $this->redirectToRoute('gallery', ['id' => $this->getUser()->getId()]);
         }
 
 

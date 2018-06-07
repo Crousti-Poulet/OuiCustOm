@@ -6,11 +6,11 @@
 {% block body %}
 
     <h1>gallerie</h1>
-     <!-- foreach? -->
-
-    {% for i in 0 .. 10 %}  
-        {% if app.user.images[i] is defined %}     
-            <img src="{{ asset('uploads/gallery/' ~ app.user.images[i].link )}}" alt="photo d'utilisateur" class="card-img-top mb-2">
-        {% endif %}
+    
+    {% for i in images %}
+        
+            <img src="{{ asset('uploads/gallery/' ~ i.link )}}" alt="photo d'utilisateur" class="card-img-top mb-2">
+            
+       
     {% endfor %}
 {% endblock %}
