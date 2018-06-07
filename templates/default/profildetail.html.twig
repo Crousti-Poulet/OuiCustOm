@@ -11,19 +11,7 @@
 
     <div class="container">
         <div class="row">
-<<<<<<< HEAD
-            <div class="col-12 col-md-8 infoprofil">
 
-                <p class="col-12 offset-md-3 col-md-6 rounded border p-2">{{user.username }}</p>
-                <p class="col-12 col-md-5 rounded border p-2 float-left">{{ user.category }}</p>
-                <p class="col-12 col-md-5 offset-md-1 rounded border p-2 float-left">{{ user.city }} {{ user.zipcode }}</p>
-                <p class="col-12 col-md-5 rounded border p-2 float-left">Inscrit le {{ user.creationDate|date("d/m/y") }}</p>
-                <p class="col-12 col-md-5 offset-md-1  rounded border p-2 float-left">{{ user.email }}</p>
-                <p class="col-12 col-md-5  rounded border p-2 float-left">{{ user.phone }}</p>
-                <p class="col-12 col-md-5 offset-md-1  rounded border p-2 float-left"><a href="{{ path('gallery', {'id': user.id}) }}">voir la galerie</a></p>
-                <p class="col-12 col-md-5 rounded border p-2 float-left">système de note</p>
-                <p class="col-12 col-md-5 offset-md-1 rounded border p-2 float-left"><a href="{{ path('contactArtist', {'id': user.id}) }}">contacter</a></p>
-=======
             <div class="col-12 col-md-8 infoprofil"><span class="OCO"></span>
 
                 <p class="col-12 offset-md-3 col-md-6 rounded border p-2"><span class="OCO">Nom </span><br>{{user.username }}</p>
@@ -35,7 +23,6 @@
                 <p class="col-12 col-md-5 offset-md-1  rounded border p-2 float-left"><span class="OCO">Accès à la gallerie </span><br><a href="#">Voir la galerie</a></p>
                 <p class="col-12 col-md-5 rounded border p-2 float-left"><span class="OCO">Note de l'artiste </span><br>système de note</p>
                 <p class="col-12 col-md-5 offset-md-1 rounded border p-2 float-left"><span class="OCO">page de contact </span><br><a href="{{ path('contactArtist', {'id': user.id}) }}">contacter</a></p>
->>>>>>> d279829f4184ad192dffabecebf0f6999e1c99c2
 
             </div>
 
