@@ -28,41 +28,52 @@
 
             <div class="col-lg-6 col-sm-12 pb-4">
                 <!--Bloc de la liste des messages-->
-                <div class="col-12 bloc_list_message pt-3 mt-3">
+                <div class="col-12 bloc_list_message pt-3 mt-3" id="listemessages">
                     {#<h2>Liste des messages</h2>#}
                     <!--Bloc message-->
                     <div class="bloc_message mt-3 mx-auto">
                         <!--Bannière message-->
                         {% if conversationSelected is defined and conversationSelected is not null and conversationSelected.messages is defined and conversationSelected.messages is not null %}
                             {% for m in conversationSelected.messages %}
-                                <div class="container-fluid bg-white message_banner {% if m.author.id == app.user.id %} message_sent {% else %} message_received {% endif %}">
-                                    {#<span class="interlocutor">Interlocuteur</span>#}
-                                    {{ m.creationDate|date("d/m/Y H:i") }}
-                                </div>
-                                <!--Message-->
                                 <div>
-                                    <p class="pt-3 ">
-                                        <p class="{% if m.author.id == app.user.id %} message_sent {% else %} message_received {% endif %}">{{ m.content }}</p>
-                                    </p>
+                                    <div class="container-fluid bg-white message_banner {% if m.author.id == app.user.id %} message_sent {% else %} message_received {% endif %}">
+                                        {#<span class="interlocutor">Interlocuteur</span>#}
+                                        {{ m.creationDate|date("d/m/Y H:i") }}
+                                    </div>
+                                    <!--Message-->
+                                    <div>
+                                        <p class="">
+                                            <p class="{% if m.author.id == app.user.id %} message_sent {% else %} message_received {% endif %}">{{ m.content }}</p>
+                                        </p>
+                                    </div>
                                 </div>
                             {%  endfor %}
                         {% endif %}
 
                         <div class="container-fluid mt-5">
                             <form method="POST">
-                                {# {{ form(formMessage) }} #}
+                                 {#{{ form(formMessage) }}#}
                             </form>
                         </div>
                     </div>
-                    <!--Bloc message-->
-                    <div class="bloc_message mt-3 mx-auto">
-                        <div class="container-fluid mt-5">
-                            <div>
-                                <textarea class="form-control" id="message_response" rows="2"></textarea>
-                            </div>
-                            <div>
-                                <button type="button" class="btn btn-info btn-sm mt-3" id="sending_message_button">Envoyer</button>
-                            </div>
+                    <!--Bloc envoi nouveau message-->
+                    <div class="bloc_new_message mt-3 mx-auto">
+                        <div class="container-fluid mt-3">
+                            {% if conversationSelected is defined and conversationSelected is not null %}
+                                {{ form_start(formMessage, {'action': path('messagingSendMessage', {'id': conversationSelected.id} ), 'method': 'POST'}) }}
+                            {% else %}
+                                {{ form_start(formMessage, {'action': path('messagingPage' ), 'method': 'POST'}) }}
+                            {% endif %}
+
+                                <div>
+                                    {{ form_row(formMessage._content) }}
+                                    {#<textarea class="form-control message_response" rows="2"></textarea>#}
+                                </div>
+                                <div>
+                                    {{ form_row(formMessage.submit) }}
+                                    {#<button type="button" class="btn btn-info btn-sm mt-3 sending_message_button">Envoyer</button>#}
+                                </div>
+                            {{ form_end(formMessage) }}
                         </div>
                     </div>
                 </div>
@@ -73,4 +84,12 @@
         </p>
     </div>
 
+
 {% endblock %}
+
+ {% block javascripts %}
+     <script type="text/javascript">
+         var objDiv = document.getElementById("listemessages");
+         objDiv.scrollTop = objDiv.scrollHeight;
+     </script>
+ {% endblock %}

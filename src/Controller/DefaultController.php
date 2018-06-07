@@ -3,15 +3,22 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Entity\Messages;
 use App\Entity\Image;
+<<<<<<< HEAD
+=======
+use App\Entity\Message;
+use App\Entity\Messages;
+>>>>>>> 9834a31d0861bec3dce4becaae13c0d83d9ba144
 use App\Entity\Messaging;
 use App\Entity\AdminContact;
 use App\Entity\Conversation;
 use Webmozart\Assert\Assert;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -19,6 +26,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class DefaultController extends Controller
@@ -167,11 +175,19 @@ class DefaultController extends Controller
      */
     public function ajaxHandle(Request $request)
     {
-        $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findByCategoryField('bananes');
-        // return $this->render('default/home.html.twig');
-        // dump($users);
-        // die();
-        return $this->json($users);
+        $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategory($request->get('category_id'));
+
+        $encoder = new JsonEncoder();
+        $normalizer = new ObjectNormalizer();
+
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object->getId();
+        });
+
+        $serializer = new Serializer(array($normalizer), array($encoder));
+        $test = $serializer->serialize($users, 'json');
+        return new Response($test);
+
     }
 
 }

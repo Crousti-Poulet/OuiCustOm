@@ -17,12 +17,12 @@
             </div>
 
             <div class="col-sm-3 col-md-2 mt-1 ml-4 ml-sm-0" id="category_select">
-                <select class="form-control">
-                    <option>Catégories</option>
-                    <option>Bananes</option>
-                    <option>Instruments</option>
-                    <option>On s'en fout</option>
-                    <option>On s'en fout aussi</option>
+                <select class="form-control" name="category_id">
+                    <option value="1">Bananes</option>
+                    <option value="2">Instruments</option>
+                    <option value="3">Gravure</option>
+                    <option value="4">Vêtements</option>
+                    <option value="5">Informatique</option>
                 </select>
             </div>
 
@@ -30,19 +30,20 @@
                 <input class="form-control" type="text" name="city" placeholder="Ville / Code postal">
             </div>
             <div class="col-sm-4 offset-sm-4 col-md-1 offset-md-0 mt-1">
-                <button class="btn " type="submit">Rechercher</button>
+                <button class="btn " type="submit" id="search_submit">Rechercher</button>
             </div>
 
         </form>
 
     </div>
 
-    <div id="search_result">
-
+    <!--Block affichant le résultat de la recherche ajax-->
+    <div class="card-deck" id="search_result">
+                       
     </div>
 
     <div class="container-fluid pb-5">
-        <div class="row darkgreyzone pt-5 pb-5">
+        <div class="row darkgreyzone pt-5 pb-5" id="sub_banner">
             <div class="col-12">
                 <h2>La personnalisation d'objets, c'est <span class="OCO">OuiCustOm</span></h2>
                 <h6>Mise en relation de particuliers avec des artistes et des artisans de proximité pour transformer vos objets</h6>
@@ -122,6 +123,17 @@
         crossorigin="anonymous">
     </script>
 
+    <script>
+
+        $('#search_submit').click(function() {
+
+            $("#sub_banner").addClass("none");
+            $("#search_result").addClass("mt-4");
+            $("#search_result").addClass("mb-4");
+		})
+
+    </script>
+
     <script type="text/javascript">
         $(document).ready(function(){
             $('form').submit(function(e){
@@ -135,8 +147,22 @@
                     
                     dataType: 'json', 
                     success: function(resultJSON){
-                        $("ajax_result").append(resultJSON);
-                        console.table(resultJSON); 
+                        console.log(resultJSON);
+                        $output = '';
+
+                        $.each(resultJSON, function(id, element){
+                           $output += '<div class="card" style="width: 10rem;">' + 
+                                        '<img class="card-img-top" src="/uploads/profilPictures/' + element.profilPicture + '" alt="Card image cap">' +
+                                        '<div class="card-body">' +
+                                            '<h5 class="card-title">' + element.username +'</h5>' +
+                                            '<p class="card-text">'+ element.description +'</p>' +
+                                            '<a href="/default/profildetail/' + element.id + '" class="btn btn-primary">Voir profil</a>' +
+                                        '</div>' +
+                                        '</div>';
+                                    });
+                        
+                        $('#search_result').html($output);
+                        
                     }
                 });
             });

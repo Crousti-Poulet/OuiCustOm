@@ -38,12 +38,10 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * utilisé pour récuperer le mot de passe oublié
      */
     private $tokenpassword;
-
-
-
 
     private $plainPassword;
 
@@ -83,10 +81,7 @@ class User implements UserInterface
      */
     private $description;
 
-    /**
-     * @ORM\column(type="string", length=255, nullable=true)
-     */
-    private  $category;
+
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Conversation", inversedBy="users")
@@ -108,6 +103,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="author")
      */
     private $messages;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="users")
+     */
+    private $category;
 
     // pour éviter que l'image uploadée soit considérée comme un string
     public function __sleep()
@@ -260,17 +260,6 @@ class User implements UserInterface
     public function setDescription(string $description): self
     {
         $this->description = $description;
-        return $this;
-    }
-
-    public function getCategory(): ?string
-    {
-        return $this->category;
-    }
-
-    public function setCategory(string $category): self
-    {
-        $this->category = $category;
         return $this;
     }
 
@@ -452,6 +441,18 @@ class User implements UserInterface
     public function setTokenpassword($tokenpassword)
     {
         $this->tokenpassword = $tokenpassword;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

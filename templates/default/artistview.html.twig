@@ -10,38 +10,6 @@
     </div>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-12 offset-md-0 mb-5 bg-white rounded border">
-                <div class="artisteprofile">
-                    <h6>Votre profil :</h6>
-
-                    <p>{{ app.user.username }}</p>
-                    <p>{{ app.user.email }}</p>
-                    <p>{{ app.user.phone }}</p>
-                    <p>{{ app.user.location }}</p>
-                    <p>{{ app.user.category }}</p>
-
-                    <a class="btn btn-primary mb-3" href="{{ path('updateProfile') }}"> modifier profil</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12 col-md-8 bg-white rounded border p-2 mb-4">
-                <h6>Votre présentation</h6>
-                <p>{{ app.user.description }}</p>
-                <a href="{{ path('updateProfile') }}" class="btn btn-primary sticky-bottom">modifier votre présentations</a>
-            </div>
-
-            <div class="col-12 col-md-4 mb-4 card">
-                <!--récupère le lien de le chemin de l'image dans le dossier et renvoi sur le dossier public-->
-                <img src="{{ asset('uploads/profilPictures/' ~ app.user.profilPicture )}}" alt="photo d'utilisateur" class="card-img-top mb-2">
-                <div class="card-body">
-                    <a href="{{ path('updateProfile') }}" class="btn btn-primary">Changer votre photo</a>
-                </div>
-            </div>
-
-        </div>
 
         <div class="row">
             <div class="col-lg-8 col-md-12 mb-4 bg-white rounded border p-2">
@@ -56,43 +24,80 @@
 
             <div class="d-flex justify-content-center col-lg-4 col-md-6 col-sm-12 mb-4">
                 <div class="card" style="width: 18rem;">
-                    <img src="http://via.placeholder.com/100x180" alt="Card image cap">
+                    <img src="{{ asset('img/messagery.jpg') }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Messagerie</h5>
-                        <a href="#" class="btn btn-primary">Accès messagerie</a>
+                        <a href="{{ path('messagingPage') }}" class="btn btn-outline-light">Accès messagerie</a>
                     </div>
                 </div>
             </div>
 
             <div class="d-flex justify-content-center col-lg-4 col-md-6 col-sm-12 mb-4">
                 <div class="card" style="width: 18rem;">
-                    <img src="http://via.placeholder.com/100x180" alt="Card image cap">
+                    <img src="{{ asset('img/gallery.jpg') }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Ma galerie</h5>
-                        <a href="#" class="btn btn-primary">Modifier ou ajouter</a>
+                        <a href="#" class="btn btn-outline-light">Modifier ou ajouter</a>
                     </div>
                 </div>
             </div>
 
             <div class="d-flex justify-content-center col-lg-4 col-md-6 col-sm-12 mb-4">
                 <div class="card" style="width: 18rem;">
-                    <img src="http://via.placeholder.com/100x180" alt="Card image cap">
+                    <img src="{{ asset('img/demand_list.jpg') }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Mes demandes</h5>
-                        <a href="#" class="btn btn-primary">Liste des demandes</a>
+                        <a href="#" class="btn btn-outline-light">Liste des demandes</a>
                     </div>
                 </div>
             </div>
 
             <div class="d-flex justify-content-center col-lg-4 col-md-6 col-sm-12 mb-4">
                 <div class="card" style="width: 18rem;">
-                    <img src="http://via.placeholder.com/100x180" alt="Card image cap">
+                    <img src="{{ asset('img/offer.jpg') }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Offres</h5>
-                        <a href="#" class="btn btn-primary">Poster une offre</a>
+                        <a href="#" class="btn btn-outline-light">Poster une offre</a>
                     </div>
                 </div>
             </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-5 bg-white rounded border">
+                <div class="artisteprofile">
+                    <h6 class="pt-2">Votre profil :</h6>
+
+                    <p>{{ app.user.username }}</p>
+                    <p>{{ app.user.email }}</p>
+                    <p>{{ app.user.phone }}</p>
+                    <p>{{ app.user.location }}</p>
+                    <p>{{ app.user.category }}</p>
+
+                    <a class="btn btn-outline-dark mb-3" href="{{ path('updateProfile') }}"> modifier profil</a>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-sm-12 mb-4" id="profilimg">
+                <div class="bg-white rounded border">
+                    <!--récupère le lien de le chemin de l'image dans le dossier et renvoi sur le dossier public-->
+                    <img src="{{ asset('uploads/profilPictures/' ~ app.user.profilPicture )}}" alt="photo d'utilisateur" class="card-img-top mb-2">
+                    <a href="{{ path('updateProfile') }}" class="btn btn-outline-dark sticky-bottom mt-3 mb-3">Changer votre photo</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 bg-white rounded border p-2 mb-4">
+                <h6>Votre présentation</h6>
+                <p>{{ app.user.description }}</p>
+                <a href="{{ path('updateProfile') }}" class="btn btn-outline-dark sticky-bottom">modifier votre présentations</a>
+            </div>
+        </div>
+
+
 
         </div>
     </div>
