@@ -6,11 +6,11 @@
 {% block body %}
 
     <h1>gallerie</h1>
-
-{% for pic in ArtistGallery %}
-
-    <img src="{{ pic.link }}" alt="{{ pic.name }}">
-
-{% endfor %}
-
+    
+    {% for i in images %}
+        
+            <img src="{{ asset('uploads/gallery/' ~ i.link )}}" alt="photo d'utilisateur" class="card-img-top mb-2">
+            
+       
+    {% endfor %}
 {% endblock %}

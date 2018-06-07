@@ -37,13 +37,12 @@ class Image
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="galleries")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="Images")
      */
     private $user;
 
     public function __construct()
     {
-        $this->link = new ArrayCollection();
     }
 
 
@@ -53,6 +52,18 @@ class Image
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -67,12 +78,12 @@ class Image
         return $this;
     }
 
-    public function getLink(): ?string
+    public function getLink()
     {
         return $this->link;
     }
 
-    public function setLink(string $link): self
+    public function setLink( $link): self
     {
         $this->link = $link;
 
@@ -102,4 +113,8 @@ class Image
 
         return $this;
     }
+
+    
+
+    
 }

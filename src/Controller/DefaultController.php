@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Image;
+
+
 use App\Entity\Message;
 use App\Entity\Messages;
+
 use App\Entity\Messaging;
 use App\Entity\AdminContact;
 use App\Entity\Conversation;
@@ -45,6 +48,7 @@ class DefaultController extends Controller
         return $this->render('error/errorUser.html.twig');
     }
     //fin des pages d'erreurs
+    
     /**
      * @Route("/default/artistview", name="artistview")
      */
@@ -55,21 +59,38 @@ class DefaultController extends Controller
         }
         return $this->render('default/artistview.html.twig');
     }
-
+    // Affichage de gallerie d'artiste 
     /**
-     * @Route("/gallery", name="gallery")
+     * @Route("/gallery/{id}", name="gallery")
      */
-    public function galleryAction($id)
+    
+    public function show_gallery(User $artist)
     {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ARTISTE')) {
-            return $this->redirectToRoute('errorUser');
-        }
-        $gallery = $this->getDoctrine()
-            ->getRepository(Image::class)
-            ->find($id);
+        // if (!$this->get('security.authorization_checker')->isGranted('ROLE_ARTISTE')) {
+        //     return $this->redirectToRoute('errorUser');
+        // }
 
-        $userName = $gallery->getUser()->getUsername();
+        $images = $artist->getImages();
+        // dump($images);
+        // dump($images[1]->getId());
+        // die();
+        // $repo = $this->getDoctrine()->getRepository(Image::class);
+        // $image = $repo->find($id);
+    
+           
+        // $userName = $gallery->getUser()->getUsername();
+        if (!$images) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+        
+
+        return $this->render('gallery/gallerie.html.twig', [
+            'images' => $images
+        ]);
     }
+
 
     /**
      * @Route("/default/userview", name="userview")

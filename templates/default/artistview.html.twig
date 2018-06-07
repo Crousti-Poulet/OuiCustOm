@@ -37,7 +37,7 @@
                     <img src="{{ asset('img/gallery.jpg') }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Ma galerie</h5>
-                        <a href="#" class="btn btn-outline-light">Modifier ou ajouter</a>
+                        <a href="#" class="btn btn-outline-light">Accès Gallerie</a>
                     </div>
                 </div>
             </div>
@@ -67,12 +67,12 @@
         <div class="row">
             <div class="col-md-6 mb-5 bg-white rounded border">
                 <div class="artisteprofile">
-                    <h6 class="pt-2">Votre profil :</h6>
+                    <h5 class="pt-2">Votre profil :</h5>
 
                     <p>{{ app.user.username }}</p>
                     <p>{{ app.user.email }}</p>
                     <p>{{ app.user.phone }}</p>
-                    <p>{{ app.user.location }}</p>
+                    <p>{{ app.user.city }} {{ app.user.zipcode }}</p>
                     <p>{{ app.user.category }}</p>
 
                     <a class="btn btn-outline-dark mb-3" href="{{ path('updateProfile') }}"> modifier profil</a>

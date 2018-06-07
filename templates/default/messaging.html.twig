@@ -13,14 +13,41 @@
             <div class="col-lg-5 col-sm-12 ml-lg-5 ml-sm-0 pb-4">   
                 <!--Bloc contenant la liste des contactes-->
                 <div class="col-12 bloc_list_contact pt-3 mt-3">
-                    {#<h2>Liste des contacts</h2>#}
-                    <!--Bloc contact-->
+                    {#<h2>Liste des conversations</h2>#}
+                    <!--Bloc conversation-->
                     {% for c in conversations %}
                         <div class="bloc_contact mt-3 mx-auto {% if conversationSelected is defined and conversationSelected is not null and c.id == conversationSelected.id %} bloc_contact_selected {% endif %}">
-                            {{ c.customRequest.title }}
-                            <a href="{{ path('messagingPageConversation', {id: c.id}) }}">
-                                <img  class="conversation_image" src="{{ asset('uploads/customRequestPictures/' ~ c.customRequest.photoPath) }}" alt="photo de l'objet à customiser" class="img-responsive">
-                            </a>
+
+                            {# une conversation a 2 utilisateurs, on recherche qui est le destinataire par rapport à l'utilisateur connecté #}
+                            {% if c.users[0].id == app.user.id %}
+                                {% set idRecipient = 1 %}
+                            {% else %}
+                                {% set idRecipient = 0 %}
+                            {% endif %}
+
+                            {% if c.customRequest is defined and c.customRequest is not null %}
+                            {# la convesation concerne une demande de customisation de la part d'un particulier #}
+                                <a href="{{ path('messagingPageConversation', {id: c.id}) }}">
+                                    {{ c.users[idRecipient].username }}
+                                    <br>
+                                    {{ c.customRequest.title }}
+                                    {% if c.customRequest.photoPath is defined and c.customRequest.photoPath is not null and c.customRequest.photoPath != '' %}
+                                        <br>
+                                        <img  class="conversation_image" src="{{ asset('uploads/customRequestPictures/' ~ c.customRequest.photoPath) }}" alt="photo de l'objet à customiser" class="img-responsive">
+                                    {% endif %}
+                                </a>
+
+                            {% else %}
+                            {# conversation entre 2 utilisateurs qui ne concerne pas une demande de customisation particulière  #}
+                                <a href="{{ path('messagingPageConversation', {id: c.id}) }}">
+                                    {{ c.users[idRecipient].username }}
+                                    {% if c.users[idRecipient].profilPicture is defined and c.users[idRecipient].profilPicture is not null %}
+                                        <br>
+                                        <img  class="conversation_image" src="{{ asset('uploads/profilPictures/' ~ c.users[idRecipient].profilPicture) }}" alt="photo de profil de l'artiste" class="img-responsive">
+                                    {% endif %}
+                                </a>
+                            {% endif %}
+
                         </div>
                     {%  endfor %}
                 </div>
