@@ -50,21 +50,35 @@ class SecurityController extends Controller
                             ])                                           
                         ] ,            
                     ]) 
-                     ->add('location',TextType::class,[
+                     ->add('city',TextType::class,[
                         'required'    => true,
                         'constraints' => [
                             new Length( [
-                                'min' => 3,
-                                'max' => 20,
-                                'minMessage' => "Minimum 3 caractères",
-                                'maxMessage' => "Maximum 20 caractères"
+                                'min' => 2,
+                                'max' => 50,
+                                'minMessage' => "Minimum 2 caractères",
+                                'maxMessage' => "Maximum 50 caractères"
                             ]),
                             new NotBlank( [
                                 'message' => "La ville est obligatoire"
                             ])                                           
                         ] ,            
-                    ])     
-                     ->add('email', EmailType::class,[
+                    ])
+                    ->add('zipcode',TextType::class,[
+                        'required'    => true,
+                        'constraints' => [
+                            new Length( [
+                                'min' => 5,
+                                'max' => 5,
+                                'minMessage' => "Minimum 5 caractères",
+                                'maxMessage' => "Maximum 5 caractères"
+                            ]),
+                            new NotBlank( [
+                                'message' => "Le code postal est obligatoire"
+                            ])
+                        ] ,
+                    ])
+            ->add('email', EmailType::class,[
                         'required'    => true,
                         'constraints' => [
                             new Email( [

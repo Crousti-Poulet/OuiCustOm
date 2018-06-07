@@ -193,19 +193,52 @@ class DefaultController extends Controller
      */
     public function ajaxHandle(Request $request)
     {
-        $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategory($request->get('category_id'));
+        if(null!==($request->get('category_id')) && ''!==($request->get('category_id'))  && null!==($request->get('city')) && ''!==($request->get('city'))) {
+            
+            // dump($request);
+            // die();
 
-        $encoder = new JsonEncoder();
-        $normalizer = new ObjectNormalizer();
+            $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategoryAndCity($request->get('category_id'), $request->get('city'));
 
-        $normalizer->setCircularReferenceHandler(function ($object) {
-            return $object->getId();
-        });
+            $encoder = new JsonEncoder();
+            $normalizer = new ObjectNormalizer();
+
+            $normalizer->setCircularReferenceHandler(function ($object) {
+                return $object->getId();
+
+            });
+
+        }
+        elseif ((null!==($request->get('category_id')) && ''!==($request->get('category_id'))) || (null!==($request->get('city')) && ''!==($request->get('city')))) {
+
+            if(null!==($request->get('city')) && ''!==($request->get('city'))) {
+
+                $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCity($request->get('city'));
+    
+                $encoder = new JsonEncoder();
+                $normalizer = new ObjectNormalizer();
+    
+                $normalizer->setCircularReferenceHandler(function ($object) {
+                    return $object->getId();
+                });
+
+            } 
+            elseif (null!==($request->get('category_id')) && ''!==($request->get('category_id'))) {
+                
+                $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategory($request->get('category_id'));
+
+                $encoder = new JsonEncoder();
+                $normalizer = new ObjectNormalizer();
+    
+                $normalizer->setCircularReferenceHandler(function ($object) {
+
+                    return $object->getId();
+                });
+            }
+        }
 
         $serializer = new Serializer(array($normalizer), array($encoder));
         $test = $serializer->serialize($users, 'json');
-        return new Response($test);
-
+        return new Response($test);     
     }
-
 }

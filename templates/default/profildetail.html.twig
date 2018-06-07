@@ -11,6 +11,7 @@
 
     <div class="container">
         <div class="row">
+<<<<<<< HEAD
             <div class="col-12 col-md-8 infoprofil">
 
                 <p class="col-12 offset-md-3 col-md-6 rounded border p-2">{{user.username }}</p>
@@ -22,11 +23,24 @@
                 <p class="col-12 col-md-5 offset-md-1  rounded border p-2 float-left"><a href="{{ path('gallery', {'id': user.id}) }}">voir la galerie</a></p>
                 <p class="col-12 col-md-5 rounded border p-2 float-left">système de note</p>
                 <p class="col-12 col-md-5 offset-md-1 rounded border p-2 float-left"><a href="{{ path('contactArtist', {'id': user.id}) }}">contacter</a></p>
+=======
+            <div class="col-12 col-md-8 infoprofil"><span class="OCO"></span>
+
+                <p class="col-12 offset-md-3 col-md-6 rounded border p-2"><span class="OCO">Nom </span><br>{{user.username }}</p>
+                <p class="col-12 col-md-5 rounded border p-2 float-left"><span class="OCO">Catégorie </span><br>{{ user.category }}</p>
+                <p class="col-12 col-md-5 offset-md-1 rounded border p-2 float-left"><span class="OCO">Ville </span><br>{{ user.city }} {{ user.zipcode }}</p>
+                <p class="col-12 col-md-5 rounded border p-2 float-left"><span class="OCO">Inscrit le  </span><br>{{ user.creationDate|date("d/m/y") }}</p>
+                <p class="col-12 col-md-5 offset-md-1  rounded border p-2 float-left"><span class="OCO">Email </span><br>{{ user.email }}</p>
+                <p class="col-12 col-md-5  rounded border p-2 float-left"><span class="OCO">Téléphone </span><br>{{ user.phone }}</p>
+                <p class="col-12 col-md-5 offset-md-1  rounded border p-2 float-left"><span class="OCO">Accès à la gallerie </span><br><a href="#">Voir la galerie</a></p>
+                <p class="col-12 col-md-5 rounded border p-2 float-left"><span class="OCO">Note de l'artiste </span><br>système de note</p>
+                <p class="col-12 col-md-5 offset-md-1 rounded border p-2 float-left"><span class="OCO">page de contact </span><br><a href="{{ path('contactArtist', {'id': user.id}) }}">contacter</a></p>
+>>>>>>> d279829f4184ad192dffabecebf0f6999e1c99c2
 
             </div>
 
             <div class="col-12 col-md-4 mb-4 d-flex align-items-center">
-                <img class="rounded-circle" src="{{ asset('uploads/profilPictures/' ~ user.profilPicture )}}" alt="photo d'utilisateur" class="card-img-top mb-2" alt="photo d'utilisateur">
+                <img class="rounded-circle" id="profilimg" src="{{ asset('uploads/profilPictures/' ~ user.profilPicture )}}" alt="photo d'utilisateur" class="card-img-top mb-2" alt="photo d'utilisateur">
             </div>
         </div>
 
