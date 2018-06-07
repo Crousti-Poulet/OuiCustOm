@@ -1,0 +1,41 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %}Envoyer un message{% endblock %}
+
+{% block body %}
+
+    <h1 class="display-4 mt-5">Envoyer un message à {{ recipient.username }}</h1>
+
+    <!--MAIN-->
+    <div class="container mx-auto mb-5 pt-4 mt-4" id="bloc_page_messaging">
+        <div class="row">
+
+            <div class="col-lg-6 col-sm-12 pb-4">
+                <!--Bloc de la liste des messages-->
+                <div class="col-12 bloc_list_message pt-3 mt-3" id="listemessages">
+
+                    <!--Bloc envoi nouveau message-->
+                    <div class="bloc_contact_new_message mt-3 mx-auto">
+                        <div class="container-fluid mt-3">
+
+                            {{ form_start(formMessage) }}
+                                <div>
+                                    {# on réutilise la form message de la messagerie mais avec un textarea plus grand #}
+                                    {{ form_row(formMessage._content, {'attr': {'rows': '10'}}) }}
+                                </div>
+                                <div>
+                                    {{ form_row(formMessage.submit) }}
+                                </div>
+                            {{ form_end(formMessage) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <P class="pb-4" id="my_space_link">
+            <a href="#" class="badge badge-pill badge-dark p-3">Retour à l'espace personnel</a>
+        </p>
+    </div>
+
+
+{% endblock %}
