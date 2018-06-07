@@ -37,7 +37,7 @@
                     <img src="{{ asset('img/gallery.jpg') }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Ma galerie</h5>
-                        <a href="#" class="btn btn-outline-light">Accès Gallerie</a>
+                        <a href="{{ path('gallery', {'id': app.user.id}) }}" class="btn btn-outline-light">Accès Gallerie</a>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                 <div class="card" style="width: 18rem;">
                     <img src="{{ asset('img/demand_list.jpg') }}" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Mes demandes</h5>
+                        <h5 class="card-title">Demande de Custom</h5>
                         <a href="#" class="btn btn-outline-light">Liste des demandes</a>
                     </div>
                 </div>

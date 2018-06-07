@@ -15,7 +15,8 @@
 
             {{ form_row(formUser.email, {'attr' : { 'placeholder' : "monadresse@mail.com"}, 'label': 'Adresse email'}) }}
             {{ form_row(formUser.username,   {'attr' : { 'placeholder' : " 20 caratères max"}, 'label': 'Pseudo'}  ) }}
-            {{ form_row(formUser.location,   {'attr' : { 'placeholder' : "20 caractères max"}, 'label': 'Ville'} ) }}
+            {{ form_row(formUser.city,   {'attr' : { 'placeholder' : "50 caractères max"}, 'label': 'Ville'} ) }}
+            {{ form_row(formUser.zipcode,   {'attr' : { 'placeholder' : "5 caractères"}, 'label': 'Code postal'} ) }}
 
             {{ form_row(formUser.plainPassword.first) }}
             {{ form_row(formUser.plainPassword.second) }}
