@@ -19,7 +19,7 @@
                 <p class="col-12 col-md-5 rounded border p-2 float-left"><span class="OCO">Inscrit le  </span><br>{{ user.creationDate|date("d/m/y") }}</p>
                 <p class="col-12 col-md-5 offset-md-1  rounded border p-2 float-left"><span class="OCO">Email </span><br>{{ user.email }}</p>
                 <p class="col-12 col-md-5  rounded border p-2 float-left"><span class="OCO">Téléphone </span><br>{{ user.phone }}</p>
-                <p class="col-12 col-md-5 offset-md-1  rounded border p-2 float-left"><span class="OCO">Accès à la gallerie </span><br><a href="#">Voir la galerie</a></p>
+                <p class="col-12 col-md-5 offset-md-1  rounded border p-2 float-left"><span class="OCO">Accès à la gallerie </span><br><a href="{{ path('gallery', {'id': user.id}) }}">Voir la galerie</a></p>
                 <p class="col-12 col-md-5 rounded border p-2 float-left"><span class="OCO">Note de l'artiste </span><br>système de note</p>
                 <p class="col-12 col-md-5 offset-md-1 rounded border p-2 float-left"><span class="OCO">page de contact </span><br><a href="{{ path('contactArtist', {'id': user.id}) }}">contacter</a></p>
 
