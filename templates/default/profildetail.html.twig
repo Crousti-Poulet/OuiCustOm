@@ -15,7 +15,7 @@
 
                 <p class="col-12 offset-md-3 col-md-6 rounded border p-2">{{user.username }}</p>
                 <p class="col-12 col-md-5 rounded border p-2 float-left">{{ user.category }}</p>
-                <p class="col-12 col-md-5 offset-md-1 rounded border p-2 float-left">{{ user.location }}</p>
+                <p class="col-12 col-md-5 offset-md-1 rounded border p-2 float-left">{{ user.city }} {{ user.zipcode }}</p>
                 <p class="col-12 col-md-5 rounded border p-2 float-left">Inscrit le {{ user.creationDate|date("d/m/y") }}</p>
                 <p class="col-12 col-md-5 offset-md-1  rounded border p-2 float-left">{{ user.email }}</p>
                 <p class="col-12 col-md-5  rounded border p-2 float-left">{{ user.phone }}</p>

@@ -33,7 +33,8 @@ class UpdateController extends Controller
         $form = $this->createFormBuilder($user) // on CREE et CONFIGURE le form grace a createFormBuilder qui sera lié a $user
         ->add('username')
             ->add('email')
-            ->add('location')
+            ->add('city')
+            ->add('zipcode')
             ->add('phone')
             ->add('description')
             ->add('category')
