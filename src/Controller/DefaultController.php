@@ -4,11 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Image;
-
-
 use App\Entity\Message;
 use App\Entity\Messages;
-
 use App\Entity\Messaging;
 use App\Entity\AdminContact;
 use App\Entity\Conversation;
@@ -48,7 +45,6 @@ class DefaultController extends Controller
         return $this->render('error/errorUser.html.twig');
     }
     //fin des pages d'erreurs
-    
     /**
      * @Route("/default/artistview", name="artistview")
      */
@@ -59,38 +55,21 @@ class DefaultController extends Controller
         }
         return $this->render('default/artistview.html.twig');
     }
-    // Affichage de gallerie d'artiste 
+
     /**
-     * @Route("/gallery/{id}", name="gallery")
+     * @Route("/gallery", name="gallery")
      */
-    
-    public function show_gallery(User $artist)
+    public function galleryAction($id)
     {
-        // if (!$this->get('security.authorization_checker')->isGranted('ROLE_ARTISTE')) {
-        //     return $this->redirectToRoute('errorUser');
-        // }
-
-        $images = $artist->getImages();
-        // dump($images);
-        // dump($images[1]->getId());
-        // die();
-        // $repo = $this->getDoctrine()->getRepository(Image::class);
-        // $image = $repo->find($id);
-    
-           
-        // $userName = $gallery->getUser()->getUsername();
-        if (!$images) {
-            throw $this->createNotFoundException(
-                'No product found for id '.$id
-            );
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ARTISTE')) {
+            return $this->redirectToRoute('errorUser');
         }
-        
+        $gallery = $this->getDoctrine()
+            ->getRepository(Image::class)
+            ->find($id);
 
-        return $this->render('gallery/gallerie.html.twig', [
-            'images' => $images
-        ]);
+        $userName = $gallery->getUser()->getUsername();
     }
-
 
     /**
      * @Route("/default/userview", name="userview")
@@ -189,13 +168,15 @@ class DefaultController extends Controller
      * @Route("/ajax_handle", name="ajaxHandle")
      */
     public function ajaxHandle(Request $request)
-    {
-        if(null!==($request->get('category_id')) && ''!==($request->get('category_id'))  && null!==($request->get('city')) && ''!==($request->get('city'))) {
-            
+    {   
+        //Si les champs catégorie, ville et code postal sont remplis
+        if(null!==($request->get('category_id')) && ''!==($request->get('category_id'))  && null!==($request->get('city')) 
+        && ''!==($request->get('city')) && null!==($request->get('zipcode')) && ''!==($request->get('zipcode'))) {
+
             // dump($request);
             // die();
 
-            $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategoryAndCity($request->get('category_id'), $request->get('city'));
+            $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategoryAndCityAndZipcode($request->get('category_id'), $request->get('city'), $request->get('zipcode'));
 
             $encoder = new JsonEncoder();
             $normalizer = new ObjectNormalizer();
@@ -204,36 +185,56 @@ class DefaultController extends Controller
                 return $object->getId();
 
             });
-
         }
-        elseif ((null!==($request->get('category_id')) && ''!==($request->get('category_id'))) || (null!==($request->get('city')) && ''!==($request->get('city')))) {
+        //Si seuls les champs catégorie et code postal ou seuls les champs catégorie et ville sont remplis 
+        elseif(null!==(($request->get('category_id')) && ''!==($request->get('category_id'))  && null!==($request->get('city')) && ''!==($request->get('city'))) 
+        || null!==(($request->get('category_id')) && ''!==($request->get('category_id'))  && null!==($request->get('zipcode')) && ''!==($request->get('zipcode'))) ) {
 
-            if(null!==($request->get('city')) && ''!==($request->get('city'))) {
+            //Si seuls les champs catégorie et code postal sont remplis
+            if(null!==($request->get('category_id')) && ''!==($request->get('category_id')) && null!==($request->get('zipcode')) && ''!==($request->get('zipcode'))) {
 
-                $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCity($request->get('city'));
-    
+                $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategoryAndZipcode($request->get('category_id'), $request->get('zipcode'));
+
                 $encoder = new JsonEncoder();
                 $normalizer = new ObjectNormalizer();
-    
+
                 $normalizer->setCircularReferenceHandler(function ($object) {
                     return $object->getId();
-                });
+
+            });
 
             } 
-            elseif (null!==($request->get('category_id')) && ''!==($request->get('category_id'))) {
-                
-                $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategory($request->get('category_id'));
+            //Si seuls les champs catégorie et ville sont remplis
+            elseif (null!==($request->get('category_id')) && ''!==($request->get('category_id')) && null!==($request->get('city')) && ''!==($request->get('city'))) {
+
+                // dump($request);
+                // die();
+
+                $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategoryAndCity($request->get('category_id'), $request->get('city'));
 
                 $encoder = new JsonEncoder();
                 $normalizer = new ObjectNormalizer();
-    
+
                 $normalizer->setCircularReferenceHandler(function ($object) {
-
                     return $object->getId();
-                });
-            }
-        }
 
+                });   
+            }
+            //Si seul le champ catégorie est rempli
+            elseif (null!==($request->get('category_id')) && ''!==($request->get('category_id'))) {
+                
+            $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategory($request->get('category_id'));
+
+            $encoder = new JsonEncoder();
+            $normalizer = new ObjectNormalizer();
+
+            $normalizer->setCircularReferenceHandler(function ($object) {
+                    return $object->getId();
+
+                });
+            }    
+        } 
+        
         $serializer = new Serializer(array($normalizer), array($encoder));
         $test = $serializer->serialize($users, 'json');
         return new Response($test);     
