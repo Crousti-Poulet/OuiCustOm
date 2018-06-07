@@ -32,7 +32,7 @@ class DefaultController extends Controller
      * @Route("/", name="homePage") 
      */
     public function homeAction(Request $request)
-    {
+    {   
         return $this->render('default/home.html.twig');
     }
 
@@ -57,7 +57,7 @@ class DefaultController extends Controller
     }
 
 
-
+    
     // Affichage de gallerie d'artiste 
     /**
      * @Route("/gallery", name="gallery")
@@ -174,6 +174,7 @@ class DefaultController extends Controller
      */
     public function ajaxHandle(Request $request)
     {   
+
         //Si les champs catégorie, ville et code postal sont remplis
         if(null!==($request->get('category_id')) && ''!==($request->get('category_id'))  && null!==($request->get('city')) 
         && ''!==($request->get('city')) && null!==($request->get('zipcode')) && ''!==($request->get('zipcode'))) {

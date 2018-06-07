@@ -156,12 +156,12 @@
                         $output = '';
 
                         $.each(resultJSON, function(id, element){
-                           $output += '<div class="card" style="max-width: 200px;">' + 
+                           $output += '<div class="card mt-3 mb-3" id="search_card" style="max-width: 200px;">' + 
                                         '<img class="card-img-top" src="/uploads/profilPictures/' + element.profilPicture + '" alt="Card image cap">' +
-                                        '<div class="card-body">' +
+                                        '<div class="card-body mt-1 mb-1">' +
                                             '<h5 class="card-title">' + element.username +'</h5>' +
-                                            '<p class="card-text">'+ element.description +'</p>' +
-                                            '<a href="/default/profildetail/' + element.id + '" class="btn btn-primary">Voir profil</a>' +
+                                            '<p class="card-text text-truncate">'+ element.description +'</p>' +
+                                            '<a href="/default/profildetail/' + element.id + '" class="btn btn-outline-light">Voir profil</a>' +
                                         '</div>' +
                                         '</div>';
                                     });
