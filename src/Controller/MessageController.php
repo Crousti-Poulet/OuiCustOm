@@ -17,7 +17,7 @@ class MessageController extends Controller
 //     * @Route("/contact/customRequest/{id}", name="contactUserCustomRequest")
 
     /**
-     * @Route("/contact/Artist/{id}", name="contactArtist")
+     * @Route("/contact/artist/{id}", name="contactArtist")
      * Envoyer un nouveau message à un artiste ou à un particulier concernant sa demande
      */
     public function contactArtist(Request $request, User $artist)
