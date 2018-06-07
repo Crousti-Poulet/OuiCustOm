@@ -19,7 +19,6 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-
     public function findAllByCategory($category)
             {
                 return $this->createQueryBuilder('u')
@@ -41,6 +40,16 @@ class UserRepository extends ServiceEntityRepository
                 return $qb->execute();
             }
 
+    public function findAllByZipcode($zipcode)
+            {
+                $qb = $this->createQueryBuilder('u')
+                    ->andWhere('u.zipcode = :zipcode')
+                    ->setParameter('zipcode', $zipcode)
+                    ->getQuery();
+
+                return $qb->execute();
+            }
+
     public function findAllByCategoryAndCity($category, $city)
             {
                 return $this->createQueryBuilder('u')
@@ -52,7 +61,37 @@ class UserRepository extends ServiceEntityRepository
                     ->getQuery()
                     ->getResult()
                     ;
-                    
+
+            }
+
+    public function findAllByCategoryAndZipcode($category, $zipcode)
+            {
+                return $this->createQueryBuilder('u')
+                    ->join('u.category', 'c')
+                    ->andWhere('c.id = :category')
+                    ->setParameter('category', $category)
+                    ->andWhere('u.zipcode = :zipcode')
+                    ->setParameter('zipcode', $zipcode)
+                    ->getQuery()
+                    ->getResult()
+                    ;
+
+            }
+
+    public function findAllByCategoryAndCityAndZipcode($category, $city, $zipcode)
+            {
+                return $this->createQueryBuilder('u')
+                    ->join('u.category', 'c')
+                    ->andWhere('c.id = :category')
+                    ->setParameter('category', $category)
+                    ->andWhere('u.city = :city')
+                    ->setParameter('city', $city)
+                    ->andWhere('u.zipcode = :zipcode')
+                    ->setParameter('zipcode', $zipcode)
+                    ->getQuery()
+                    ->getResult()
+                    ;
+
             }
     // /**
     //  * @return User[] Returns an array of User objects
