@@ -24,6 +24,15 @@ class CustomRequestController extends Controller
     }
 
     /**
+     * @Route("/customrequest/detail/{id}", name="custom_request_detail")
+     */
+    public function detailCustomRequest(CustomRequest $customRequest)
+    {
+            return $this->render('/custom_request/detail.html.twig', [
+                'custom_request' => $customRequest
+            ]);
+    }
+    /**
      * @Route("/customrequest/create", name="custom_request_create")
      */
     public function createCustomRequest(Request $request)
