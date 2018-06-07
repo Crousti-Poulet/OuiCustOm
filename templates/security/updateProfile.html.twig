@@ -14,7 +14,8 @@
                 {{form_start(updateProfile, {'attr' : { 'novalidate' : 'true'}}) }}
 
                 {{ form_row(updateProfile.username,   {'attr' : { 'placeholder' : "pseudo utilisateur"}, 'label': 'Pseudo'}  ) }}
-                {{ form_row(updateProfile.location,   {'attr' : { 'placeholder' : "ville"}, 'label': 'Ville'} ) }}
+                {{ form_row(updateProfile.city,   {'attr' : { 'placeholder' : "ville"}, 'label': 'Ville'} ) }}
+                {{ form_row(updateProfile.zipcode,   {'attr' : { 'placeholder' : "42..."}, 'label': 'code postal'} ) }}
                 {{ form_row(updateProfile.email, {'attr' : { 'placeholder' : "monadress@mail.com"}}) }}
                 {{ form_row(updateProfile.category, {'attr' : { 'placeholder' : "catégorie / spécialité", 'label': 'Catégorie / Spécialité'}}) }}
                 {{ form_row(updateProfile.phone, {'attr' : { 'placeholder' : "06....", 'label': 'Numéro de téléphone'}}) }}

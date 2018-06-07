@@ -25,6 +25,12 @@ main{
   background-size: cover;
   
 }
+
+.formCustom{
+  background: url("../../public/img/background1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 /*vue artiste*/
 .artistbanner{
   background: url("../img/banner1.jpg");
@@ -424,11 +430,23 @@ footer .col-4{
   border: solid white 3px;
 }
 
+// bloc d'envoi de message dans une conversation existante
 .bloc_new_message
 {
   width: 90%;
   min-width: 200px;
   min-height: 100px;
+  background-color: lightgray;
+  border-radius: 10px;
+  border: solid white 3px;
+}
+
+// bloc d'envoi de message initial
+.bloc_contact_new_message
+{
+  width: 90%;
+  min-width: 200px;
+  min-height: 290px;
   background-color: lightgray;
   border-radius: 10px;
   border: solid white 3px;

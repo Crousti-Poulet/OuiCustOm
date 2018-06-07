@@ -27,7 +27,7 @@ class Message
     private $creationDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Conversation", inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Conversation", inversedBy="messages", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $conversation;

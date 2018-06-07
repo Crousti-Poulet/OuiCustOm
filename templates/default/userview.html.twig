@@ -12,11 +12,11 @@
         <div class="row">
             <div class="col-lg-4 col-lg-4 col-sm-12 mb-4 bg-white rounded border">
                 <div class="artisteprofile">
-                    <h6>Votre profil :</h6>
+                    <h5>Votre profil :</h5>
 
                     <p>{{ app.user.username }}</p>
                     <p>{{ app.user.email }}</p>
-                    <p>{{ app.user.location }}</p>
+                    <p>{{ app.user.city }} {{ app.user.zipcode }}</p>
 
                     <a class="btn btn-outline-dark mb-3" href="{{ path('updateUserProfile') }}"> modifier profil</a>
                 </div>
@@ -27,7 +27,7 @@
                     <img src="{{ asset('img/messagery.jpg') }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Messagerie</h5>
-                        <a href="#" class="btn btn-outline-light">Accès messagerie</a>
+                        <a href="{{ path('messagingPage') }}" class="btn btn-outline-light">Accès messagerie</a>
                     </div>
                 </div>
             </div>
