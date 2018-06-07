@@ -56,12 +56,9 @@ class DefaultController extends Controller
         return $this->render('default/artistview.html.twig');
     }
 
-<<<<<<< HEAD
-=======
 
 
     // Affichage de gallerie d'artiste 
->>>>>>> 10b1a85178d2139affd45c7af8fcc976a16b34a9
     /**
      * @Route("/gallery", name="gallery")
      */
@@ -74,13 +71,9 @@ class DefaultController extends Controller
             ->getRepository(Image::class)
             ->find($id);
 
-<<<<<<< HEAD
-        $userName = $gallery->getUser()->getUsername();
-=======
         return $this->render('gallery/gallery.html.twig', [
             'images' => $images
         ]);
->>>>>>> 10b1a85178d2139affd45c7af8fcc976a16b34a9
     }
 
     /**
