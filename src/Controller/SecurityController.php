@@ -135,7 +135,7 @@ class SecurityController extends Controller
             $manager->persist($user); //on demande au manager de se preparer a faire persister l'article
             $manager->flush();           //on demande au manager de lancer la requete
             $this->addFlash('success', 'Votre compte à bien été créé.');
-            return $this->redirectToRoute('homePage');
+            return $this->redirectToRoute('security_login');
         }
 
         return $this->render('security/registration.html.twig',[

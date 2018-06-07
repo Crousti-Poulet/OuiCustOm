@@ -49,6 +49,8 @@ class DefaultController extends Controller
     }
     //fin des pages d'erreurs
     
+
+    // Affiche le Dashboard de l'artiste connecté.
     /**
      * @Route("/default/artistview", name="artistview")
      */
