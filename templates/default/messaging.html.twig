@@ -1,18 +1,17 @@
 {% extends 'base_front.html.twig' %}
 
-{% block title %}Messagerie{% endblock %}
+{% block title %}OuiCustOm : Messagerie{% endblock %}
 
 {% block body %}
 
-    <h1 class="display-4 mt-5">Messagerie</h1>
-
     <!--MAIN-->
-    <div class="container mx-auto mb-5 pt-4 mt-4" id="bloc_page_messaging">
+    <div class="container-fluid" id="bloc_page_messaging">
+        <h1 class="pt-2 pb-2">Messagerie</h1>
         <div class="row">
 
-            <div class="col-lg-5 col-sm-12 ml-lg-5 ml-sm-0 pb-4">   
+            <div class="col-12 col-md-4 offset-md-1 pb-4">
                 <!--Bloc contenant la liste des contactes-->
-                <div class="col-12 bloc_list_contact pt-3 mt-3">
+                <div class="bloc_list_contact pt-3 mt-3"">
                     {#<h2>Liste des conversations</h2>#}
                     <!--Bloc conversation-->
                     {% for c in conversations %}
@@ -32,7 +31,6 @@
                                     <br>
                                     {{ c.customRequest.title }}
                                     {% if c.customRequest.photoPath is defined and c.customRequest.photoPath is not null and c.customRequest.photoPath != '' %}
-                                        <br>
                                         <img  class="conversation_image" src="{{ asset('uploads/customRequestPictures/' ~ c.customRequest.photoPath) }}" alt="photo de l'objet à customiser" class="img-responsive">
                                     {% endif %}
                                 </a>
@@ -42,7 +40,7 @@
                                 <a href="{{ path('messagingPageConversation', {id: c.id}) }}">
                                     {{ c.users[idRecipient].username }}
                                     {% if c.users[idRecipient].profilPicture is defined and c.users[idRecipient].profilPicture is not null %}
-                                        <br>
+
                                         <img  class="conversation_image" src="{{ asset('uploads/profilPictures/' ~ c.users[idRecipient].profilPicture) }}" alt="photo de profil de l'artiste" class="img-responsive">
                                     {% endif %}
                                 </a>
@@ -55,7 +53,7 @@
 
             <div class="col-lg-6 col-sm-12 pb-4">
                 <!--Bloc de la liste des messages-->
-                <div class="col-12 bloc_list_message pt-3 mt-3" id="listemessages">
+                <div class="col-12 bloc_list_message pt-3 mt-3 rounded" id="listemessages">
                     {#<h2>Liste des messages</h2>#}
                     <!--Bloc message-->
                     <div class="bloc_message mt-3 mx-auto">
@@ -63,7 +61,7 @@
                         {% if conversationSelected is defined and conversationSelected is not null and conversationSelected.messages is defined and conversationSelected.messages is not null %}
                             {% for m in conversationSelected.messages %}
                                 <div>
-                                    <div class="container-fluid bg-white message_banner {% if m.author.id == app.user.id %} message_sent {% else %} message_received {% endif %}">
+                                    <div class="container-fluid bg-white {% if m.author.id == app.user.id %} message_sent {% else %} message_received {% endif %}">
                                         {#<span class="interlocutor">Interlocuteur</span>#}
                                         {{ m.creationDate|date("d/m/Y H:i") }}
                                     </div>
@@ -98,7 +96,7 @@
                                 </div>
                                 <div>
                                     {{ form_row(formMessage.submit) }}
-                                    {#<button type="button" class="btn btn-info btn-sm mt-3 sending_message_button">Envoyer</button>#}
+                                    {#<button type="button" class="btn btn-sm mt-3 sending_message_button">Envoyer</button>#}
                                 </div>
                             {{ form_end(formMessage) }}
                         </div>
@@ -111,12 +109,10 @@
         </p>
     </div>
 
+    <script type="text/javascript">
+        var objDiv = document.getElementById("listemessages");
+        objDiv.scrollTop = objDiv.scrollHeight;
+    </script>
 
 {% endblock %}
 
- {% block javascripts %}
-     <script type="text/javascript">
-         var objDiv = document.getElementById("listemessages");
-         objDiv.scrollTop = objDiv.scrollHeight;
-     </script>
- {% endblock %}

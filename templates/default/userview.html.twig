@@ -1,43 +1,43 @@
 {% extends 'base_front.html.twig' %}
 
-{% block title %}{{ app.user.username }}{% endblock %}
+{% block title %} OuiCustOm : {{ app.user.username }}{% endblock %}
 
 {% block body %}
 
     <div class="container-fluid artistbanner mb-5 d-flex align-items-center d-flex justify-content-center">
-        <h1>votre espace personnel</h1>
+        <h1>Mon espace personnel</h1>
     </div>
 
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-lg-4 col-sm-12 mb-4 bg-white rounded border">
                 <div class="artisteprofile">
-                    <h5>Votre profil :</h5>
+                    <h5>Mon profil :</h5>
 
                     <p>{{ app.user.username }}</p>
                     <p>{{ app.user.email }}</p>
                     <p>{{ app.user.city }} {{ app.user.zipcode }}</p>
 
-                    <a class="btn btn-outline-dark mb-3" href="{{ path('updateUserProfile') }}"> modifier profil</a>
+                    <a class="btn btn-outline-dark mb-3" href="{{ path('updateUserProfile') }}"> Modifier mon profil</a>
                 </div>
             </div>
 
             <div class="d-flex justify-content-center col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="card" style="width: 18rem;">
+                <div class="card  cardArtistView" style="width: 18rem;">
                     <img src="{{ asset('img/messagery.jpg') }}" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Messagerie</h5>
-                        <a href="{{ path('messagingPage') }}" class="btn btn-outline-light">Accès messagerie</a>
+                        {#<h5 class="card-title">Mes messages</h5>#}
+                        <a href="{{ path('messagingPage') }}" class="btn btn-outline-light btn-lg">Mes messages</a>
                     </div>
                 </div>
             </div>
 
             <div class="d-flex justify-content-center col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div class="card" style="width: 18rem;">
+                <div class="card cardArtistView" style="width: 18rem;">
                     <img src="{{ asset('img/demand_list.jpg') }}" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Mes demandes</h5>
-                        <a href="{{ path('custom_request_list') }}" class="btn btn-outline-light">Accès à mes demandes</a>
+                        {#<h5 class="card-title">Mes demandes</h5>#}
+                        <a href="{{ path('custom_request_list') }}" class="btn btn-outline-light btn-lg">Mes demandes</a>
                     </div>
                 </div>
             </div>
