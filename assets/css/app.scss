@@ -515,9 +515,22 @@ footer .col-4{
 
 #my_space_link
 {
- font-size: 1.2em;
+  font-size: 1.2em;
   margin-bottom: 0;
 }
+
+#my_space_link a
+{
+  color: #FF8914;
+  transition: 1s;
+}
+
+#my_space_link a:hover
+  {
+    background-color: white;
+    color: black;
+    transition: 1s;
+  }
 
 .message_banner
 {
@@ -577,11 +590,20 @@ footer .col-4{
 }
 
 
-#message_form_submit{
+#message_form_submit
+{
   border: none;
   float: right;
   background:#2E3233 ;
   color: #FF8914;
+  transition: 1s;
+}
+
+#message_form_submit:hover
+{
+  background-color: white;
+  color: black;
+  transition: 1s;
 }
 
 // classe au lieu d'id car l'ID est généré automatiquement dans le form builder

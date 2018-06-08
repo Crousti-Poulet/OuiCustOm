@@ -85,9 +85,9 @@
                     <div class="bloc_new_message mt-3 mx-auto">
                         <div class="container-fluid mt-3">
                             {% if conversationSelected is defined and conversationSelected is not null %}
-                                {{ form_start(formMessage, {'action': path('messagingSendMessage', {'id': conversationSelected.id} ), 'method': 'POST'}) }}
-                            {% else %}
-                                {{ form_start(formMessage, {'action': path('messagingPage' ), 'method': 'POST'}) }}
+
+                                {{ form_start(formMessage, {'action': path('messagingSendMessage', {'id': conversationSelected.id} ), 'method': 'POST'}) }}       
+                                                   
                             {% endif %}
 
                                 <div>
@@ -105,7 +105,7 @@
             </div>
         </div>
         <P class="pb-4" id="my_space_link">
-            <a href="#" class="badge badge-pill badge-dark p-3">Retour à l'espace personnel</a>
+            <a href="{{ path('artistview') }}" class="badge badge-pill badge-dark p-3">Retour à l'espace personnel</a>
         </p>
     </div>
 
