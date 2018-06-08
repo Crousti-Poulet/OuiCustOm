@@ -32,7 +32,7 @@ class DefaultController extends Controller
      * @Route("/", name="homePage") 
      */
     public function homeAction(Request $request)
-    {
+    {   
         return $this->render('default/home.html.twig');
     }
 
@@ -59,34 +59,21 @@ class DefaultController extends Controller
         return $this->render('default/artistview.html.twig');
     }
 
-
-
     // Affichage de gallerie d'artiste 
     /**
      * @Route("/gallery/{id}", name="gallery")
      */
-    
     public function show_gallery(User $artist)
     {
-        // if (!$this->get('security.authorization_checker')->isGranted('ROLE_ARTISTE')) {
-        //     return $this->redirectToRoute('errorUser');
-        // }
 
         $images = $artist->getImages();
-        // dump($images);
-        // dump($images[1]->getId());
-        // die();
-        // $repo = $this->getDoctrine()->getRepository(Image::class);
-        // $image = $repo->find($id);
-    
            
         // $userName = $gallery->getUser()->getUsername();
         if (!$images) {
             throw $this->createNotFoundException(
-                'No product found for id '.$id
+                'Cet artisan n\a pas encore ajouté de photos'
             );
         }
-        
 
         return $this->render('gallery/gallery.html.twig', [
             'images' => $images
@@ -193,6 +180,7 @@ class DefaultController extends Controller
     {
 
             // si aucun champ de recherche n'est rempli, tous les artisans sont affichés
+            // la requête SQL est construite en fonction des champs renseignés
             $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByText($request->get('search'), $request->get('category_id'), $request->get('city'), $request->get('zipcode'));
 
             $encoder = new JsonEncoder();
@@ -268,9 +256,7 @@ class DefaultController extends Controller
 
         $serializer = new Serializer(array($normalizer), array($encoder));
 
-        $test = $serializer->serialize($users, 'json');
-//        dump($users);
-//        die();
-        return new Response($test);     
+        $res = $serializer->serialize($users, 'json');
+        return new Response($res);
     }
 }

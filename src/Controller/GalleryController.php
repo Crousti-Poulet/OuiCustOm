@@ -22,6 +22,7 @@ class GalleryController extends Controller
 {
     /**
      * @Route("/addPicture", name="addPicture")
+     * 
      */
 
     public function addPictureArtiste(Request $request, ObjectManager $manager)
@@ -120,4 +121,6 @@ class GalleryController extends Controller
         // uniqid(), which is based on timestamps
         return md5(uniqid());
     }
+
+    
 }
