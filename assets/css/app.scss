@@ -572,6 +572,14 @@ footer .col-4{
 
 //////////////////Page d'accueil ajax/////////////////////////////////////
 
+#search_submit:hover
+{
+  background-color: #2E3233!important;
+  color: #FF8914;
+  border-color: white!important;
+  font-weight: bold;
+}
+
 #search_result
 {
   // max-width: 80%;
