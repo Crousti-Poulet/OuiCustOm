@@ -3,31 +3,31 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <div class="banner container-fluid pb-5">
+    <div class="banner container-fluid">
 
-    <h1 class="pb-5 pt-4">Faites de VOS objets du quotidien des pièces uniques</h1>
+    <h1 class="pb-3 pt-3">Faites de VOS objets du quotidien des pièces uniques</h1>
 
         {#{{ form_start(formSearch) }}#}
         <form class="form-row d-flex justify-content-center" action="" method="post">
-            <div class="col-sm-3 col-md-2 mt-1 ml-4 ml-sm-0 offset-sm-1 offset-md-2 " id="category_select">
+            <div class="col-sm-8 col-md-2 mt-1 ml-4 ml-sm-0 offset-sm-1 offset-md-2 " id="category_select">
                 {{ form_row(formSearch.category_id) }}
             </div>
-            <div class="col-sm-4  col-md-2 mt-1 ">
+            <div class="col-sm-8  col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0 ">
                 <input class="form-control" type="text" name="search" placeholder="Recherche">
             </div>
 
-            <div class="col-sm-4 col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0">
+            <div class="col-sm-8 col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0">
                 <input class="form-control" type="text" name="city" placeholder="Ville">
             </div>
 
-            <div class="col-sm-4 offset-sm-2 col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0">
+            <div class="col-sm-8 offset-sm-2 col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0">
                 <input class="form-control" type="text" name="zipcode" placeholder="Code postal">
             </div>
 
-            <div class="col-sm-2 col-md-12 mt-md-4 mt-1">
+            <div class="col-sm-8 col-md-12 mt-md-4 mt-1">
                 <button class="btn" type="submit" id="search_submit">Trouver un customiseur !</button>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <a href="{{ path('custom_request_create') }}" class="btn" role="button" id="link_new_customrequest" aria-pressed="true">Poster une demande de customisation</a>
+                    <a href="{{ path('custom_request_create') }}" class="btn mt-1" role="button" id="link_new_customrequest" aria-pressed="true">Poster une demande de customisation</a>
                 {% endif %}
 
             </div>
