@@ -59,27 +59,6 @@ class DefaultController extends Controller
         return $this->render('default/artistview.html.twig');
     }
 
-    // Affichage de gallerie d'artiste 
-    /**
-     * @Route("/gallery/{id}", name="gallery")
-     */
-    public function show_gallery(User $artist)
-    {
-
-        $images = $artist->getImages();
-           
-        // $userName = $gallery->getUser()->getUsername();
-        if (!$images) {
-            throw $this->createNotFoundException(
-                'Cet artisan n\a pas encore ajouté de photos'
-            );
-        }
-
-        return $this->render('gallery/gallery.html.twig', [
-            'images' => $images
-        ]);
-    }
-
     /**
      * @Route("/default/userview", name="userview")
      */
