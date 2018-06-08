@@ -61,15 +61,18 @@ h1
   max-height: 150px;
 }
 
-
-#profilimg{
-  max-height: 210px;
-  img{
-    max-height: 210px;
-  }
-}
 .artisteprofile ul{
   list-style: none;
+}
+
+#artisteprofil
+{
+  min-height: 335px;
+}
+
+#presentation
+{
+  min-height: 335px;
 }
 
 div .btn-outline-dark:hover{
@@ -585,6 +588,7 @@ footer .col-4{
   opacity: 0.8;
   transition: 1s;
   font-size: 1.1em;
+  font-weight: bold;
 }
 
 #search_submit:hover

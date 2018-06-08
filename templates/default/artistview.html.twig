@@ -11,18 +11,9 @@
 
     <div class="container">
 
-        <div class="row">
-            <div class="col-lg-8 col-md-12 mb-4 bg-white rounded border p-2">
-                <h6>vos derniers messages</h6>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-
-            <div class="d-flex justify-content-center col-lg-4 col-md-6 col-sm-12 mb-4">
+        <div class="row w-100">
+            
+            <div class="d-flex justify-content-center col-lg-3 col-md-6 col-sm-12 mb-4">
                 <div class="card cardArtistView" style="width: 18rem;">
                     <img src="{{ asset('img/messagery.jpg') }}" alt="Card image cap">
                     <div class="card-body">
@@ -32,7 +23,7 @@
                 </div>
             </div>
 
-            <div class="d-flex justify-content-center col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="d-flex justify-content-center col-lg-3 col-md-6 col-sm-12 mb-4">
                 <div class="card cardArtistView" style="width: 18rem;">
                     <img src="{{ asset('img/gallery.jpg') }}" alt="Card image cap">
                     <div class="card-body">
@@ -42,7 +33,7 @@
                 </div>
             </div>
 
-            <div class="d-flex justify-content-center col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="d-flex justify-content-center col-lg-3 col-md-6 col-sm-12 mb-4">
                 <div class="card cardArtistView" style="width: 18rem;">
                     <img src="{{ asset('img/demand_list.jpg') }}" alt="Card image cap">
                     <div class="card-body">
@@ -52,7 +43,7 @@
                 </div>
             </div>
 
-            <div class="d-flex justify-content-center col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="d-flex justify-content-center col-lg-3 col-md-6 col-sm-12 mb-4">
                 <div class="card cardArtistView" style="width: 18rem;">
                     <img src="{{ asset('img/offer.jpg') }}" alt="Card image cap">
                     <div class="card-body">
@@ -65,9 +56,9 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6 mb-5 bg-white rounded border">
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-lg-5 mb-md-3 mb-sm-3 bg-white rounded border">
                 <div class="artisteprofile">
-                    <h5 class="pt-2">Votre profil :</h5>
+                    <h5 class="pt-2">Mon profil :</h5>
 
                     <p>{{ app.user.username }}</p>
                     <p>{{ app.user.email }}</p>
@@ -75,31 +66,24 @@
                     <p>{{ app.user.city }} {{ app.user.zipcode }}</p>
                     <p>{{ app.user.category }}</p>
 
-                    <a class="btn btn-outline-dark mb-3" href="{{ path('updateProfile') }}"> modifier profil</a>
+                    <a class="btn btn-outline-dark mb-3" href="{{ path('updateProfile') }}"> Modifier profil</a>
                 </div>
             </div>
 
-
-            <div class="col-md-6 col-sm-12 mb-4" id="profilimg">
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-3" id="profilimg">
                 <div class="bg-white rounded border">
                     <!--récupère le lien de le chemin de l'image dans le dossier et renvoi sur le dossier public-->
                     <img src="{{ asset('uploads/profilPictures/' ~ app.user.profilPicture ) | imagine_filter('my_thumb' )}}" alt="photo d'utilisateur" class="card-img-top mb-2">
-                    <a href="{{ path('updateProfile') }}" class="btn btn-outline-dark sticky-bottom mt-3 mb-3">Changer votre photo</a>
+                    <a href="{{ path('updateProfile') }}" class="btn btn-outline-dark sticky-bottom mt-3 mb-3">Changer ma photo</a>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-12 bg-white rounded border p-2 mb-4">
-                <h6>Votre présentation</h6>
+            <div class="col-lg-6 col-md-12 col-sm-12 bg-white rounded border p-2 mb-5" id="presentation">
+                <h6>Ma présentation</h6>
                 <p>{{ app.user.description }}</p>
-                <a href="{{ path('updateProfile') }}" class="btn btn-outline-dark sticky-bottom">modifier votre présentations</a>
+                <a href="{{ path('updateProfile') }}" class="btn btn-outline-dark sticky-bottom">Modifier ma présentation</a>
             </div>
-        </div>
-
-
-
-        </div>
+        </div> 
     </div>
 
 {% endblock %}
