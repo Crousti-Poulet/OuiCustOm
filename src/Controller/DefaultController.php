@@ -59,34 +59,21 @@ class DefaultController extends Controller
         return $this->render('default/artistview.html.twig');
     }
 
-
-    
     // Affichage de gallerie d'artiste 
     /**
      * @Route("/gallery/{id}", name="gallery")
      */
-    
     public function show_gallery(User $artist)
     {
-        // if (!$this->get('security.authorization_checker')->isGranted('ROLE_ARTISTE')) {
-        //     return $this->redirectToRoute('errorUser');
-        // }
 
         $images = $artist->getImages();
-        // dump($images);
-        // dump($images[1]->getId());
-        // die();
-        // $repo = $this->getDoctrine()->getRepository(Image::class);
-        // $image = $repo->find($id);
-    
            
         // $userName = $gallery->getUser()->getUsername();
         if (!$images) {
             throw $this->createNotFoundException(
-                'No product found for id '.$id
+                'Cet artisan n\a pas encore ajouté de photos'
             );
         }
-        
 
         return $this->render('gallery/gallery.html.twig', [
             'images' => $images
@@ -190,74 +177,86 @@ class DefaultController extends Controller
      * @Route("/ajax_handle", name="ajaxHandle")
      */
     public function ajaxHandle(Request $request)
-    {   
+    {
 
-        //Si les champs catégorie, ville et code postal sont remplis
-        if(null!==($request->get('category_id')) && ''!==($request->get('category_id'))  && null!==($request->get('city')) 
-        && ''!==($request->get('city')) && null!==($request->get('zipcode')) && ''!==($request->get('zipcode'))) {
-
-            dump($request);
-            die();
-
-            $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategoryAndCityAndZipcode($request->get('category_id'), $request->get('city'), $request->get('zipcode'));
+            // si aucun champ de recherche n'est rempli, tous les artisans sont affichés
+            // la requête SQL est construite en fonction des champs renseignés
+            $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByText($request->get('search'), $request->get('category_id'), $request->get('city'), $request->get('zipcode'));
 
             $encoder = new JsonEncoder();
             $normalizer = new ObjectNormalizer();
-
+            $normalizer->setIgnoredAttributes(array('category','customRequestsCreated','customRequestsAssigned','conversations','images','messages'));
             $normalizer->setCircularReferenceHandler(function ($object) {
                 return $object->getId();
 
             });
-        }
-        //Si seuls les champs catégorie et code postal ou seuls les champs catégorie et ville sont remplis 
-        elseif((null!==$request->get('category_id') && ''!==$request->get('category_id')  && null!==$request->get('city') && ''!==$request->get('city') )
-        || (null!==$request->get('category_id') && ''!==$request->get('category_id')  && null!==$request->get('zipcode') && ''!==$request->get('zipcode') ) 
-        || (null!==($request->get('category_id')) && ''!==($request->get('category_id')))) {
-            
-            //Si seuls les champs catégorie et code postal sont remplis
-            if(null!==$request->get('category_id') && ''!==$request->get('category_id') && null!==$request->get('zipcode') && ''!==$request->get('zipcode')) {         
+//        }
 
-                $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategoryAndZipcode($request->get('category_id'), $request->get('zipcode'));
+//        //Si les champs catégorie, ville et code postal sont remplis
+//        elseif(null!==($request->get('category_id')) && ''!==($request->get('category_id'))  && null!==($request->get('city'))
+//        && ''!==($request->get('city')) && null!==($request->get('zipcode')) && ''!==($request->get('zipcode'))) {
+//
+//            $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategoryAndCityAndZipcode($request->get('category_id'), $request->get('city'), $request->get('zipcode'));
+//
+//            $encoder = new JsonEncoder();
+//            $normalizer = new ObjectNormalizer();
+//
+//            $normalizer->setCircularReferenceHandler(function ($object) {
+//                return $object->getId();
+//
+//            });
+//        }
+//        //Si seuls les champs catégorie et code postal ou seuls les champs catégorie et ville sont remplis
+//        elseif((null!==$request->get('category_id') && ''!==$request->get('category_id')  && null!==$request->get('city') && ''!==$request->get('city') )
+//        || (null!==$request->get('category_id') && ''!==$request->get('category_id')  && null!==$request->get('zipcode') && ''!==$request->get('zipcode') )
+//        || (null!==($request->get('category_id')) && ''!==($request->get('category_id')))) {
+//
+//            //Si seuls les champs catégorie et code postal sont remplis
+//            if(null!==$request->get('category_id') && ''!==$request->get('category_id') && null!==$request->get('zipcode') && ''!==$request->get('zipcode')) {
+//
+//                $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategoryAndZipcode($request->get('category_id'), $request->get('zipcode'));
+//
+//                $encoder = new JsonEncoder();
+//                $normalizer = new ObjectNormalizer();
+//
+//                $normalizer->setCircularReferenceHandler(function ($object) {
+//                    return $object->getId();
+//
+//            });
+//
+//            }
+//            //Si seuls les champs catégorie et ville sont remplis
+//            elseif (null!==($request->get('category_id')) && ''!==($request->get('category_id')) && null!==($request->get('city')) && ''!==($request->get('city'))) {
+//
+//                $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategoryAndCity($request->get('category_id'), $request->get('city'));
+//
+//                $encoder = new JsonEncoder();
+//                $normalizer = new ObjectNormalizer();
+//
+//                $normalizer->setCircularReferenceHandler(function ($object) {
+//                    return $object->getId();
+//
+//                });
+//            }
+//            //Si seul le champ catégorie est rempli
+//            elseif (null!==($request->get('category_id')) && ''!==($request->get('category_id'))) {
+//
+//            $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategory($request->get('category_id'));
+//
+//            $encoder = new JsonEncoder();
+//            $normalizer = new ObjectNormalizer();
+//
+//            $normalizer->setCircularReferenceHandler(function ($object) {
+//                    return $object->getId();
+//
+//                });
+//            }
 
-                $encoder = new JsonEncoder();
-                $normalizer = new ObjectNormalizer();
 
-                $normalizer->setCircularReferenceHandler(function ($object) {
-                    return $object->getId();
 
-            });
-
-            } 
-            //Si seuls les champs catégorie et ville sont remplis
-            elseif (null!==($request->get('category_id')) && ''!==($request->get('category_id')) && null!==($request->get('city')) && ''!==($request->get('city'))) {
-
-                $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategoryAndCity($request->get('category_id'), $request->get('city'));
-
-                $encoder = new JsonEncoder();
-                $normalizer = new ObjectNormalizer();
-
-                $normalizer->setCircularReferenceHandler(function ($object) {
-                    return $object->getId();
-
-                });   
-            }
-            //Si seul le champ catégorie est rempli
-            elseif (null!==($request->get('category_id')) && ''!==($request->get('category_id'))) {
-
-            $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByCategory($request->get('category_id'));
-
-            $encoder = new JsonEncoder();
-            $normalizer = new ObjectNormalizer();
-
-            $normalizer->setCircularReferenceHandler(function ($object) {
-                    return $object->getId();
-
-                });
-            }    
-        } 
-        
         $serializer = new Serializer(array($normalizer), array($encoder));
-        $test = $serializer->serialize($users, 'json');
-        return new Response($test);     
+
+        $res = $serializer->serialize($users, 'json');
+        return new Response($res);
     }
 }

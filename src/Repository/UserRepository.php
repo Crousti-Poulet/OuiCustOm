@@ -65,34 +65,75 @@ class UserRepository extends ServiceEntityRepository
             }
 
     public function findAllByCategoryAndZipcode($category, $zipcode)
-            {
-                return $this->createQueryBuilder('u')
-                    ->join('u.category', 'c')
-                    ->andWhere('c.id = :category')
-                    ->setParameter('category', $category)
-                    ->andWhere('u.zipcode = :zipcode')
-                    ->setParameter('zipcode', $zipcode)
-                    ->getQuery()
-                    ->getResult()
-                    ;
+    {
+        return $this->createQueryBuilder('u')
+            ->join('u.category', 'c')
+            ->andWhere('c.id = :category')
+            ->setParameter('category', $category)
+            ->andWhere('u.zipcode = :zipcode')
+            ->setParameter('zipcode', $zipcode)
+            ->getQuery()
+            ->getResult()
+            ;
 
-            }
+    }
+
+    // recherche incluant le champ de texte libre
+    public function findAllByText($text, $category, $city, $zipcode)
+    {
+        $entityManager = $this->getEntityManager();
+
+        if($text == null){$text='';}
+
+        // si le champ de recherche texte libre est vide, retourne tous les artisans
+        $sql ="SELECT u FROM App\Entity\User u JOIN App\Entity\Category c WHERE u.role LIKE '%s:12:\"ROLE_ARTISTE\";%' AND (u.username LIKE :text1 OR u.description LIKE :text2)";
+        $param=['text1' => '%' . $text . '%', 'text2' => '%' . $text . '%'];
+
+        if($category != null && $category != '')
+        {
+            $sql.= " AND u.category = :category";
+            $param['category'] = $category;
+        }
+
+        if($city != null && $city != '')
+        {
+            $sql.= " AND u.city = :city";
+            $param['city'] = $city;
+        }
+
+        if($zipcode != null && $zipcode != '')
+        {
+            $sql.= " AND u.zipcode = :zipcode";
+            $param['zipcode'] = $zipcode;
+        }
+
+        $query = $entityManager->createQuery($sql)->setParameters($param);
+//
+//        dump($query);
+//        dump($param);
+//        die();
+
+        // returns an array of Conversation objects
+        return $query->execute();
+    }
 
     public function findAllByCategoryAndCityAndZipcode($category, $city, $zipcode)
-            {
-                return $this->createQueryBuilder('u')
-                    ->join('u.category', 'c')
-                    ->andWhere('c.id = :category')
-                    ->setParameter('category', $category)
-                    ->andWhere('u.city = :city')
-                    ->setParameter('city', $city)
-                    ->andWhere('u.zipcode = :zipcode')
-                    ->setParameter('zipcode', $zipcode)
-                    ->getQuery()
-                    ->getResult()
-                    ;
+    {
+        return $this->createQueryBuilder('u')
+            ->join('u.category', 'c')
+            ->andWhere('c.id = :category')
+            ->setParameter('category', $category)
+            ->andWhere('u.city = :city')
+            ->setParameter('city', $city)
+            ->andWhere('u.zipcode = :zipcode')
+            ->setParameter('zipcode', $zipcode)
+            ->getQuery()
+            ->getResult()
+            ;
 
-            }
+    }
+
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
