@@ -46,7 +46,7 @@
 
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li class="nav-item">
-                        <a class="nav-link text-white text-center mr-3" id="nav-link-login" href="{{ path('messagingPage') }}"> <i class="fas fa-comments"></i>  Messages</a>
+                        <a class="nav-link text-white text-center" id="nav-link-messages" href="{{ path('messagingPage') }}"> <i class="fas fa-comments"></i>  Messages</a>
                     </li>
                 {% endif %}
 
@@ -54,11 +54,14 @@
 
                 {% if is_granted('ROLE_ARTISTE') %}
 
+                    <li class="nav-item">
+                        <a class="nav-link text-white text-center" id="nav-link-customrequests" href="{{ path('custom_request_list_new') }}"> <i class="fas fa-bullhorn"></i>  Demandes</a>
+                    </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white text-center mon_compte" data-toggle="dropdown" href="#"  aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"> </i> {{ app.user.username }}</a>
                         <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
                             <a class="dropdown-item" href="{{ path('artistview') }}"><i class="fas fa-cogs"></i>  Mon compte</a>
-                            <a class="dropdown-item" href="{{ path('messagingPage') }}"><i class="fas fas fa-comments"></i>  Messages </a>
                             <a class="dropdown-item" href="{{ path('gallery', {'id': app.user.id}) }}"><i class="fas fa-images"></i>  Ma galerie </a>
                             <a class="dropdown-item" href="{{ path('custom_request_list_assigned') }}"><i class="fas far fa-handshake"></i>  Demandes acceptées </a>
                             <div class="dropdown-divider"></div>
@@ -71,10 +74,6 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white text-center mon_compte" data-toggle="dropdown" href="#"  aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"> </i> {{ app.user.username }} </a>
                         <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
-
-
-
-
 
                             <a class="dropdown-item" href="{{ path('userview') }}"><i class="fas fa-cogs"></i>  Mon compte</a>
                             <a class="dropdown-item" href="{{ path('custom_request_list') }}"><i class="fas far fa-handshake"></i>  Mes demandes</a>
@@ -111,7 +110,6 @@
                         <a class="nav-link text-white text-center mr-3" id="nav-link-login" href="{{ path('security_login') }}"> <i class="fas fa-sign-in-alt"></i>  Connexion</a>
                     </li>
                 {% endif %}
-
 
             </ul>
         </div>
