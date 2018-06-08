@@ -1,19 +1,18 @@
 {% extends 'base_front.html.twig' %}
 
-
-{% block title %}gallerie{% endblock %}
+{% block title %}OuiCustOm : Galerie customiseur{% endblock %}
 
 {% block body %}
 
-<h1 class="mt-3">Galerie</h1>
-<div class="container bg-white mt-4 mb-4 pt-5 pb-5">    
-    
+<h1 class="mt-3">Galerie de {{ artist.username }}</h1>
+<div class="container bg-white mt-4 mb-4 pt-5 pb-5">
     
     {% for i in images %}
 
-            <img src="{{ asset('uploads/gallery/' ~ i.link ) | imagine_filter('my_thumb') }}" alt="image de la galerie" class=" col-2 mb-3 mt-3 img_gallery">
-            
-       
+        <img src="{{ asset('uploads/gallery/' ~ i.link ) | imagine_filter('my_thumb') }}" alt="image de la galerie de l'artiste" class=" col-2 mb-3 mt-3 img_gallery">
+        {% if is_granted('ROLE_ARTISTE') %}
+            <a href="{{ path('remove_image_gallery', {id: i.id}) }}">X</a>
+        {% endif %}
     {% endfor %}
     {% if is_granted('ROLE_ARTISTE') %}
             <a href="{{ path('addPicture')  }}"> <img src="{{ asset('img/add_img.png') | imagine_filter('my_thumb')  }}" alt="picto d'ajout d'image" class=" col-2 mb-3 mt-3"> </a>

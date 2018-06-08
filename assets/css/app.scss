@@ -13,6 +13,14 @@ main{
   min-height: 70vh;
 }
 
+h1
+{
+  font-family: 'Cabin Sketch', 'arial', sans-serif;
+  font-weight: bold;
+  font-size: 3.1em;
+  // color: #D39E00;
+}
+
 *
 {
   -webkit-box-sizing: border-box;
@@ -575,9 +583,20 @@ footer .col-4{
 
 //////////////////Page d'accueil ajax/////////////////////////////////////
 
-#search_result
+#search_submit
 {
-  // max-width: 80%;
+  opacity: 0.8;
+  transition: 1s;
+  font-size: 1.1em;
+}
+
+#search_submit:hover
+{
+  opacity: 1;
+}
+
+#search_result
+{ 
   height: auto;
   padding: auto;
 }
@@ -601,11 +620,14 @@ footer .col-4{
 #search_card a
 {
   color :#FF8914;
+  background-color: #2E3233;
+  border-color: white;
 }
 
 #search_card a:hover
 {
   color:black !important;
+  background-color: white;
 }
 
 //////////////////Fin de page d'accueil ajax//////////////////////////////

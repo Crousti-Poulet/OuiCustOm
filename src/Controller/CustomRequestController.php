@@ -13,10 +13,24 @@ class CustomRequestController extends Controller
 {
     /**
      * @Route("/customrequest/list", name="custom_request_list")
+     * demandes créées par l'utilisateur connecté
      */
     public function listCustomRequestsByUserLoggedIn()
     {
         $custom_requests = $this->getDoctrine()->getManager()->getRepository(CustomRequest::class)->findAllByUser($this->getUser());
+        return $this->render('/custom_request/list.html.twig', [
+            'custom_requests' => $custom_requests,
+            'title' => 'Mes demandes de customisation'
+        ]);
+    }
+
+    /**
+     * @Route("/customrequest/list/assigned", name="custom_request_list_assigned")
+     * demandes affectées à un artisan connecté
+     */
+    public function listCustomRequestsByArtistLoggedIn()
+    {
+        $custom_requests = $this->getDoctrine()->getManager()->getRepository(CustomRequest::class)->findAllByUserAssignedTo($this->getUser());
         return $this->render('/custom_request/list.html.twig', [
             'custom_requests' => $custom_requests,
             'title' => 'Mes demandes de customisation'
