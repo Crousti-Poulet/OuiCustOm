@@ -85,55 +85,58 @@
         <div class="row darkgreyzone d-flex justify-content-center pt-5 pb-5">
             
             <a href="{{path('registrationPage')}}" class="col-sm-8 col-md-4 btn btn_register_home texte-white" role="button" aria-pressed="true">Inscrivez-vous</a>
-        </div>     
+        </div>   
+        
+        
+        <h3 class="left text-center mt-3 mb-3"> Mise en lumière</h5>
 
-        <div class="row">
-            <div class="col-sm-12 col-md-8">
-                <div class="grid" id="gridcolor">
-                    <div class="grid-sizer"></div>
-                    <div class="grid-item">
-                        <img src="http://via.placeholder.com/350x150">
-                    </div>
-                    <div class="grid-item">
-                        <img src="http://via.placeholder.com/350x200">
-                    </div>
-                    <div class="grid-item">
-                        <img src="http://via.placeholder.com/350x300">
-                    </div>
-                    <div class="grid-item">
-                        <img src="http://via.placeholder.com/350x150">
-                    </div>
-                    <div class="grid-item">
-                        <img src="http://via.placeholder.com/350x150">
-                    </div>
-                    <div class="grid-item">
-                        <img src="http://via.placeholder.com/350x150">
+
+        <div class="container">
+
+            <div class="row col-md-12 d-flex align-items-center">
+              
+                    <div class="col-sm-12 col-md-8 ">
+                        <img src="{{ asset('img/brushes.jpg') | imagine_filter('thumb_2') }}" class="mt-2  col-sm-5 col-md-5"  >
+                        <img src="{{ asset('img/brushes.jpg') | imagine_filter('thumb_2') }}"  class="mt-2  col-sm-5 col-md-5" >
+                        <img src="{{ asset('img/brushes.jpg') | imagine_filter('thumb_2') }}" class="mt-2  col-sm-5 col-md-5"  >
+                        <img src="{{ asset('img/brushes.jpg') | imagine_filter('thumb_2') }}" class="mt-2  col-sm-5 col-md-5"  >
+                    </div>  
+                    
+             
+
+                <div class="col-12 col-md-4  mt-5 mt-md-0 d-flex justify-content-center align-items-center">
+                    <div class="card mt-6 " style="width: 18rem;">
+                        <a class="mt-2" href="https://placeholder.com"><img src="http://via.placeholder.com/250x150"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">Nom artiste</h5>
+                            <p class="card-text">Some quick example text to buiityuityityuityuityuiityuititiuld on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                        <ul class="list-group list-group-flush" id="list">
+                            <li class="list-group-item">info1</li>
+                            <li class="list-group-item">info2</li>
+                            <li class="list-group-item">info2</li>
+                          
+                        </ul>
+                        
                     </div>
                 </div>
 
+               
+                    
+                   
+
+
             </div>
 
-            <div class="col-6 col-md-3 offset-md-0">
-                <h5 class="left">Notre selection du jour</h5>
-                <div class="card mt-4" style="width: 18rem;">
-                    <a class="mt-2" href="https://placeholder.com"><img src="http://via.placeholder.com/250x150"></a>
-                    <div class="card-body">
-                        <h5 class="card-title">Nom artiste</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush" id="list">
-                        <li class="list-group-item">info1</li>
-                        <li class="list-group-item">info2</li>
-                        <li class="list-group-item">info3</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                </div>
+    
+
+            <div class="col-6 col-md-12 d-flex justify-content-center">
+                
+               
             </div>
+
         </div>
-    </div>
+   
 
     <script
         src="https://code.jquery.com/jquery-3.3.1.js"
