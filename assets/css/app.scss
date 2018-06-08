@@ -104,7 +104,7 @@ div .btn-outline-dark:hover{
 /*----help page---*/
 
 .helpbanner{
-  background: url("../img/banner2.jpg");
+  background: url("../img/banner1.jpg");
   background-size: cover;
   height: 200px;
   color: #FF8914;
@@ -380,47 +380,59 @@ footer .col-4{
 
 #bloc_page_messaging
 {
-  background-color: white;
-  box-shadow: 2px 2px 2px 2px #000000;
+  background: url("../img/messagebg.jpg");
+  h1{
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+  }
+
+}
+
+#listemessages{
+  background-color: #2E3233E6;
+  border-radius: 5px;
+  background-position: fixed;
 }
 
 .bloc_list_contact
 {
   min-width: 350px;
   height: 550px;
-  background-color:lightblue;
+  background-color:#2E3233E6;
   padding-bottom: 20px;
   margin-bottom: 30px;
   border-radius: 5px;
-  box-shadow: 2px 2px 2px 2px #000000;
 }
 
 .bloc_contact
 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 90%;
   min-width: 200px;
   height: 100px;
-  background-color: lightgray;
+  background-color: #d3d3d399;
   border-radius: 10px;
-  border: solid white 3px;
+  a{
+    color: white;
+  }
 }
 
 .bloc_contact_selected
 {
-  background-color: gray;
+  background-color: #9b8163cc;
   border-radius: 10px;
-  border: solid black 3px;
+  border: solid #FF8914 2px;
 }
 
 .bloc_list_message
 {
   min-width: 450px;
   height: 550px;
-  //background-color: lightblue;
   padding-bottom: 20px;
-  border-radius: 5px;
-  box-shadow: 2px 2px 2px 2px #000000;
-  overflow: scroll;  
+  overflow: scroll;
+  border-radius: 10px;
 }
 
 .bloc_message
@@ -428,9 +440,9 @@ footer .col-4{
   width: 90%;
   min-width: 200px;
   min-height: 190px;
-  background-color: lightgray;
+  background-color: #fcefd9;
   border-radius: 10px;
-  border: solid white 3px;
+  border: solid #FF8914 2px;
 }
 
 // bloc d'envoi de message dans une conversation existante
@@ -439,9 +451,9 @@ footer .col-4{
   width: 90%;
   min-width: 200px;
   min-height: 100px;
-  background-color: lightgray;
+  background-color: #fcefd9;
   border-radius: 10px;
-  border: solid white 3px;
+  border: solid #FF8914 2px;
 }
 
 // bloc d'envoi de message initial
@@ -452,7 +464,7 @@ footer .col-4{
   min-height: 290px;
   background-color: lightgray;
   border-radius: 10px;
-  border: solid white 3px;
+  border: solid #FF8914 2px;
 }
 
 #form__message
@@ -463,12 +475,18 @@ footer .col-4{
 #my_space_link
 {
  font-size: 1.2em;
+  margin-bottom: 0;
 }
 
 .message_banner
 {
-  height: 25px;
-  border-radius: 7px 7px 0px 0px;
+  background: url("../img/message-banner.jpg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+  height: 100px;
 }
 
 .interlocutor
@@ -483,15 +501,25 @@ footer .col-4{
 
 // messages envoyés alignés à droite
 // ATTENTION : pas de float, ça fait n'importe quoi !
+/*.linkmessage{
+  color: #2E3233;
+}*/
+
+
 .message_sent
 {
   text-align: right;
+  padding-right: 7px;
+  border-radius: 10px;
+
 }
 
 // messages reçus alignés à gauche
 .message_received
 {
   text-align: left;
+  padding-left: 7px;
+  border-radius: 10px;
 }
 
 .message_sending
@@ -502,12 +530,17 @@ footer .col-4{
 .conversation_image
 {
   width: auto;
-  height: 80px;
+  height: 50px;
+  border-radius: 5px;
+  margin-left: 7px;
 }
 
-.sending_message_button
-{
+
+#message_form_submit{
+  border: none;
   float: right;
+  background:#2E3233 ;
+  color: #FF8914;
 }
 
 // classe au lieu d'id car l'ID est généré automatiquement dans le form builder
