@@ -12,6 +12,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class CustomRequestController extends Controller
 {
+
+    /**
+     * @Route("/customrequest/list/new", name="custom_request_list_new")
+     * demandes de tous les utilisateurs à l'état "créée"
+     * visibles uniquement par les artistes
+     */
+    public function listNewCustomRequests()
+    {
+        $custom_requests = $this->getDoctrine()->getManager()->getRepository(CustomRequest::class)->findAllByStatus(CustomRequest::STATUS_EN_ATTENTE);
+        return $this->render('/custom_request/list.html.twig', [
+            'custom_requests' => $custom_requests,
+            'title' => 'Demandes à attribuer'
+        ]);
+    }
+
     /**
      * @Route("/customrequest/list", name="custom_request_list")
      * demandes créées par l'utilisateur connecté
@@ -34,7 +49,7 @@ class CustomRequestController extends Controller
         $custom_requests = $this->getDoctrine()->getManager()->getRepository(CustomRequest::class)->findAllByUserAssignedTo($this->getUser());
         return $this->render('/custom_request/list.html.twig', [
             'custom_requests' => $custom_requests,
-            'title' => 'Mes demandes de customisation'
+            'title' => 'Mes customisations à réaliser'
         ]);
     }
 

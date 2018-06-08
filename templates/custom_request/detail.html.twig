@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-8 bg-white rounded border">
                 <h4>{{ custom_request.title }} </h4>
-                <h4>Catégorie {{ custom_request.category }}</h4>
+                <h4>Catégorie : {{ custom_request.category }}</h4>
                 <p>{{ custom_request.description }}</p>
             </div>
 
@@ -27,7 +27,7 @@
                 <a class="btn btn-outline-dark" href="{{ path('contactUserCustomRequest', {'id': custom_request.id}) }}">Contacter le demandeur</a>
             </div>
             <div class="col-sm-10 offset-sm-1 col-md-4 offset-md-0 pt-2">
-                <a class="btn btn-outline-dark" href="#">Se proposer</a>
+                <a class="btn btn-outline-dark" href="{{ path('custom_request_accept', {'id': custom_request.id}) }}">Se proposer</a>
             </div>
             {#<div class="col-sm-10 offset-sm-1 col-md-4 offset-md-0 pt-2">#}
                 {#<a class="btn btn-outline-dark" href="{{ path('artistview') }}">Retour au profil</a>#}
