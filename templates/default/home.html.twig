@@ -154,18 +154,24 @@
                     success: function(resultJSON){
                         console.log(resultJSON);
                         $output = '';
+                        if(resultJSON == null || resultJSON == '')
+                        {
+                            $output += '<p>Aucun artisan ne correspond à votre recherche</p>';
+                        }
+                        else
+                        {
+                            $.each(resultJSON, function (id, element) {
+                                $output += '<div class="card" style="max-width: 200px;">' +
+                                    '<img class="card-img-top" src="/uploads/profilPictures/' + element.profilPicture + '" alt="Card image cap">' +
+                                    '<div class="card-body">' +
+                                    '<h5 class="card-title">' + element.username + '</h5>' +
+                                    '<p class="card-text">' + element.description + '</p>' +
+                                    '<a href="/default/profildetail/' + element.id + '" class="btn btn-primary">Voir profil</a>' +
+                                    '</div>' +
+                                    '</div>';
+                            });
+                        }
 
-                        $.each(resultJSON, function(id, element){
-                           $output += '<div class="card" style="max-width: 200px;">' + 
-                                        '<img class="card-img-top" src="/uploads/profilPictures/' + element.profilPicture + '" alt="Card image cap">' +
-                                        '<div class="card-body">' +
-                                            '<h5 class="card-title">' + element.username +'</h5>' +
-                                            '<p class="card-text">'+ element.description +'</p>' +
-                                            '<a href="/default/profildetail/' + element.id + '" class="btn btn-primary">Voir profil</a>' +
-                                        '</div>' +
-                                        '</div>';
-                                    });
-                        
                         $('#search_result').html($output);
                         
                     }
