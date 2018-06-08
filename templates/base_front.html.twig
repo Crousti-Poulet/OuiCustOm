@@ -48,7 +48,7 @@
                             {% if is_granted('ROLE_ARTISTE') %}
                                
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white text-center text-warning " data-toggle="dropdown" href="#"  aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"> </i> {{ app.user.username }}</a>
+                                    <a class="nav-link dropdown-toggle text-white text-center mon_compte" data-toggle="dropdown" href="#"  aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"> </i> {{ app.user.username }}</a>
                                     <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
                                         <a class="dropdown-item" href="{{ path('artistview') }}"><i class="fas fa-cogs"></i> Gestion de compte</a>
                                         <a class="dropdown-item" href="{{ path('messagingPage') }}"><i class="fas fas fa-comments"></i> Ma messagerie </a>
@@ -62,9 +62,11 @@
 
                             {% elseif not is_granted('ROLE_ARTISTE') and is_granted('IS_AUTHENTICATED_FULLY') and not is_granted('ROLE_ADMIN')%}
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white text-center text-warning" data-toggle="dropdown" href="#"  aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"> </i> {{ app.user.username }} </a>
+                                    <a class="nav-link dropdown-toggle text-white text-center mon_compte" data-toggle="dropdown" href="#"  aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"> </i> {{ app.user.username }} </a>
                                     <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
                                         <a class="dropdown-item" href="{{ path('userview') }}"><i class="fas fa-cogs"></i> Gestion de compte</a>
+                                        <a class="dropdown-item" href="{{ path('messagingPage') }}"><i class="fas fas fa-comments"></i> Ma messagerie </a>
+                                        <a class="dropdown-item" href="{{ path('custom_request_list') }}"><i class="fas far fa-handshake"></i> Demandes evnoyées </a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="{{ path('security_logout') }}"> <i class="fas fa-sign-out-alt"></i>  Logout</a>
                                     </div>
