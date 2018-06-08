@@ -9,6 +9,7 @@ use App\Entity\Messages;
 use App\Entity\Messaging;
 use App\Entity\AdminContact;
 use App\Entity\Conversation;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Webmozart\Assert\Assert;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,8 +33,28 @@ class DefaultController extends Controller
      * @Route("/", name="homePage") 
      */
     public function homeAction(Request $request)
-    {   
-        return $this->render('default/home.html.twig');
+    {
+        // uniquement pour faire le champ dropdown à partir de la BD
+        $form = $this->createFormBuilder()
+            ->add('category_id', EntityType::class, [
+                'class' => 'App\Entity\Category',
+                'choice_label' => 'name',
+                'placeholder' => '-- Catégorie --',
+                'expanded' => false,
+                'multiple' => false,
+                'required' => false,
+                'label' => false
+            ])
+            // Récupération
+            ->getForm()
+        ;
+
+        //Analyse de la requête
+        $form->handleRequest($request);
+
+        return $this->render('default/home.html.twig',[
+            'formSearch' => $form->createView()
+        ]);
     }
 
     //pages d'erreurs
@@ -160,7 +181,8 @@ class DefaultController extends Controller
 
             // si aucun champ de recherche n'est rempli, tous les artisans sont affichés
             // la requête SQL est construite en fonction des champs renseignés
-            $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByText($request->get('search'), $request->get('category_id'), $request->get('city'), $request->get('zipcode'));
+            $users = $this->getDoctrine()->getManager()->getRepository(User::class)->findAllByText($request->request->get('search'), $request->request->get('form')['category_id'], $request->request->get('city'), $request->request->get('zipcode'));
+
 
             $encoder = new JsonEncoder();
             $normalizer = new ObjectNormalizer();
@@ -234,6 +256,7 @@ class DefaultController extends Controller
 
 
         $serializer = new Serializer(array($normalizer), array($encoder));
+
 
         $res = $serializer->serialize($users, 'json');
         return new Response($res);

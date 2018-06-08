@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class CustomRequestController extends Controller
 {
@@ -63,6 +64,7 @@ class CustomRequestController extends Controller
     }
     /**
      * @Route("/customrequest/create", name="custom_request_create")
+     *@Security("has_role('ROLE_USER', 'ROLE_ARTISTE')")
      */
     public function createCustomRequest(Request $request)
     {

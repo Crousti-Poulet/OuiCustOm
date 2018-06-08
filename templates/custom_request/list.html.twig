@@ -3,37 +3,32 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block body %}
+    <div id="bloc_page_request_list">
+        <div class="row p-5">
+            <div class="mx-auto">
+                <h1>{{ title }}</h1>
 
-    <div class="row p-5">
-        <div class="mx-auto">
-            <h1>{{ title }}</h1>
+                <div class="card-deck">
+                    {% for r in custom_requests %}
 
-
-            <div class="card-deck">
-                {% for r in custom_requests %}
-
-                    <div class="card card-customrequest m-2">
-                        <a href="{{ path('custom_request_detail', {'id': r.id}) }}" >
-                            <div class="card-header">
-                                {{ r.category }}
-                            </div>
-                            <img class="card-img-top img-responsive" src="{{ asset('uploads/customRequestPictures/' ~ r.photoPath) }}" alt="photo de l'objet à customiser" >
-                            <div class="card-body">
-                                <h5 class="card-title">{{ r.title }}</h5>
-                                <p class="card-text">{{ r.description }}</p>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">{{ r.user }} - {{ r.creationDate|date("d/m/Y H:i") }}</small>
-                            </div>
-                        </a>
-
-                    </div>
-                {%  endfor %}
+                        <div class="card card-customrequest m-2">
+                            <a href="{{ path('custom_request_detail', {'id': r.id}) }}" >
+                                <div class="card-header">
+                                    {{ r.category }}
+                                </div>
+                                <img class="card-img-top img-responsive" src="{{ asset('uploads/customRequestPictures/' ~ r.photoPath) }}" alt="photo de l'objet à customiser" >
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ r.title }}</h5>
+                                    <p class="card-text">{{ r.description }}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">{{ r.user }} - {{ r.creationDate|date("d/m/Y H:i") }}</small>
+                                </div>
+                            </a>
+                        </div>  
+                    {%  endfor %}
+                </div>
             </div>
-
-
-
-
         </div>
     </div>
 {% endblock %}

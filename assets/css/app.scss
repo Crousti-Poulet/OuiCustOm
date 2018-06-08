@@ -38,6 +38,7 @@ h1
   background: url("../../public/img/background1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  height: 80vh;
 }
 /*vue artiste*/
 .artistbanner{
@@ -85,7 +86,8 @@ div .btn-outline-dark:hover{
   background-size: cover;
   color: #FF8914;
   text-shadow: 2px 2px 4px #000000;
-  height: 500px;
+  padding-bottom: 200px;
+/*  height: 50vh;*/
   button{
     background: #FF8914 ;
   }
@@ -111,6 +113,7 @@ div .btn-outline-dark:hover{
 .left{
   text-align: left;
 }
+
 
 /*----help page---*/
 
@@ -222,7 +225,6 @@ footer .col-4{
     color:white;
     transform: scale(1.2);
   }
-
 
 
 
@@ -494,9 +496,22 @@ footer .col-4{
 
 #my_space_link
 {
- font-size: 1.2em;
+  font-size: 1.2em;
   margin-bottom: 0;
 }
+
+#my_space_link a
+{
+  color: #FF8914;
+  transition: 1s;
+}
+
+#my_space_link a:hover
+  {
+    background-color: white;
+    color: black;
+    transition: 1s;
+  }
 
 .message_banner
 {
@@ -556,11 +571,20 @@ footer .col-4{
 }
 
 
-#message_form_submit{
+#message_form_submit
+{
   border: none;
   float: right;
   background:#2E3233 ;
   color: #FF8914;
+  transition: 1s;
+}
+
+#message_form_submit:hover
+{
+  background-color: white;
+  color: black;
+  transition: 1s;
 }
 
 // classe au lieu d'id car l'ID est généré automatiquement dans le form builder
@@ -690,9 +714,37 @@ footer .col-4{
 /////////////////////////////Fin des addClass///////////////////////////////
 
 ////////////////////////////////////Galerie///////////////////////////////
-.img_gallery{
+.img_gallery
+{
   border-radius: 20%;
 }
 
-/////////////////////////////////////Fin /////////////////////////////////
+/////////////////////////////////////Fin Galerie /////////////////////////////////
 
+////////////////////////////////////Home///////////////////////////////
+#link_new_customrequest
+{
+  background: #FF8914;
+  color:black;
+  opacity: 0.8;
+  transition: 1s;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-shadow: none;
+}
+
+#link_new_customrequest:hover
+{
+  opacity: 1;
+}
+
+////////////////////////////////////Fin Home///////////////////////////////
+
+/////////////////////////Page de liste des demandes/////////////////////////
+
+#bloc_page_request_list
+{
+  min-height: 75vh;
+}
+
+////////////////Fin de la page de liste des demandes////////////////////////
