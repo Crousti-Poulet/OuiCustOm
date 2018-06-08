@@ -41,12 +41,7 @@ class UpdateController extends Controller
             ->add('profilPicture', FileType::class)//on précise qu'il va s'agire d'un fichier
                 //ainsi l'utilisateur purra choisir une image et la palcer dans ce champs
 
-
-
             ->getForm() ;       // on le RECUPERE
-
-
-
 
         $form->handleRequest($request);  // ANALYSE de la requete et du coup symfony lie title content avec $article
 
@@ -105,7 +100,8 @@ class UpdateController extends Controller
         $form = $this->createFormBuilder($user) // on CREE et CONFIGURE le form grace a createFormBuilder qui sera lié a $user
         ->add('username')
         ->add('email')
-        ->add('location')
+        ->add('city')
+        ->add('zipcode')
 
         ->getForm() ;
 

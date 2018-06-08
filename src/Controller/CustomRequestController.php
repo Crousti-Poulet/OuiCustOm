@@ -86,6 +86,21 @@ class CustomRequestController extends Controller
     }
 
     /**
+     * @Route("/customrequest/accept/{id}", name="custom_request_accept")
+     */
+    public function acceptCustomRequest(CustomRequest $customRequest)
+    {
+        $customRequest->setStatus(CustomRequest::STATUS_ASSIGNE);
+        $customRequest->setUserAssignedTo($this->getUser());
+
+        $em = $this->getDoctrine()->getManager();
+        //$em->persist($customRequest);
+        $em->flush();
+        // rediriger vers la page des demandes affectées à l'artiste connecté
+        return $this->redirectToRoute('custom_request_list_assigned');
+    }
+
+    /**
      * @return string
      */
     private function generateUniqueFileName()
