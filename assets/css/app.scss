@@ -248,7 +248,6 @@ footer .col-4{
 
 
 
-
 #bloc_page_help
 {
   height: auto;
@@ -716,5 +715,24 @@ footer .col-4{
   border-radius: 20%;
 }
 
-/////////////////////////////////////Fin /////////////////////////////////
+/////////////////////////////////////Fin Galerie /////////////////////////////////
 
+////////////////////////////////////Home///////////////////////////////
+#link_new_customrequest
+{
+  background: #FF8914;
+  color:black;
+  opacity: 0.8;
+  transition: 1s;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-shadow: none;
+}
+
+#link_new_customrequest:hover
+{
+  opacity: 1;
+}
+
+
+////////////////////////////////////Fin Home///////////////////////////////
