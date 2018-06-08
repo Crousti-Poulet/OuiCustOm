@@ -35,6 +35,10 @@
 
             <div class="col-sm-2 col-md-12 mt-md-4 mt-1">
                 <button class="btn" type="submit" id="search_submit">Trouver un customiseur !</button>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a href="{{ path('custom_request_create') }}" class="btn" role="button" id="link_new_customrequest" aria-pressed="true">Poster une demande de customisation</a>
+                {% endif %}
+
             </div>
 
         </form>
