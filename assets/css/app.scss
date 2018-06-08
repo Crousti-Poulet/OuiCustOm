@@ -38,6 +38,7 @@ h1
   background: url("../../public/img/background1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  height: 80vh;
 }
 /*vue artiste*/
 .artistbanner{
@@ -111,6 +112,7 @@ div .btn-outline-dark:hover{
 .left{
   text-align: left;
 }
+
 
 /*----help page---*/
 
@@ -733,7 +735,8 @@ footer .col-4{
 /////////////////////////////Fin des addClass///////////////////////////////
 
 ////////////////////////////////////Galerie///////////////////////////////
-.img_gallery{
+.img_gallery
+{
   border-radius: 20%;
 }
 
@@ -756,5 +759,13 @@ footer .col-4{
   opacity: 1;
 }
 
-
 ////////////////////////////////////Fin Home///////////////////////////////
+
+/////////////////////////Page de liste des demandes/////////////////////////
+
+#bloc_page_request_list
+{
+  min-height: 75vh;
+}
+
+////////////////Fin de la page de liste des demandes////////////////////////
