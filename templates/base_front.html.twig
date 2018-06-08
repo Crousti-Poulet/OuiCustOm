@@ -5,6 +5,8 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
 
         {% block stylesheets %}
+            <!--Google fonts-->
+            <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch:400,700" rel="stylesheet">
 
             <!--Fontawsome -->
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
@@ -41,21 +43,28 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white text-center" id="nav-link-index" href="{{ path('homePage') }}"> <i class="fas fa-home"></i> Accueil</a>
                             </li>
-                            
+
+
+                            <!-- NAVBAR ARTISTE/ARTISANT -->
+
                             {% if is_granted('ROLE_ARTISTE') %}
                                
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white text-center " data-toggle="dropdown" href="#"  aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"> </i> Mon Compte</a>
+                                    <a class="nav-link dropdown-toggle text-white text-center text-warning " data-toggle="dropdown" href="#"  aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"> </i> {{ app.user.username }}</a>
                                     <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
                                         <a class="dropdown-item" href="{{ path('artistview') }}"><i class="fas fa-cogs"></i> Gestion de compte</a>
+                                        <a class="dropdown-item" href="{{ path('messagingPage') }}"><i class="fas fas fa-comments"></i> Ma messagerie </a>
+                                        <a class="dropdown-item" href="{{ path('gallery', {'id': app.user.id}) }}"><i class="fas fa-images"></i> Ma galerie </a>
+                                        <a class="dropdown-item" href="{{ path('custom_request_list') }}"><i class="fas far fa-handshake"></i> Demande reçue </a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="{{ path('security_logout') }}"> <i class="fas fa-sign-out-alt"></i>  Logout</a>
                                     </div>
                                 </li>
-                        
+                            <!-- NAVBAR USER LOG -->
+
                             {% elseif not is_granted('ROLE_ARTISTE') and is_granted('IS_AUTHENTICATED_FULLY') and not is_granted('ROLE_ADMIN')%}
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white text-center " data-toggle="dropdown" href="#"  aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"> </i> Mon Compte</a>
+                                    <a class="nav-link dropdown-toggle text-white text-center text-warning" data-toggle="dropdown" href="#"  aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"> </i> {{ app.user.username }} </a>
                                     <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
                                         <a class="dropdown-item" href="{{ path('userview') }}"><i class="fas fa-cogs"></i> Gestion de compte</a>
                                         <div class="dropdown-divider"></div>
@@ -63,10 +72,12 @@
                                     </div>
                                 </li>
                             {% endif %}
+
+                            <!-- NAVBAR ADMIN -->
                         
                             {% if is_granted('ROLE_ADMIN') %}
                             <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white text-center " data-toggle="dropdown" href="#"  aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"> </i> ADMIN</a>
+                                    <a class="nav-link dropdown-toggle text-white text-center " data-toggle="dropdown" href="#"  aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user"> </i> ADMIN </a>
                                     <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
                                         <a class="dropdown-item" href="{{ path('default_admin') }}"><i class="fas fa-cogs"></i> Tableau de bord </a>
                                         <div class="dropdown-divider"></div>
@@ -80,7 +91,7 @@
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link text-white text-center " id="nav-link-help" href="{{ path('helpPage') }}"> <i class="fas fa-question-circle"></i> Aide</a>
+                                <a class="nav-link text-white text-center mr-3 " id="nav-link-help" href="{{ path('helpPage') }}"> <i class="fas fa-question-circle"></i> Aide</a>
                             </li>
 
                             {% if not is_granted('IS_AUTHENTICATED_FULLY') %}

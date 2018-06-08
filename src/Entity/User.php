@@ -87,8 +87,6 @@ class User implements UserInterface
      */
     private $description;
 
-
-
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Conversation", inversedBy="users")
      */

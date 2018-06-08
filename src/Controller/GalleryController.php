@@ -20,10 +20,52 @@ use Symfony\Component\Validator\Constraints\FileValidator;
 
 class GalleryController extends Controller
 {
+
+    // Affichage de galerie d'artiste
+    /**
+     * @Route("/gallery/{id}", name="gallery")
+     */
+    public function showGallery(User $artist)
+    {
+
+        $images = $artist->getImages();
+
+        // $userName = $gallery->getUser()->getUsername();
+        if (!$images) {
+            throw $this->createNotFoundException(
+                'Ce customiseur n\a pas encore ajouté de photos'
+            );
+        }
+
+        return $this->render('gallery/gallery.html.twig', [
+            'images' => $images,
+            'artist' => $artist
+        ]);
+    }
+
+    // Affichage de galerie d'artiste
+    /**
+     * @Route("/gallery/remove/{id}", name="remove_image_gallery")
+     */
+    public function removeImageGallery(Image $image)
+    {
+        // vérifications pour que n'importe qui ne puisse supprimer une image
+        // - si l'image appartient bien à l'utilisateur connecté
+        if($this->getUser() == $image->getUser()) {
+            // supprimer l'image de la liste des images de l'utilisateur
+            $this->getUser()->removeImage($image);
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+        }
+        // TODO else afficher un message d'erreur ou redirect sur une page d'erreur
+        return $this->redirectToRoute('gallery', ['id' => $this->getUser()->getId()]);
+    }
+
     /**
      * @Route("/addPicture", name="addPicture")
+     * 
      */
-
     public function addPictureArtiste(Request $request, ObjectManager $manager)
     {
         //on recupere l'user par son id de la table User            
@@ -120,4 +162,6 @@ class GalleryController extends Controller
         // uniqid(), which is based on timestamps
         return md5(uniqid());
     }
+
+    
 }

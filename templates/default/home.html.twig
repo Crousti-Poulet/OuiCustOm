@@ -7,7 +7,7 @@
 {% block body %}
     <div class="banner container-fluid pb-5">
 
-    <h1 class="pb-5 pt-4">Faites de Vos objets du quotidien des pièces uniques</h1>
+    <h1 class="pb-5 pt-4">Faites de VOS objets du quotidien des pièces uniques</h1>
 
         <form class="form-row" action="" method="post">
             <div class="col-sm-4 offset-sm-1 col-md-2 offset-md-2 mt-1 ">
@@ -25,16 +25,16 @@
                 </select>
             </div>
 
-            <div class="col-sm-3 col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0">
+            <div class="col-sm-4 col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0">
                 <input class="form-control" type="text" name="city" placeholder="Ville">
             </div>
 
-            <div class="col-sm-3 col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0">
+            <div class="col-sm-4 offset-sm-2 col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0">
                 <input class="form-control" type="text" name="zipcode" placeholder="Code postal">
             </div>
 
-            <div class="col-sm-4 offset-sm-4 col-md-1 offset-md-0 mt-1">
-                <button class="btn " type="submit" id="search_submit">Rechercher</button>
+            <div class="col-sm-2 col-md-12 mt-md-4 mt-1">
+                <button class="btn" type="submit" id="search_submit">Trouver un customiseur !</button>
             </div>
 
         </form>
@@ -42,7 +42,7 @@
     </div>
 
     <!--Block affichant le résultat de la recherche ajax-->
-    <div class="card-deck mx-auto" id="search_result">
+    <div class="card-deck d-flex justify-content-center mx-auto no-gutter" id="search_result">
                        
     </div>
     <!--Fin du block affichant le résultat de la recherche ajax-->
@@ -51,7 +51,7 @@
         <div class="row darkgreyzone pt-5 pb-5" id="sub_banner">
             <div class="col-12">
                 <h2>La personnalisation d'objets, c'est <span class="OCO">OuiCustOm</span></h2>
-                <h6>Mise en relation de particuliers avec des artistes et des artisans de proximité pour transformer vos objets</h6>
+                <h6>Mise en relation de particuliers à customiseurs pour la transformation d'objets</h6>
                 <h5><span class="OCO">OuiCustOm </span>c'est :</h5>
             </div>
         </div>
@@ -129,7 +129,7 @@
     </script>
 
     <script>
-
+        //Permet de supprimer la sous-bannière et de mettre le resultat de la recherche à la place sur click du boutton submit
         $('#search_submit').click(function() {
 
             $("#sub_banner").addClass("none");
@@ -140,6 +140,7 @@
     </script>
 
     <script type="text/javascript">
+        //Requête ajax permettant la recherche 
         $(document).ready(function(){
             $('form').submit(function(e){
                 
@@ -154,17 +155,23 @@
                     success: function(resultJSON){
                         console.log(resultJSON);
                         $output = '';
-
-                        $.each(resultJSON, function(id, element){
-                           $output += '<div class="card" style="max-width: 200px;">' + 
-                                        '<img class="card-img-top" src="/uploads/profilPictures/' + element.profilPicture + '" alt="Card image cap">' +
-                                        '<div class="card-body">' +
-                                            '<h5 class="card-title">' + element.username +'</h5>' +
-                                            '<p class="card-text">'+ element.description +'</p>' +
-                                            '<a href="/default/profildetail/' + element.id + '" class="btn btn-primary">Voir profil</a>' +
-                                        '</div>' +
-                                        '</div>';
-                                    });
+                        if(resultJSON == null || resultJSON == '')
+                        {
+                            $output += '<p>Aucun artisan ne correspond à votre recherche</p>';
+                        }
+                        else
+                        {
+                            $.each(resultJSON, function (id, element) {
+                                $output += '<div class="card" id="search_card" style="max-width: 200px;">' +
+                                    '<img class="card-img-top" src="/uploads/profilPictures/' + element.profilPicture + '" alt="Card image cap">' +
+                                    '<div class="card-body">' +
+                                    '<h5 class="card-title">' + element.username + '</h5>' +
+                                    '<p class="card-text text-truncate">' + element.description + '</p>' +
+                                    '<a href="/default/profildetail/' + element.id + '" class="btn btn-primary">Voir profil</a>' +
+                                    '</div>' +
+                                    '</div>';
+                            });
+                        }
                         
                         $('#search_result').html($output);
                         

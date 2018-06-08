@@ -36,7 +36,6 @@ class CustomRequestController extends Controller
     {
         $customRequest->setStatus(CustomRequest::STATUS_EN_ATTENTE);
 
-        // TODO : bouton qui appelle cette fonction
         $em = $this->getDoctrine()->getManager();
         //$em->persist($customRequest);
         $em->flush();
