@@ -1,15 +1,12 @@
 {% extends 'base_front.html.twig' %}
 
-{% block title %}Messagerie{% endblock %}
+{% block title %}OuiCustOm : Messagerie{% endblock %}
 
 {% block body %}
 
-
-
-
     <!--MAIN-->
     <div class="container-fluid" id="bloc_page_messaging">
-        <h1 class="pt-5 pb-5">Messagerie</h1>
+        <h1 class="pt-2 pb-2">Messagerie</h1>
         <div class="row">
 
             <div class="col-12 col-md-4 offset-md-1 pb-4">
@@ -112,12 +109,10 @@
         </p>
     </div>
 
+    <script type="text/javascript">
+        var objDiv = document.getElementById("listemessages");
+        objDiv.scrollTop = objDiv.scrollHeight;
+    </script>
 
 {% endblock %}
 
- {% block javascripts %}
-     <script type="text/javascript">
-         var objDiv = document.getElementById("listemessages");
-         objDiv.scrollTop = objDiv.scrollHeight;
-     </script>
- {% endblock %}
