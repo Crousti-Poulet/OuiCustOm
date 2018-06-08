@@ -441,6 +441,8 @@ footer .col-4{
   padding-bottom: 20px;
   margin-bottom: 30px;
   border-radius: 5px;
+  overflow-y: scroll;
+  overflow-x: auto;
 }
 
 .bloc_contact
@@ -470,7 +472,8 @@ footer .col-4{
   min-width: 450px;
   height: 550px;
   padding-bottom: 20px;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: auto;
   border-radius: 10px;
 }
 
@@ -627,6 +630,11 @@ footer .col-4{
   min-width: 200px;
   max-width: 300px;
 
+}
+
+.card-customrequest a
+{
+  text-decoration: none;
 }
 
 /////////////////// Fin page liste des demandes////////////////////////////////////////////
