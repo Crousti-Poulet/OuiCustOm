@@ -6,7 +6,7 @@ body, html
   margin: 0;
   padding: 0;
   text-align: center;
-  background-color: #E6E7DF;
+  background: linen;
   min-height: 100vh;
 }
 main{
@@ -724,6 +724,7 @@ footer .col-4{
   border-radius: 10%;
   transform: scale(1.1);
   transition: 0.5s;
+  cursor: pointer;
 }
 
 #title_picture{

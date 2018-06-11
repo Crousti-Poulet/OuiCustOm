@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="col-12 col-md-4 mb-4 d-flex align-items-center float-none">
-                    <img class="rounded-circle" id="profilimg" src="{{ asset('uploads/profilPictures/' ~ user.profilPicture )}}" alt="photo d'utilisateur" class="card-img-top mb-2" alt="photo d'utilisateur">
+                    <img class="rounded-circle" id="profilimg" src="{{ asset('uploads/profilPictures/' ~ user.profilPicture ) | imagine_filter('my_thumb') }}" alt="photo d'utilisateur" class="card-img-top mb-2" alt="photo d'utilisateur">
                 </div>
             </div>
 
