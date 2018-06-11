@@ -3,31 +3,31 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <div class="banner container-fluid pb-5">
+    <div class="banner container-fluid">
 
-    <h1 class="pb-5 pt-4">Faites de VOS objets du quotidien des pièces uniques</h1>
+    <h1 class="pb-3 pt-3">Faites de VOS objets du quotidien des pièces uniques</h1>
 
         {#{{ form_start(formSearch) }}#}
         <form class="form-row d-flex justify-content-center" action="" method="post">
-            <div class="col-sm-3 col-md-2 mt-1 ml-4 ml-sm-0 offset-sm-1 offset-md-2 " id="category_select">
+            <div class="col-sm-8 col-md-2 mt-1 ml-4 ml-sm-0 offset-sm-1 offset-md-2 " id="category_select">
                 {{ form_row(formSearch.category_id) }}
             </div>
-            <div class="col-sm-4  col-md-2 mt-1 ">
+            <div class="col-sm-8  col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0 ">
                 <input class="form-control" type="text" name="search" placeholder="Recherche">
             </div>
 
-            <div class="col-sm-4 col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0">
+            <div class="col-sm-8 col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0">
                 <input class="form-control" type="text" name="city" placeholder="Ville">
             </div>
 
-            <div class="col-sm-4 offset-sm-2 col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0">
+            <div class="col-sm-8 offset-sm-2 col-md-2 offset-md-0 mt-1 ml-4 ml-sm-0">
                 <input class="form-control" type="text" name="zipcode" placeholder="Code postal">
             </div>
 
-            <div class="col-sm-2 col-md-12 mt-md-4 mt-1">
+            <div class="col-sm-8 col-md-12 mt-md-4 mt-1">
                 <button class="btn" type="submit" id="search_submit">Trouver un customiseur !</button>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <a href="{{ path('custom_request_create') }}" class="btn" role="button" id="link_new_customrequest" aria-pressed="true">Poster une demande de customisation</a>
+                    <a href="{{ path('custom_request_create') }}" class="btn mt-1" role="button" id="link_new_customrequest" aria-pressed="true">Poster une demande de customisation</a>
                 {% endif %}
 
             </div>
@@ -80,55 +80,58 @@
         <div class="row darkgreyzone d-flex justify-content-center pt-5 pb-5">
             
             <a href="{{path('registrationPage')}}" class="col-sm-8 col-md-4 btn btn_register_home texte-white" role="button" aria-pressed="true">Inscrivez-vous</a>
-        </div>     
+        </div>   
+        
+        
+        <h3 class="left text-center mt-3 mb-3"> Mise en lumière</h5>
 
-        <div class="row">
-            <div class="col-sm-12 col-md-8">
-                <div class="grid" id="gridcolor">
-                    <div class="grid-sizer"></div>
-                    <div class="grid-item">
-                        <img src="http://via.placeholder.com/350x150">
-                    </div>
-                    <div class="grid-item">
-                        <img src="http://via.placeholder.com/350x200">
-                    </div>
-                    <div class="grid-item">
-                        <img src="http://via.placeholder.com/350x300">
-                    </div>
-                    <div class="grid-item">
-                        <img src="http://via.placeholder.com/350x150">
-                    </div>
-                    <div class="grid-item">
-                        <img src="http://via.placeholder.com/350x150">
-                    </div>
-                    <div class="grid-item">
-                        <img src="http://via.placeholder.com/350x150">
+
+        <div class="container">
+
+            <div class="row col-md-12 d-flex align-items-center">
+              
+                    <div class="col-sm-12 col-md-8 ">
+                        <img src="{{ asset('img/brushes.jpg') | imagine_filter('thumb_2') }}" class="mt-2  col-sm-5 col-md-5"  >
+                        <img src="{{ asset('img/brushes.jpg') | imagine_filter('thumb_2') }}"  class="mt-2  col-sm-5 col-md-5" >
+                        <img src="{{ asset('img/brushes.jpg') | imagine_filter('thumb_2') }}" class="mt-2  col-sm-5 col-md-5"  >
+                        <img src="{{ asset('img/brushes.jpg') | imagine_filter('thumb_2') }}" class="mt-2  col-sm-5 col-md-5"  >
+                    </div>  
+                    
+             
+
+                <div class="col-12 col-md-4  mt-5 mt-md-0 d-flex justify-content-center align-items-center">
+                    <div class="card mt-6 " style="width: 18rem;">
+                        <a class="mt-2" href="https://placeholder.com"><img src="http://via.placeholder.com/250x150"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">Nom artiste</h5>
+                            <p class="card-text">Some quick example text to buiityuityityuityuityuiityuititiuld on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                        <ul class="list-group list-group-flush" id="list">
+                            <li class="list-group-item">info1</li>
+                            <li class="list-group-item">info2</li>
+                            <li class="list-group-item">info2</li>
+                          
+                        </ul>
+                        
                     </div>
                 </div>
 
+               
+                    
+                   
+
+
             </div>
 
-            <div class="col-6 col-md-3 offset-md-0">
-                <h5 class="left">Notre selection du jour</h5>
-                <div class="card mt-4" style="width: 18rem;">
-                    <a class="mt-2" href="https://placeholder.com"><img src="http://via.placeholder.com/250x150"></a>
-                    <div class="card-body">
-                        <h5 class="card-title">Nom artiste</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush" id="list">
-                        <li class="list-group-item">info1</li>
-                        <li class="list-group-item">info2</li>
-                        <li class="list-group-item">info3</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                </div>
+    
+
+            <div class="col-6 col-md-12 d-flex justify-content-center">
+                
+               
             </div>
+
         </div>
-    </div>
+   
 
     <script
         src="https://code.jquery.com/jquery-3.3.1.js"

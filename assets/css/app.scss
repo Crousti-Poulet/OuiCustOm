@@ -86,7 +86,8 @@ div .btn-outline-dark:hover{
   background-size: cover;
   color: #FF8914;
   text-shadow: 2px 2px 4px #000000;
-  height: 500px;
+  padding-bottom: 200px;
+/*  height: 50vh;*/
   button{
     background: #FF8914 ;
   }
@@ -134,28 +135,6 @@ div .btn-outline-dark:hover{
 /* ---- grid ---- */
 
 
-/* clear fix */
-.grid:after {
-  content: '';
-  display: block;
-  clear: both;
-}
-
-/* ---- .grid-item ---- */
-
-.grid-sizer,
-.grid-item {
-  width: 33.333%;
-}
-
-.grid-item {
-  float: left;
-}
-
-.grid-item img {
-  display: block;
-  max-width: 100%;
-}
 
 //////////////////////Header Front////////////////////////////////////////
 #header_front{
