@@ -1,7 +1,7 @@
 {% extends 'base_front.html.twig' %}
 
 
-{% block title %} Modifications du compte {% endblock  %}
+{% block title %} Modification du compte {% endblock  %}
 {% block body %}
 
     <div class=" text-center d-flex justify-content-center formRegister">
@@ -14,18 +14,18 @@
                 {{form_start(updateProfile, {'attr' : { 'novalidate' : 'true'}}) }}
 
                 {{ form_row(updateProfile.username,   {'attr' : { 'placeholder' : "pseudo utilisateur"}, 'label': 'Pseudo'}  ) }}
+                {{ form_row(updateProfile.email, {'attr' : { 'placeholder' : "monadress@mail.com"}, 'label': 'Adresse email'}) }}
                 {{ form_row(updateProfile.city,   {'attr' : { 'placeholder' : "ville"}, 'label': 'Ville'} ) }}
-                {{ form_row(updateProfile.zipcode,   {'attr' : { 'placeholder' : "42..."}, 'label': 'code postal'} ) }}
-                {{ form_row(updateProfile.email, {'attr' : { 'placeholder' : "monadress@mail.com"}}) }}
-                {{ form_row(updateProfile.category, {'attr' : { 'placeholder' : "catégorie / spécialité", 'label': 'Catégorie / Spécialité'}}) }}
-                {{ form_row(updateProfile.phone, {'attr' : { 'placeholder' : "06....", 'label': 'Numéro de téléphone'}}) }}
-                {{ form_row(updateProfile.description, {'attr' : {'paceholder' : "entrez votre description ici",}}) }}
+                {{ form_row(updateProfile.zipcode,   {'attr' : { 'placeholder' : "42..."}, 'label': 'Code postal'} ) }}
+                {{ form_row(updateProfile.category, { 'label' : 'Catégorie'}) }}
+                {{ form_row(updateProfile.phone, {'label': 'Numéro de téléphone'}) }}
+                {{ form_row(updateProfile.description, {'attr' : {'paceholder' : "Ma description"}}) }}
                 <hr>
-                {{ form_row(updateProfile.profilPicture, {'attr' : {'label' : 'Image du profil'}}) }}
+                {{ form_row(updateProfile.profilPicture, {'label' : 'Image de profil'}) }}
 
 
 
-                <button type="submit" class="btn btn-outline-success "> modifier </button>
+                <button type="submit" class="btn btn-outline-success "> Valider </button>
                 {{form_end(updateProfile)}}
             </fieldset>
         </div>
