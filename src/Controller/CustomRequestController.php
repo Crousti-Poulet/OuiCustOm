@@ -94,11 +94,14 @@ class CustomRequestController extends Controller
             $em->persist($customRequest); // pour créer un nouvel enregistrement dans la base, seulement en création, pas en modif
             $em->flush(); // enregistre dans la base
 
-            return $this->redirect($this->generateUrl('custom_request_create'));
+            // renvoyer vers le détail de la demande créée
+            return $this->redirect($this->generateUrl('custom_request_detail',[
+                'id' => $customRequest->getId()
+            ]));
         }
         return $this->render('custom_request/create.html.twig',[
             'form' => $form->createView(),
-            'title' => 'Créer une demande de customisation'
+            'title' => 'OuiCustOm : Créer une demande de customisation'
         ]);
     }
 
