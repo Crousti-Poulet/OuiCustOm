@@ -23,7 +23,7 @@ class CustomRequestController extends Controller
         $custom_requests = $this->getDoctrine()->getManager()->getRepository(CustomRequest::class)->findAllByStatus(CustomRequest::STATUS_EN_ATTENTE);
         return $this->render('/custom_request/list.html.twig', [
             'custom_requests' => $custom_requests,
-            'title' => 'Demandes à attribuer'
+            'title' => 'Demandes à pourvoir'
         ]);
     }
 
