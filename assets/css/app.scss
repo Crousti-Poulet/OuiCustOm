@@ -601,24 +601,33 @@ footer .col-4{
 ///////////////////Fin de la messagerie///////////////////////////////////
 
 ///////////////////Page liste des demandes////////////////////////////////////////////
-//
-//.img-card-customrequest
-//{
-//  max-width: 200px;
-//}
+
+#bloc_page_requestlist
+{
+  min-height: 75vh;
+}
 
 .card-customrequest, .card-customrequest img
 {
 
   min-width: 200px;
   max-width: 300px;
+  background-color: #2E3233;
+  color:white;
 
 }
 
 .card-customrequest a
 {
   text-decoration: none;
+  color: white;
 }
+
+.card-customrequest a:hover
+{
+  color: #FF8914 !important;
+}
+
 
 /////////////////// Fin page liste des demandes////////////////////////////////////////////
 
@@ -801,6 +810,8 @@ footer .col-4{
 #link_profile:hover{
   color: #FF8914;
 }
+
+/////////////////Fin de home artiste////////////////////////////////////////////////
 
 ////////////////////////Page Profildetail/////////////////////////////
 
