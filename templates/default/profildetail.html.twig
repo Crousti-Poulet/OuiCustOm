@@ -13,11 +13,11 @@
             <div class="row">
                 <div class="col-12 col-md-8 infoprofil"><span class="OCO"></span>
 
-                    <div class="col-12 offset-md-3 col-md-6 rounded border float-left"><p class=" rounded p-2">{{user.username }}</p></div>
-                    <div class="col-12 col-md-5 rounded border float-left"><p class=" rounded p-2"><span class="OCO">Catégorie </span><br>{{ user.category }}</p></div>
-                    <div class="col-12 col-md-5 offset-md-1 rounded border float-left"><p class=" rounded p-2"><span class="OCO">Ville </span><br>{{ user.city }} {{ user.zipcode }}</p></div>
-                    <div class="col-12 col-md-5 rounded border float-left"><p class=" rounded p-2"><span class="OCO">Inscrit le  </span><br>{{ user.creationDate|date("d/m/y") }}</p></div>
-                    <div class="col-12 col-md-5 offset-md-1  rounded border float-left">
+                    <div class="col-12 offset-md-3 col-md-6 rounded  float-left"><p class=" rounded p-2">{{user.username }}</p></div>
+                    <div class="col-12 col-md-5 rounded  float-left"><p class=" rounded p-2"><span class="OCO">Catégorie </span><br>{{ user.category }}</p></div>
+                    <div class="col-12 col-md-5 offset-md-1 rounded  float-left"><p class=" rounded p-2"><span class="OCO">Ville </span><br>{{ user.city }} {{ user.zipcode }}</p></div>
+                    <div class="col-12 col-md-5 rounded  float-left"><p class=" rounded p-2"><span class="OCO">Inscrit le  </span><br>{{ user.creationDate|date("d/m/y") }}</p></div>
+                    <div class="col-12 col-md-5 offset-md-1  rounded  float-left">
 
                         {% if is_granted('IS_AUTHENTICATED_FULLY')%}
                             <p class=" rounded p-2"><span class="OCO">Email </span><br>{{ user.email }}</p>
@@ -26,7 +26,7 @@
                         {% endif %}
                     </div>
 
-                    <div class="col-12 col-md-5 rounded border float-left">
+                    <div class="col-12 col-md-5 rounded  float-left">
                         {% if is_granted('IS_AUTHENTICATED_FULLY')%}
                             <p class=" rounded p-2"><span class="OCO">Téléphone </span><br>{{ user.phone }}</p>
                         {%  elseif not is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -34,7 +34,7 @@
                             {% endif %}
                     </div>
 
-                    <div class="col-12 col-md-5 offset-md-1 rounded border float-left">
+                    <div class="col-12 col-md-5 offset-md-1 rounded  float-left">
                         {% if is_granted('IS_AUTHENTICATED_FULLY')%}
                             <p class=" rounded p-2"><span class="OCO">Contacter ce customiseur </span><br><a href="{{ path('contactArtist', {'id': user.id}) }}">Message privé</a></p>
                         {%  elseif not is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -42,7 +42,7 @@
                         {% endif %}
                     </div>
 
-                    <div class="col-12 col-md-5 rounded border float-left"><span class="OCO"><p class="rounded p-2"><a href="{{ path('gallery', {'id': user.id}) }}">Voir la galerie</a></p></div>
+                    <div class="col-12 col-md-5 rounded float-left"><span class="OCO"><p class="rounded p-2"><a href="{{ path('gallery', {'id': user.id}) }}">Voir la galerie</a></p></div>
 
                 </div>
 
