@@ -601,11 +601,11 @@ footer .col-4{
 ///////////////////Fin de la messagerie///////////////////////////////////
 
 ///////////////////Page liste des demandes////////////////////////////////////////////
-//
-//.img-card-customrequest
-//{
-//  max-width: 200px;
-//}
+
+#bloc_page_requestlist
+{
+  height: 75vh;
+}
 
 .card-customrequest, .card-customrequest img
 {
