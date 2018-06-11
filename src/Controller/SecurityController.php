@@ -94,7 +94,7 @@ class SecurityController extends Controller
                   'multiple' => true,
                   'label'     =>false,
                   'choices' => [
-                      'S\'inscrire en tant qu\'Artiste'     => "ROLE_ARTISTE"
+                      'S\'inscrire en tant que Customiseur'     => "ROLE_ARTISTE"
                     ]
              ])
             ->add('plainPassword', RepeatedType::class, [
