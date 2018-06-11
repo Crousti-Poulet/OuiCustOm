@@ -36,48 +36,48 @@ class SecurityController extends Controller
         $user = new User (); // on crée l'utilisateur
         $user->setProfilPicture('placeholder_profil.png'); //Met un placeholder à la place de la photo de profil       
         $form = $this->createFormBuilder($user) // on CREE et CONFIGURE le form grace a createFormBuilder qui sera lié a $user 
-                     ->add('username',TextType::class,[
-                        'required'    => true,
-                        'constraints' => [
-                            new Length( [
-                                'min' => 3,
-                                'max' => 20,
-                                'minMessage' => "Minimum 3 caractères",
-                                'maxMessage' => "Maximum 20 caractères"
-                            ]),
-                            new NotBlank( [
-                                'message' => "Le pseudo est obligatoire"
-                            ])                                           
-                        ] ,            
-                    ]) 
-                     ->add('city',TextType::class,[
-                        'required'    => true,
-                        'constraints' => [
-                            new Length( [
-                                'min' => 2,
-                                'max' => 50,
-                                'minMessage' => "Minimum 2 caractères",
-                                'maxMessage' => "Maximum 50 caractères"
-                            ]),
-                            new NotBlank( [
-                                'message' => "La ville est obligatoire"
-                            ])                                           
-                        ] ,            
+             ->add('username',TextType::class,[
+                'required'    => true,
+                'constraints' => [
+                    new Length( [
+                        'min' => 3,
+                        'max' => 20,
+                        'minMessage' => "Minimum 3 caractères",
+                        'maxMessage' => "Maximum 20 caractères"
+                    ]),
+                    new NotBlank( [
+                        'message' => "Le pseudo est obligatoire"
                     ])
-                    ->add('zipcode',TextType::class,[
-                        'required'    => true,
-                        'constraints' => [
-                            new Length( [
-                                'min' => 5,
-                                'max' => 5,
-                                'minMessage' => "Minimum 5 caractères",
-                                'maxMessage' => "Maximum 5 caractères"
-                            ]),
-                            new NotBlank( [
-                                'message' => "Le code postal est obligatoire"
-                            ])
-                        ] ,
+                ] ,
+            ])
+             ->add('city',TextType::class,[
+                'required'    => true,
+                'constraints' => [
+                    new Length( [
+                        'min' => 2,
+                        'max' => 50,
+                        'minMessage' => "Minimum 2 caractères",
+                        'maxMessage' => "Maximum 50 caractères"
+                    ]),
+                    new NotBlank( [
+                        'message' => "La ville est obligatoire"
                     ])
+                ] ,
+            ])
+            ->add('zipcode',TextType::class,[
+                'required'    => true,
+                'constraints' => [
+                    new Length( [
+                        'min' => 5,
+                        'max' => 5,
+                        'minMessage' => "Minimum 5 caractères",
+                        'maxMessage' => "Maximum 5 caractères"
+                    ]),
+                    new NotBlank( [
+                        'message' => "Le code postal est obligatoire"
+                    ])
+                ] ,
+            ])
             ->add('email', EmailType::class,[
                         'required'    => true,
                         'constraints' => [
@@ -89,60 +89,84 @@ class SecurityController extends Controller
                             ])                     
                         ] ,            
                     ])   
-                     ->add('role', ChoiceType::class,[
-                          'expanded' => true,
-                          'multiple' => true,
-                          'label'     =>false,
-                          'choices' => [
-                              'S\'inscrire en tant qu\'Artiste'     => "ROLE_ARTISTE"
-                            ]
-                     ])  
-                     ->add('plainPassword', RepeatedType::class, [
-                        'type' => PasswordType::class,
-                        'first_options' => ['label' => 'Entrez le mot de passe'],
-                        'second_options' => ['label' => 'Entrez à nouveau le mot de passe'],
-                        'required'    => true,
-                        'constraints' => [
-                            new Length( [
-                                'min' => 8,
-                                'max' => 50,
-                                'minMessage' => "Minimum 8 caractères",
-                                'maxMessage' => "Maximum 50 caractères"
-                            ]),
-                            new NotBlank( [
-                                'message' => "Le mot de passe est obligatoire"
-                            ])                                           
-                        ] 
+            ->add('role', ChoiceType::class,[
+                  'expanded' => true,
+                  'multiple' => true,
+                  'label'     =>false,
+                  'choices' => [
+                      'S\'inscrire en tant qu\'Artiste'     => "ROLE_ARTISTE"
+                    ]
+             ])
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'first_options' => ['label' => 'Entrez le mot de passe'],
+                'second_options' => ['label' => 'Entrez à nouveau le mot de passe'],
+                'required'    => true,
+                'constraints' => [
+                    new Length( [
+                        'min' => 8,
+                        'max' => 50,
+                        'minMessage' => "Minimum 8 caractères",
+                        'maxMessage' => "Maximum 50 caractères"
+                    ]),
+                    new NotBlank( [
+                        'message' => "Le mot de passe est obligatoire"
                     ])
+                ]
+            ])
                                             
-                     ->getForm() ;       // on le RECUPERE   
+            ->getForm() ;       // on le RECUPERE
 
         $form->handleRequest($request);  // ANALYSE de la requete et ducou symfony lié title content avec $user
          
         //Verification de la soumission du formulaire
         if($form->isSubmitted() && $form->isValid()) {
 
-            if(!$user->getId()){
-                 $user->setCreationDate(new \Datetime());
+            // vérifier que le nom d'utilisateur ou l'adresse email n'est pas déjà enregistré (sinon exception non gérée)
+            $userExists = $manager->getRepository(User::class)->findOneBy([
+                'email' => $request->get('form')['email']
+            ]);
+            if($userExists != null)
+            {
+                // adresse mail déjà enregistrée
+                // TODO message ne s'affiche pas
+                $this->addFlash('error', 'Cette adresse email est déjà utilisée');
             }
+            else
+            {
+                $userExists = $manager->getRepository(User::class)->findOneBy([
+                    'username' => $request->get('form')['username']
+                ]);
 
-             if(!$user->getRole()){
-                 $user->setRole(['ROLE_USER']);
+                if($userExists != null)
+                {
+                    // username déjà enregitré
+                    $this->addFlash('error', 'Ce nom d\'utilisateur est déjà utilisé');
+                }
+                else
+                {
+                    if(!$user->getId()){
+                        $user->setCreationDate(new \Datetime());
+                    }
+
+                    if(!$user->getRole()){
+                        $user->setRole(['ROLE_USER']);
+                    }
+
+                    $user = $form->getData(); // getData() garde les valeurs soumises au formulaire
+
+                    $manager->persist($user); //on demande au manager de se preparer a faire persister l'article
+                    $manager->flush();           //on demande au manager de lancer la requete
+                    $this->addFlash('success', 'Votre compte à bien été créé.');
+                    return $this->redirectToRoute('security_login');
+                }
             }
-            
-            $user = $form->getData(); // getData() garde les valeurs soumises au formulaire
- 
-            $manager->persist($user); //on demande au manager de se preparer a faire persister l'article
-            $manager->flush();           //on demande au manager de lancer la requete
-            $this->addFlash('success', 'Votre compte à bien été créé.');
-            return $this->redirectToRoute('security_login');
         }
 
         return $this->render('security/registration.html.twig',[
             'formUser' => $form->createView(), //on envoi a twig le RESULTAT de la fonction createView () == cree un petit objet plutot type affichage.
         ]);
     }
-
 
     //////// LOGIN ///////////
 
