@@ -105,8 +105,13 @@
             </div>
         </div>
         <P class="pb-4" id="my_space_link">
+            {% if is_granted('ROLE_ARTISTE') %}
             <a href="{{ path('artistview') }}" class="badge badge-pill badge-dark p-3">Retour à l'espace personnel</a>
+            {% elseif is_granted('ROLE_USER') %}
+            <a href="{{ path('userview') }}" class="badge badge-pill badge-dark p-3">Retour à l'espace personnel</a>
+            {% endif %}
         </p>
+
     </div>
 
     <script type="text/javascript">
