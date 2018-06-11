@@ -3,10 +3,14 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block body %}
+
+    <div class="container-fluid artistbanner mb-5 d-flex align-items-center d-flex justify-content-center">
+        <h1>Demandes à attribuer</h1>
+    </div>
+
     <div id="bloc_page_request_list">
         <div class="row p-5">
             <div class="mx-auto">
-                <h1>{{ title }}</h1>
 
                 <div class="card-deck">
                     {% for r in custom_requests %}
