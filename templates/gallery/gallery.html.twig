@@ -10,8 +10,8 @@
     {# gallery #}
     <div class="container-fluid artist_gallery rounded bg-white  pt-3 pb-5 border border-dark">
         <div class="d-flex flex-wrap align-items-center">
-            {# Si connecté en tant qu'artiste, affichera le bouton d'ajout d'image #}
-            {% if is_granted('ROLE_ARTISTE') %}
+            {# Si connecté en tant qu'artiste, ET s'il s'agit de la galerie de l'utilisateur connecté, afficher le bouton d'ajout d'image #}
+            {% if (is_granted('ROLE_ARTISTE') or is_granted('ROLE_ADMIN')) and app.user.id == artist.id %}
                 <div class=" col-12 mb-5 mt-4">
                     <a href="{{ path('addPicture')  }}" class="btn btn-success btn-lg " role="button" aria-disabled="true">Ajouter une image  <i class="fas fa-plus-circle"></i></a>
                     {# <a href="{{ path('addPicture')  }}"> <img src="{{ asset('img/add_img.png') | imagine_filter('my_thumb')  }}" alt="picto d'ajout d'image" class=" col-7 col-md-2 mb-3 mt-3"></a> #}
@@ -50,11 +50,10 @@
 
                     <img src="{{ asset('uploads/gallery/' ~ i.link ) | imagine_filter('my_thumb') }}" alt="image de la galerie de l'artiste" class=" col-12 mb-3 mt-3 img_gallery" data-toggle="modal" data-target="#{{i.name}}">         
 
-                    
-                    {# Si connecté en tant qu'artiste, affichera le bouton de suppression d'image #}
-                    {% if is_granted('ROLE_ARTISTE') %}                    
+                    {# Si connecté en tant qu'artiste, ET s'il s'agit de la galerie de l'utilisateur connecté, afficher le bouton de suppression d'image #}
+                    {% if (is_granted('ROLE_ARTISTE') or is_granted('ROLE_ADMIN')) and app.user.id == artist.id %}
                         <div> 
-                            <a href="{{ path('remove_image_gallery', {id: i.id}) }}" ><i class="fas fa-trash-alt text-danger mb-5" >  Supprimer</i></a>
+                            <a href="{{ path('remove_image_gallery', {id: i.id}) }}" ><i class="fas fa-trash-alt text-danger mb-5" data-toggle="tooltip" title="Supprimer la photo de la galerie"></i></a>
                         </div> 
                     {% endif %}
                 </div>
