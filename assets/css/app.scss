@@ -721,9 +721,27 @@ footer .col-4{
 ////////////////////////////////////Galerie///////////////////////////////
 .img_gallery
 {
-  border-radius: 20%;
+  border-radius: 10%;
+  transition: 0.5s;
+}
+.img_gallery:hover
+{
+  border-radius: 10%;
+  transform: scale(1.1);
+  transition: 0.5s;
 }
 
+#title_picture{
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  font-variant-caps: all-petite-caps;
+}
+
+.artist_gallery{
+  background: url("../../public/img/mur_bois.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 /////////////////////////////////////Fin Galerie /////////////////////////////////
 
 ////////////////////////////////////Home///////////////////////////////
