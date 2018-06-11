@@ -58,7 +58,7 @@
                                 {#to do : lien vers le profil du demandeur#}
                                 <td>{{ r.description }}</td>
                                 <td>{{ r.phone }}</td>
-                                <td><img src="{{ asset('uploads/profilPictures/' ~ r.profilPicture) }}" alt="image de profil" class="img-responsive"></td>
+                                <td><img src="{{ asset('uploads/profilPictures/' ~ r.profilPicture) | imagine_filter('my_thumb')}}" alt="image de profil" class="img-responsive"></td>
                                 <td><a href="#">Supprimer</a></td>
                             </tr>
                         {%  endfor %}
