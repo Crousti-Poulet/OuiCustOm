@@ -36,13 +36,13 @@
 
                     <div class="col-12 col-md-5 offset-md-1 rounded  float-left">
                         {% if is_granted('IS_AUTHENTICATED_FULLY')%}
-                            <p class=" rounded p-2"><span class="OCO">Contacter ce customiseur </span><br><a href="{{ path('contactArtist', {'id': user.id}) }}">Message privé</a></p>
+                            <p class=" rounded p-2"><span class="OCO">Contacter ce customiseur </span><br><a id="link_profile" href="{{ path('contactArtist', {'id': user.id}) }}">Message privé</a></p>
                         {%  elseif not is_granted('IS_AUTHENTICATED_FULLY') %}
                             <p class=" rounded p-2"><span class="OCO">Contacter ce customiseur </span><br>connexion requise</p>
                         {% endif %}
                     </div>
 
-                    <div class="col-12 col-md-5 rounded float-left"><span class="OCO"><p class="rounded p-2"><a href="{{ path('gallery', {'id': user.id}) }}">Voir la galerie</a></p></div>
+                    <div class="col-12 col-md-5 rounded float-left"><span class="OCO"><p class="rounded p-2"><a id="link_profile" href="{{ path('gallery', {'id': user.id}) }}">Voir la galerie</a></p></div>
 
                 </div>
 
