@@ -81,7 +81,8 @@ class GalleryController extends Controller
         //création et configuration du form
         //on donne les conditions de validation de ces champs
         $form = $this->createFormBuilder($image)
-                    ->add('name', TextType::class,[
+                    ->add('name', TextType::class, [
+                        'label' => 'Titre',
                         'required' => true,
                         'constraints' => [ 
                             new Length([
@@ -98,7 +99,8 @@ class GalleryController extends Controller
                     ])
                     //on précise qu'il va s'agire d'un fichier
                      //ainsi l'utilisateur purra choisir une image et la palcer dans ce champs
-                     ->add('link', FileType::class,[
+                     ->add('link', FileType::class, [
+                         'label' => 'Image',
                          'required' => true,
                          'constraints' => [
                             new NotBlank( [

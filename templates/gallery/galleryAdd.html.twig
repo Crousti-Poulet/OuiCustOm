@@ -16,11 +16,8 @@
         <fieldset class="border m-3 p-3 bg-light rounded"  >
             {{ form_start(addPicForm, {'attr' : { 'novalidate' : 'true'}}) }}
 
-            {{ form_row(addPicForm.name, {'attr' : { 'placeholder' : "nom de l'image"}}) }}
+            {{ form_row(addPicForm.name, {'attr' : { 'placeholder' : "Titre de l'image"}}) }}
             {{ form_row(addPicForm.link,   {'attr' : {'label' : 'Image'}}) }}
-
-           
-
 
             <button type="submit" class="btn btn-outline-success "> Ajouter l'image </button>
             {{ form_end(addPicForm) }}

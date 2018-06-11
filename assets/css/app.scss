@@ -666,11 +666,6 @@ footer .col-4{
   padding: auto;
 }
 
-// .search_result
-// {
-//   margin-bottom: 50px!important;
-// }
-
 #category_select
 {
   width: 500px;
@@ -732,6 +727,7 @@ footer .col-4{
   border-radius: 10%;
   transform: scale(1.1);
   transition: 0.5s;
+  cursor: pointer;
 }
 
 #title_picture{
