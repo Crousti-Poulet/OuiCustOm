@@ -161,8 +161,10 @@
                     
                     dataType: 'json', 
                     success: function(resultJSON){
+
                         console.log(resultJSON);
                         $output = '';
+
                         if(resultJSON == null || resultJSON == '')
                         {
                             $output += '<p>Aucun artisan ne correspond à votre recherche</p>';
@@ -170,7 +172,21 @@
                         else
                         {
                             $.each(resultJSON, function (id, element) {
-                                $output += '<div class="card" id="search_card" style="max-width: 200px;">' +
+
+                                if(element.description == null)
+                                {
+                                    $output += '<div class="card" id="search_card" style="max-width: 200px;">' +
+                                    '<img class="card-img-top" src="/uploads/profilPictures/' + element.profilPicture + '" alt="Card image cap">' +
+                                    '<div class="card-body">' +
+                                    '<h5 class="card-title">' + element.username + '</h5>' +
+                                    '<p class="card-text text-truncate"> Champ non renseigné </p>' +
+                                    '<a href="/default/profildetail/' + element.id + '" class="btn btn-primary">Voir profil</a>' +
+                                    '</div>' +
+                                    '</div>';
+                                } 
+                                else {
+
+                                    $output += '<div class="card" id="search_card" style="max-width: 200px;">' +
                                     '<img class="card-img-top" src="/uploads/profilPictures/' + element.profilPicture + '" alt="Card image cap">' +
                                     '<div class="card-body">' +
                                     '<h5 class="card-title">' + element.username + '</h5>' +
@@ -178,7 +194,9 @@
                                     '<a href="/default/profildetail/' + element.id + '" class="btn btn-primary">Voir profil</a>' +
                                     '</div>' +
                                     '</div>';
-                            });
+                                    }
+
+                                });
                         }
                         
                         $('#search_result').html($output);
