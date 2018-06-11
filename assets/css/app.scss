@@ -770,15 +770,26 @@ footer .col-4{
 }
 
 ////////////////Fin de la page de liste des demandes////////////////////////
-/////////////////HOme artiste////////////////////////////////////////////////
-.img0:hover, .img1:hover, .img2:hover, .img3:hover{
+
+/////////////////Home artiste////////////////////////////////////////////////
+
+.img0, .img1, .img2, .img3
+{
+  transition: 0.5s;
+}
+
+.img0:hover, .img1:hover, .img2:hover, .img3:hover
+{
   transform: scale(1.1);
   transition: 0.5s;
-  }
+  cursor: pointer;
+}
 
-#home_link_artist{
+#home_link_artist
+{
  color: #FF8914;
 }
-#home_link_artist:hover{
+#home_link_artist:hover
+{
  color: #FFFFFF;
 }
