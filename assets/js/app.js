@@ -1,15 +1,2 @@
 require('bootstrap');
-
-// external js: masonry.pkgd.js, imagesloaded.pkgd.js
-
-// init Masonry
-var $grid = $('.grid').masonry({
-    itemSelector: '.grid-item',
-    percentPosition: true,
-    horizontalOrder:true,
-    columnWidth: '.grid-sizer'
-});
-// layout Masonry after each image loads
-$grid.imagesLoaded().progress( function() {
-    $grid.masonry();
-});
+global.swal = require( 'sweetalert' );
