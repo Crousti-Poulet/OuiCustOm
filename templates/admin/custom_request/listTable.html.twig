@@ -39,28 +39,28 @@
                             <th>Titre</th>
                             <th>Description</th>
                             <th>Catégorie</th>
-                            <th>Date demande</th>
                             <th>Demandeur</th>
                             <th>Status</th>
                             <th>Artisan</th>
                             <th>Photo</th>
-                            <th>Valider</th>
+                            <th>Date demande</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for r in custom_requests %}
                             <tr>
                                 <td>{{ r.id }}</td>
-                                <td>{{ r.title }}</td>
+                                <td><a href="{{ path('custom_request_detail', {id: r.id}) }}">{{ r.title }}</a></td>
                                 <td>{{ r.description }}</td>
                                 <td>{{ r.category }}</td>
-                                <td>{{ r.creationDate|date("d/m/Y H:i") }}</td>
                                 <td>{{  r.user  }}</td>
                                 {#to do : lien vers le profil du demandeur#}
                                 <td>{{ r.status }}</td>
                                 <td>{{ r.userAssignedTo }}</td>
-                                <td><img src="{{ asset('uploads/customRequestPictures/' ~ r.photoPath) }}" alt="photo de l'objet à customiser" class="img-responsive"></td>
-                                <td><a href="{{ path('admin_custom_request_validate', {id: r.id}) }}">Valider</a></td>
+                                <td><img src="{{ asset('uploads/customRequestPictures/' ~ r.photoPath) | imagine_filter('my_thumb')  }}" alt="photo de l'objet à customiser" class="img-responsive"></td>
+                                <td>{{ r.creationDate|date("d/m/Y H:i") }}</td>
+                                <td>{% if r.status == constant('App\\Entity\\CustomRequest::STATUS_A_VALIDER') %}<a href="{{ path('admin_custom_request_validate', {id: r.id}) }}">Valider</a>{% endif %}</td>
                             </tr>
                         {%  endfor %}
                         </tbody>

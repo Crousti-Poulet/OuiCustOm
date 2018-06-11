@@ -8,6 +8,7 @@ body, html
   text-align: center;
   background: linen;
   min-height: 100vh;
+  font-family: 'Poppins','arial', sans-serif;
 }
 main{
   min-height: 70vh;
@@ -217,6 +218,7 @@ footer .col-4{
 .btn_register_home{
   background: #FF8914;
   color:white;
+  transition: 1.2s;
 
 }
 
@@ -224,6 +226,7 @@ footer .col-4{
     background: #FF8914;
     color:white;
     transform: scale(1.2);
+    transition: 1.2s;
   }
 
 
@@ -767,3 +770,15 @@ footer .col-4{
 }
 
 ////////////////Fin de la page de liste des demandes////////////////////////
+/////////////////HOme artiste////////////////////////////////////////////////
+.img0:hover, .img1:hover, .img2:hover, .img3:hover{
+  transform: scale(1.1);
+  transition: 0.5s;
+  }
+
+#home_link_artist{
+ color: #FF8914;
+}
+#home_link_artist:hover{
+ color: #FFFFFF;
+}

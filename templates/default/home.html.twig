@@ -27,7 +27,7 @@
             <div class="col-sm-8 col-md-12 mt-md-4 mt-1">
                 <button class="btn" type="submit" id="search_submit">Trouver un customiseur !</button>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <a href="{{ path('custom_request_create') }}" class="btn mt-1" role="button" id="link_new_customrequest" aria-pressed="true">Poster une demande de customisation</a>
+                    <a href="{{ path('custom_request_create') }}" class="btn" role="button" id="link_new_customrequest" aria-pressed="true">Poster une demande de customisation</a>
                 {% endif %}
 
             </div>
@@ -120,7 +120,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <img src="{{ asset('uploads/gallery/c0b55559de14a538e27d77318036d989.jpeg')  }}" class="img-thumbnail" alt="Responsive image" >
+                                <img src="{{ asset('uploads/gallery/7bb34eb0a79715be99cb229558821a2a.jpeg')  }}" class="img-thumbnail" alt="Responsive image" >
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>                       
@@ -140,7 +140,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <img src="{{ asset('uploads/gallery/b21ff336d0ba2abe35cad01de918ea3a.jpeg')  }}" class="img-thumbnail" alt="Responsive image" >
+                                <img src="{{ asset('uploads/gallery/962c179b26b97314825a0488bd54d193.jpeg')  }}" class="img-thumbnail" alt="Responsive image" >
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>                       
@@ -160,7 +160,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <img src="{{ asset('uploads/gallery/2d42547ef17ddf7e822669d024b51766.jpeg')  }}" class="img-thumbnail" alt="Responsive image" >
+                                <img src="{{ asset('uploads/gallery/d67fef1b1e55fc4f70cf172d37491135.jpeg')  }}" class="img-thumbnail" alt="Responsive image" >
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>                       
@@ -185,8 +185,8 @@
                             <h5 class="card-title">@LezART</h5>
                             <p class="card-text">est un customisateur né en 1990 à Bayonne. ses illustrations sont drôles, dynamiques et modernes.... étrange et expressif. Mais ce sont les deux faces de la même pièce..</p>
                         </div>
-                        <ul class="list-group list-group-flush" id="list">
-                            <li class="list-group-item "> <a href="{# {{path('registrationPage')}} #}" class="col-sm-12 col-md-12 btn texte-white" role="button" aria-pressed="true">Decouvrir ce Customiseur </a></li>                     
+                        <ul class="list-group list-group-flush " id="list">
+                            <li class="list-group-item "> <a href="{# {{path('registrationPage')}} #}" class="col-sm-12 col-md-12 btn texte-white" id="home_link_artist" role="button" aria-pressed="true">Decouvrir ce Customiseur </a></li>                     
                         </ul>
                         
                     </div>
