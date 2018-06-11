@@ -42,7 +42,7 @@ class CustomRequestController extends Controller
 
     /**
      * @Route("/customrequest/list/assigned", name="custom_request_list_assigned")
-     * demandes affectées à un artisan connecté
+     * demandes affectées à un customiseur connecté
      */
     public function listCustomRequestsByArtistLoggedIn()
     {
