@@ -22,7 +22,7 @@
                         {% if is_granted('IS_AUTHENTICATED_FULLY')%}
                             <p class=" rounded p-2"><span class="OCO">Email </span><br>{{ user.email }}</p>
                         {%  elseif not is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <p class=" rounded p-2"><span class="OCO">Email </span><br>connexion requise</p>
+                            <p class=" rounded p-2"><span class="OCO">Email </span><br><a class="link_profile" href="{{ path('security_login') }}">connexion requise</a></p>
                         {% endif %}
                     </div>
 
@@ -30,7 +30,7 @@
                         {% if is_granted('IS_AUTHENTICATED_FULLY')%}
                             <p class=" rounded p-2"><span class="OCO">Téléphone </span><br>{{ user.phone }}</p>
                         {%  elseif not is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <p class=" rounded p-2"><span class="OCO">Téléphone </span><br>connexion requise</p>
+                            <p class=" rounded p-2"><span class="OCO">Téléphone </span><br><a class="link_profile" href="{{ path('security_login') }}">connexion requise</a></p>
                             {% endif %}
                     </div>
 
@@ -38,7 +38,7 @@
                         {% if is_granted('IS_AUTHENTICATED_FULLY')%}
                             <p class=" rounded p-2"><span class="OCO">Contacter ce customiseur </span><br><a id="link_profile" href="{{ path('contactArtist', {'id': user.id}) }}">Message privé</a></p>
                         {%  elseif not is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <p class=" rounded p-2"><span class="OCO">Contacter ce customiseur </span><br>connexion requise</p>
+                            <p class=" rounded p-2"><span class="OCO">Contacter ce customiseur </span><br><a class="link_profile" href="{{ path('security_login') }}">connexion requise</a></p>
                         {% endif %}
                     </div>
 
